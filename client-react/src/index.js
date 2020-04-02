@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import Settings from "./settings";
 import * as serviceWorker from "./serviceWorker";
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 ReactDOM.render(
   <React.StrictMode>
     <Settings />
