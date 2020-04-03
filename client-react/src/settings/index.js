@@ -2,8 +2,7 @@ import React, { Component } from "react";
 
 import Header from "../common/Header";
 import Footer from "../common/Footer";
-import ResetButton from "../common/ResetButton";
-import SaveButton from "../common/SaveButton";
+import DynamicButton from "../common/DynamicButton";
 
 class Settings extends Component {
   constructor(props) {
@@ -38,8 +37,8 @@ class Settings extends Component {
               alignContent: "center"
             }}
           >
-          <ResetButton />
-          <SaveButton />
+          <DynamicButton text="save" onclick="save" variant="link" color="black"/>
+          <DynamicButton text="reset" onclick="reset" variant="link" color="black"/>
           </div>
           {/* end of reset and save button grouping...*/}
 
