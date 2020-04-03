@@ -1,10 +1,11 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
-import { rubberBand } from "react-animations";
+import { rubberBand, tada } from "react-animations";
 import logo from "../assets/logo.png";
 import user_icon from "../assets/user_icon.png";
 
 const rubberAnimation = keyframes`${rubberBand}`
+const tadaAnimation = keyframes`${tada}`
 
 const Container = styled.header`
   display: grid;
@@ -26,7 +27,14 @@ const Link = styled.a`
 
 const Branding = styled.img`
   &:hover {
-    animation: 2s ${rubberBand};
+    animation: 2s ${rubberAnimation};
+  }
+  height: 50px;
+`;
+
+const UserIcon = styled.img`
+  &:hover {
+    animation: 2s ${tadaAnimation};
   }
   height: 50px;
 `;
@@ -35,7 +43,7 @@ const Header = () => (
   <Container>
     <Link href="#">DASHBOARD</Link>
     <Branding src={logo} alt="logo" />
-    <img src={user_icon} style={{ height: 50 }} alt="user icon" />
+    <UserIcon src={user_icon} alt="user icon" />
   </Container>
 );
 
