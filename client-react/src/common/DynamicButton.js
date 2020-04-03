@@ -1,22 +1,20 @@
 import React from "react";
-import styled from "styled-components";
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
 
-
-
-
-const DynamicButton = (props) => {
-  let textColor = {
-    color: props.color
-  }
-
+const DynamicButton = ({ text, onclick, variant, color }) => {
   let basicStyle = {
     textDecoration: "none",
-    textTransform: "upperCase"
-  }
+    textTransform: "upperCase",
+  };
+
   return (
-    <Button variant={props.variant} onClick={props.onclick} style={{...basicStyle,...textColor
-    }}>{props.text}</Button>
+    <Button
+      variant={variant}
+      onClick={onclick}
+      style={{ ...basicStyle, ...{ color: color } }}
+    >
+      {text}
+    </Button>
   );
 };
 
