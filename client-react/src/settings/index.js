@@ -34,14 +34,23 @@ class Settings extends Component {
             style={{
               display: "flex",
               justifyContent: "flex-end",
-              alignContent: "center"
+              alignContent: "center",
             }}
           >
-          <DynamicButton text="save" onclick="save" variant="link" color="black"/>
-          <DynamicButton text="reset" onclick="reset" variant="link" color="black"/>
+            <DynamicButton
+              text="save"
+              onclick="save"
+              variant="link"
+              color="black"
+            />
+            <DynamicButton
+              text="reset"
+              onclick="reset"
+              variant="link"
+              color="black"
+            />
           </div>
           {/* end of reset and save button grouping...*/}
-
         </div>
         <Footer />
       </>
