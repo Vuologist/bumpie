@@ -3,6 +3,7 @@ import styled, { keyframes } from "styled-components";
 import { rubberBand, tada } from "react-animations";
 import logo from "../assets/logo.png";
 import UserLogo from "../common/UserLogo";
+import HeaderDropdown from "../common/HeaderDropdown";
 
 const rubberAnimation = keyframes`${rubberBand}`;
 const tadaAnimation = keyframes`${tada}`;
@@ -34,21 +35,23 @@ const Branding = styled.img`
   justify-self: center;
 `;
 
-const UserIcon = styled.img`
-  &:hover {
-    animation: 2s ${tadaAnimation};
-  }
-  height: 50px;
+const Dropdown = styled.div`
+  position: relative;
   justify-self: flex-end;
   margin-right: 70px;
 `;
 
-const Header = () => (
-  <Container>
-    <Link href="#">DASHBOARD</Link>
-    <Branding src={logo} alt="logo" />
-    <UserLogo />
-  </Container>
-);
+const Header = () => {
+  const isHover = false;
+  return (
+    <Container>
+      <Link href="#">DASHBOARD</Link>
+      <Branding src={logo} alt="logo" />
+      <Dropdown>
+        <UserLogo />
+      </Dropdown>
+    </Container>
+  );
+};
 
 export default Header;
