@@ -27,7 +27,7 @@ const UserLogo = () => {
     }
   };
   return (
-    <>
+    <div onMouseLeave={() => onHover("leave")}>
       <Logo
         version="1.1"
         id="Layer_1"
@@ -39,7 +39,6 @@ const UserLogo = () => {
         height="57"
         className="svg"
         onMouseEnter={() => onHover("enter")}
-        onMouseLeave={() => onHover("leave")}
       >
         <g>
           <circle className="st0 st3" cx="12.5" cy="12.5" r="9.5" />
@@ -62,9 +61,8 @@ const UserLogo = () => {
       <StyledDropdown
         display={display ? true : false}
         onMouseEnter={() => onHover("enter")}
-        onMouseLeave={() => onHover("leave")}
       />
-    </>
+    </div>
   );
 };
 
