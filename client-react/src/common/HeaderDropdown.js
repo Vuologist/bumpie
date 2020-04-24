@@ -7,7 +7,6 @@ const Container = styled.header`
   grid-gap: 20px;
   align-items: center;
   background-color: #8fe8df;
-  color: #ff4d4d;
   padding-top: 20px;
   padding-bottom: 20px;
 `;
@@ -62,7 +61,7 @@ const ListItem = styled.li`
 `;
 
 const Link = styled.a`
-  color: black;
+  color: black !important;
 `;
 const HeaderDropdown = ({ className, onMouseEnter, onMouseLeave }) => (
   <Card
