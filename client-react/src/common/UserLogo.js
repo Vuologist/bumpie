@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./UserLogo.css";
 import styled, { keyframes } from "styled-components";
 import { rubberBand, tada } from "react-animations";
@@ -6,18 +6,26 @@ import HeaderDropdown from "../common/HeaderDropdown";
 
 const tadaAnimation = keyframes`${tada}`;
 
-const StyledDropdown = styled(HeaderDropdown)``;
-
 const Logo = styled.svg`
   enablebackground: "new 0 0 24 24";
   &:hover {
     animation: 2s ${tadaAnimation};
   }
-  &:hover ${StyledDropdown} {
-    display: flex;
-  }
 `;
-export const UserLogo = props => {
+const UserLogo = () => {
+  const [display, setDisplay] = useState(false);
+
+  const StyledDropdown = styled(HeaderDropdown)`
+    display: ${props => (props.display ? "flex" : "none")};
+  `;
+
+  const onHover = event => {
+    if (event === "enter") {
+      setDisplay(true);
+    } else {
+      setDisplay(false);
+    }
+  };
   return (
     <>
       <Logo
@@ -30,6 +38,8 @@ export const UserLogo = props => {
         style={{ enableBackground: "new 0 0 24 24" }}
         height="57"
         className="svg"
+        onMouseEnter={() => onHover("enter")}
+        onMouseLeave={() => onHover("leave")}
       >
         <g>
           <circle className="st0 st3" cx="12.5" cy="12.5" r="9.5" />
@@ -49,7 +59,11 @@ export const UserLogo = props => {
           />
         </g>
       </Logo>
-      <StyledDropdown />
+      <StyledDropdown
+        display={display ? true : false}
+        onMouseEnter={() => onHover("enter")}
+        onMouseLeave={() => onHover("leave")}
+      />
     </>
   );
 };

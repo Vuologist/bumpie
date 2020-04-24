@@ -64,8 +64,12 @@ const ListItem = styled.li`
 const Link = styled.a`
   color: black;
 `;
-const HeaderDropdown = ({ className }) => (
-  <Card className={className}>
+const HeaderDropdown = ({ className, onMouseEnter, onMouseLeave }) => (
+  <Card
+    className={className}
+    onMouseEnter={onMouseEnter}
+    onMouseLeave={onMouseLeave}
+  >
     <ListGroup>
       <ListItem>
         <Link>Notification Settings</Link>
