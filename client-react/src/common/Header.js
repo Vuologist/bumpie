@@ -43,7 +43,7 @@ const Wrapper = styled.div`
 
 const StyledDropdown = styled(HeaderDropdown)``;
 
-const TestDiv = styled.div`
+const StyledLogo = styled(UserLogo)`
   ${StyledDropdown}:hover & {
     display: flex;
   }
@@ -55,9 +55,7 @@ const Header = () => {
       <Link href="#">DASHBOARD</Link>
       <Branding src={logo} alt="logo" />
       <Wrapper>
-        <TestDiv>
-          <UserLogo />
-        </TestDiv>
+        <UserLogo />
         <StyledDropdown />
       </Wrapper>
     </Container>
