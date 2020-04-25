@@ -13,7 +13,7 @@ const Container = styled.header`
 const Card = styled.div`
   display: -webkit-box;
   display: -ms-flexbox;
-  display: none;
+  display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
@@ -63,6 +63,7 @@ const ListItem = styled.li`
 const Link = styled.a`
   color: black !important;
 `;
+
 const HeaderDropdown = ({ className }) => (
   <Card className={className}>
     <ListGroup>

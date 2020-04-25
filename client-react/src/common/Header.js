@@ -41,10 +41,9 @@ const Wrapper = styled.div`
   margin-right: 70px;
 `;
 
-const StyledDropdown = styled(HeaderDropdown)``;
-
-const StyledLogo = styled(UserLogo)`
-  ${StyledDropdown}:hover & {
+const StyledDropdown = styled(HeaderDropdown)`
+  display: none;
+  ${Wrapper}:hover & {
     display: flex;
   }
 `;
