@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { rubberBand, tada } from "react-animations";
 import logo from "../assets/logo.png";
@@ -41,14 +41,32 @@ const Dropdown = styled.div`
   margin-right: 70px;
 `;
 
+const StyledDropdown = styled(HeaderDropdown)`
+  display: ${props => (props.display ? "flex" : "none")};
+`;
+
 const Header = () => {
-  const isHover = false;
+  const [display, setDisplay] = useState(false);
+
+  const onHover = event => {
+    if (event === "enter") {
+      setDisplay(true);
+    } else {
+      setDisplay(false);
+    }
+  };
   return (
     <Container>
       <Link href="#">DASHBOARD</Link>
       <Branding src={logo} alt="logo" />
       <Dropdown>
-        <UserLogo />
+        <div
+          onMouseLeave={() => onHover("leave")}
+          onMouseEnter={() => onHover("enter")}
+        >
+          <UserLogo />
+          <StyledDropdown display={display ? true : false} />
+        </div>
       </Dropdown>
     </Container>
   );
