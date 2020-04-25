@@ -35,39 +35,31 @@ const Branding = styled.img`
   justify-self: center;
 `;
 
-const Dropdown = styled.div`
+const Wrapper = styled.div`
   position: relative;
   justify-self: flex-end;
   margin-right: 70px;
 `;
 
-const StyledDropdown = styled(HeaderDropdown)`
-  display: ${props => (props.display ? "flex" : "none")};
+const StyledDropdown = styled(HeaderDropdown)``;
+
+const TestDiv = styled.div`
+  ${StyledDropdown}:hover & {
+    display: flex;
+  }
 `;
 
 const Header = () => {
-  const [display, setDisplay] = useState(false);
-
-  const onHover = event => {
-    if (event === "enter") {
-      setDisplay(true);
-    } else {
-      setDisplay(false);
-    }
-  };
   return (
     <Container>
       <Link href="#">DASHBOARD</Link>
       <Branding src={logo} alt="logo" />
-      <Dropdown>
-        <div
-          onMouseLeave={() => onHover("leave")}
-          onMouseEnter={() => onHover("enter")}
-        >
+      <Wrapper>
+        <TestDiv>
           <UserLogo />
-          <StyledDropdown display={display ? true : false} />
-        </div>
-      </Dropdown>
+        </TestDiv>
+        <StyledDropdown />
+      </Wrapper>
     </Container>
   );
 };

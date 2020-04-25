@@ -6,7 +6,7 @@ const Logo = styled.svg`
   enablebackground: "new 0 0 24 24";
 `;
 
-const UserLogo = () => {
+const UserLogo = ({ className }) => {
   return (
     <Logo
       version="1.1"
@@ -17,7 +17,7 @@ const UserLogo = () => {
       viewBox="0 0 24 24"
       style={{ enableBackground: "new 0 0 24 24" }}
       height="57"
-      className="svg"
+      className={className}
     >
       <g>
         <circle className="st0 st3" cx="12.5" cy="12.5" r="9.5" />
