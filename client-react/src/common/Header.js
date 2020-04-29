@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import styled, { keyframes } from "styled-components";
-import { rubberBand, tada } from "react-animations";
+import { rubberBand } from "react-animations";
 import logo from "../assets/logo.png";
 import UserLogo from "../common/UserLogo";
 import HeaderDropdown from "../common/HeaderDropdown";
 
 const rubberAnimation = keyframes`${rubberBand}`;
-const tadaAnimation = keyframes`${tada}`;
 
 const Container = styled.header`
   display: grid;

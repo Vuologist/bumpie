@@ -1,15 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-const Container = styled.header`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 20px;
-  align-items: center;
-  background-color: #8fe8df;
-  padding-top: 20px;
-  padding-bottom: 20px;
-`;
 const Card = styled.div`
   display: -webkit-box;
   display: -ms-flexbox;

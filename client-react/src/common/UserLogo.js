@@ -1,6 +1,6 @@
 import React from "react";
 import "./UserLogo.css";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 
 const Logo = styled.svg`
   enablebackground: "new 0 0 24 24";
