@@ -1,21 +1,15 @@
 import React from "react";
 import "./UserLogo.css";
-import styled from "styled-components";
-
-const Logo = styled.svg`
-  enablebackground: "new 0 0 24 24";
-`;
 
 const UserLogo = ({ className }) => {
   return (
-    <Logo
+    <svg
       version="1.1"
       id="Layer_1"
       xmlns="http://www.w3.org/2000/svg"
       x="0px"
       y="0px"
       viewBox="0 0 24 24"
-      style={{ enableBackground: "new 0 0 24 24" }}
       height="57"
       className={className}
     >
@@ -36,7 +30,7 @@ const UserLogo = ({ className }) => {
     		C15.69,11.1,16,10.34,16,9.5C16,7.57,14.43,6,12.5,6L12.5,6z"
         />
       </g>
-    </Logo>
+    </svg>
   );
 };
 
