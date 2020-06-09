@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render HeaderDropdown correctly 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0,0,0,0.125);
+  position: absolute;
+  left: 50%;
+  right: auto;
+  text-align: center;
+  -webkit-transform: translate(-50%,0);
+  -ms-transform: translate(-50%,0);
+  transform: translate(-50%,0);
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.19),0 3px 5px 0 rgba(0,0,0,0.19);
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding-left: 0;
+  margin-bottom: 0;
+  border-right: 0;
+  border-left: 0;
+  list-style-type: none;
+  border-radius: 0;
+}
+
+.c2 {
+  border-top: 0;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  border-right: 0;
+  border-left: 0;
+  border-radius: 0;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.c3 {
+  color: black !important;
+}
+
+<div
+  className="c0"
+>
+  <ul
+    className="c1"
+  >
+    <li
+      className="c2"
+    >
+      <a
+        className="c3"
+      >
+        Notification Settings
+      </a>
+    </li>
+    <li
+      className="c2"
+    >
+      <a
+        className="c3"
+      >
+        User Settings
+      </a>
+    </li>
+    <li
+      className="c2"
+    >
+      <a
+        className="c3"
+      >
+        Log Out
+      </a>
+    </li>
+  </ul>
+</div>
+`;
