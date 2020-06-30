@@ -37,11 +37,16 @@ const PageTitle = styled.h2`
   }
 `;
 
+const Site = styled.div`
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+`;
 const Settings = () => {
   const [emailNotification, setEmailToggle] = useState(false);
   const [phoneNotification, setPhoneToggle] = useState(false);
   return (
-    <>
+    <Site>
       <Header />
       <Wrapper>
         <PageTitle>Notification Settings</PageTitle>
@@ -91,7 +96,7 @@ const Settings = () => {
         {/* end of reset and save button grouping...*/}
       </Wrapper>
       <Footer />
-    </>
+    </Site>
   );
 };
 
