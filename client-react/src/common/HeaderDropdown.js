@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { device } from "../common/MediaBreakpoints";
 
 const Card = styled.div`
   display: -webkit-box;
@@ -20,6 +21,9 @@ const Card = styled.div`
   text-align: center;
   transform: translate(-50%, 0);
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.19), 0 3px 5px 0 rgba(0, 0, 0, 0.19);
+  @media ${device.mobileL} {
+    left: 0%;
+  }
 `;
 
 const ListGroup = styled.ul`
