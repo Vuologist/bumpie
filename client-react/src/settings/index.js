@@ -42,6 +42,13 @@ const Site = styled.div`
   min-height: 100vh;
   flex-direction: column;
 `;
+
+const Content = styled.div`
+  margin: 80px;
+  @media ${device.mobileL} {
+    margin: 40px;
+  }
+`;
 const Settings = () => {
   const [emailNotification, setEmailToggle] = useState(false);
   const [phoneNotification, setPhoneToggle] = useState(false);
@@ -50,11 +57,7 @@ const Settings = () => {
       <Header />
       <Wrapper>
         <PageTitle>Notification Settings</PageTitle>
-        <div
-          style={{
-            margin: 80
-          }}
-        >
+        <Content>
           <SettingsSectionHeader title="Notify me through..." />
           <label style={{ display: "flex", justifyContent: "space-between" }}>
             <span>email@email.com</span>
@@ -92,7 +95,7 @@ const Settings = () => {
               <StyledButton text="save" />
             </div>
           </div>
-        </div>
+        </Content>
         {/* end of reset and save button grouping...*/}
       </Wrapper>
       <Footer />
