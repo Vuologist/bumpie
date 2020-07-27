@@ -6,19 +6,31 @@ import Layout from "../components/layout";
 import GoogleSignInDarkNormalWeb2x from "./GoogleSignInDarkNormalWeb2x.png";
 import Polygon from "./Polygon.png";
 import SignInPolygon from "../images/SignInPolygon.svg";
+import DynamicButton from "../components/DynamicButton";
+import TextInput from "../components/TextInput";
 import { PassThrough } from "stream";
 
 const CenterContainer = styled.div`
   display: flex;
   justify-content: center;
+  align-items: top;
   height: 100vh;
   background-color: #c5c5c4;
 `;
 const ContentWrapper = styled.div`
-  margin-top: 15vh;
   height: 50%;
-  width: 80%;
+  width: 60%;
   display: flex;
+  margin-top: 10%;
+  @media (max-width: 1024px) {
+    margin-top: 25%;
+    width: 75%;
+  }
+  @media (max-width: 414px) {
+    margin-top: 20%;
+    width: 85%;
+    height: 45%;
+  }
 `;
 const LeftContainer = styled.div`
   width: 60%;
@@ -40,107 +52,103 @@ const RightContainer = styled.div`
   justify-content: center;
   align-items: center;
 `;
-const Button = styled.button`
-  width: 400px;
-  height: 75px;
+const Button = styled(DynamicButton)`
   background-color: ${props => (props.light ? "#d0e6e3" : "#146058")};
   color: ${props => (props.light ? "#005A52" : "#fff")};
   font-family: "Roboto";
-  font-size: 25px;
+  font-size: 15px;
+  width: 300px;
   border-radius: 37px;
   border: 1px solid transparent;
   cursor: pointer;
+  @media (max-width: 1050px) {
+    width: 150px;
+  }
+  @media (max-width: 500px) {
+    width: 100px;
+  }
+  @media (max-width: 375px) {
+    width: 80px;
+    font-size: 12px;
+  }
 `;
-const Input = styled.input`
-  width: 425px;
-  height: 25px;
-  margin-bottom: 20px;
-  border-radius: 12px;
-  border: 1px solid transparent;
-  padding: 10px;
+const Title = styled.h1`
+  font-family: "Quicksand";
+  font-size: 40px;
+  font-weight: "bold";
+  margin-bottom: 30px;
+  color: ${props => (props.light ? "#fff" : "#000")};
+  @media (max-width: 800px) {
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+  @media (max-width: 375px) {
+    margin-bottom: 5px;
+    font-size: 18px;
+  }
+`;
+
+const Text = styled.p`
+  color: #fff;
+  font-family: "Roboto";
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 50px;
+  margin-left: 2px;
+  margin-right: 2px;
+  @media (max-width: 800px) {
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+  @media (max-width: 375px) {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+`;
+
+const Img = styled.img`
+  width: 175px;
+  margin-bottom: 30px;
+  @media (max-width: 800px) {
+    margin-bottom: 10px;
+    width: 120px;
+  }
+`;
+
+const Link = styled.a`
+  font-family: "Roboto";
+  font-size: 15px;
+  cursor: "pointer";
+  margin-bottom: 30px;
+  @media (max-width: 800px) {
+    margin-bottom: 15px;
+    font-size: 12px;
+  }
 `;
 
 const pages = [<animated.div>a</animated.div>];
 
 const SignIn = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  //const [showSignUp, setSignUpToggle] = useState(false);
-  // const transition = useTransition(pages, item => item.key, {
-  //   enter: { opacity: 1, transform: "translate3d(0%,0,0)" },
-  //   leave: { opacity: 0, transform: "translate3d(-50%,0,0)" },
-  // });
-
   return (
     <CenterContainer>
       <ContentWrapper>
         <LeftContainer>
-          <h1
-            style={{
-              fontFamily: "Quicksand",
-              fontSize: 50,
-              fontWeight: "bold",
-              marginBottom: 30,
-            }}
-          >
-            Sign In
-          </h1>
-          <img
-            style={{ width: 250, marginBottom: 30 }}
-            src={GoogleSignInDarkNormalWeb2x}
-            alt="google login"
-          />
+          <Title>Sign In</Title>
+          <Img src={GoogleSignInDarkNormalWeb2x} alt="google login" />
           <form>
-            <Input
-              type="text"
-              placeholder="Email"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-            />
+            <TextInput type="text" placeholder="Email" />
             <br />
-            <Input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-            />
+            <TextInput type="password" placeholder="Password" />
           </form>
-          <a
-            style={{
-              fontFamily: "Roboto",
-              fontSize: 25,
-              cursor: "pointer",
-              marginBottom: 30,
-            }}
-          >
-            I forgot my password
-          </a>
-          <Button>SIGN IN</Button>
+          <Link>I forgot my password</Link>
+          <Button text="SIGN IN" />
         </LeftContainer>
         <RightContainer>
-          <h1
-            style={{
-              color: "white",
-              fontFamily: "Quicksand",
-              fontSize: 55,
-              fontWeight: "bold",
-              marginBottom: 100,
-            }}
-          >
-            Welcome!
-          </h1>
-          <p
-            style={{
-              color: "white",
-              fontFamily: "Roboto",
-              fontSize: 25,
-              marginBottom: 100,
-              textAlign: "center",
-            }}
-          >
+          <Title light>Welcome!</Title>
+          <Text>
             Don't have an account? <br /> Join today, it's free and easy!
-          </p>
-          <Button light>SIGN UP</Button>
+          </Text>
+          <Button light text="SIGN UP" />
         </RightContainer>
       </ContentWrapper>
     </CenterContainer>
