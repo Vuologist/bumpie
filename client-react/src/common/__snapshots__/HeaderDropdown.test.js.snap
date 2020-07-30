@@ -67,6 +67,12 @@ exports[`render HeaderDropdown correctly 1`] = `
   color: black !important;
 }
 
+@media (max-width:425px) {
+  .c0 {
+    left: 0%;
+  }
+}
+
 <div
   className="c0"
 >
