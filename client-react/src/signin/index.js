@@ -101,15 +101,6 @@ const Text = styled.p`
   }
 `;
 
-const Img = styled.img`
-  width: 175px;
-  margin-bottom: 30px;
-  @media (max-width: 800px) {
-    margin-bottom: 10px;
-    width: 120px;
-  }
-`;
-
 const Link = styled.a`
   font-family: "Roboto";
   font-size: 15px;
