@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 //import { animated } from "react-spring";
-import GoogleSignInDarkNormalWeb2x from "../assets/GoogleSignInDarkNormalWeb2x.png";
 import Polygon from "../assets/Polygon.png";
 import DynamicButton from "../common/DynamicButton";
 import TextInput from "../common/TextInput";
@@ -128,7 +127,6 @@ const SignIn = () => {
       <ContentWrapper>
         <LeftContainer>
           <Title>Sign In</Title>
-          <Img src={GoogleSignInDarkNormalWeb2x} alt="google login" />
           <form>
             <TextInput type="text" placeholder="Email" />
             <br />
