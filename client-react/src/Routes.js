@@ -22,7 +22,7 @@ export default function Routes() {
       <Route exact path="/home">
         <Home />
       </Route>
-      <Route exact path="about-us">
+      <Route exact path="/about-us">
         <AboutUsPage />
       </Route>
     </Switch>
