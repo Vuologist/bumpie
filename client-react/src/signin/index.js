@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 //import { animated } from "react-spring";
 import Polygon from "../assets/Polygon.png";
@@ -15,7 +15,7 @@ const CenterContainer = styled.div`
 const ContentWrapper = styled.div`
   height: 50%;
   width: 60%;
-  display: flex;
+  display: ${props => (props.display ? "flex" : "none")};
   margin-top: 10%;
   @media (max-width: 1024px) {
     margin-top: 25%;
@@ -28,24 +28,26 @@ const ContentWrapper = styled.div`
   }
 `;
 const LeftContainer = styled.div`
-  width: 60%;
-  background-color: #8fe8df;
+  width: ${props => (props.smol ? "40%" : "60%")};
+  background-color: ${props => (props.light ? "#8fe8df" : "#005a52")};
   border-radius: 41px 0px 0px 41px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url(${Polygon});
+  background-image: url(${props => props.img});
 `;
 const RightContainer = styled.div`
   width: 40%;
-  background-color: #005a52;
+  background-color: ${props => (props.light ? "#8fe8df" : "#005a52")};
   border-radius: 0px 41px 41px 0px;
   display: flex;
   flex-direction: column;
   flex: 1;
   justify-content: center;
   align-items: center;
+  background-image: url(${props => props.img});
+  background-position: right;
 `;
 const Button = styled(DynamicButton)`
   background-color: ${props => (props.light ? "#d0e6e3" : "#146058")};
@@ -113,10 +115,24 @@ const Link = styled.a`
 `;
 
 const SignIn = () => {
+  const [page, setPage] = useState([true, false]);
+  const changePage = index => {
+    setPage(
+      page.map((x, i) => {
+        if (index !== i) {
+          x = true;
+        } else {
+          x = false;
+        }
+        return x;
+      })
+    );
+  };
+
   return (
     <CenterContainer>
-      <ContentWrapper>
-        <LeftContainer>
+      <ContentWrapper display={page[0] ? true : false}>
+        <LeftContainer img={Polygon} light>
           <Title>Sign In</Title>
           <form>
             <TextInput type="text" placeholder="Email" />
@@ -131,7 +147,30 @@ const SignIn = () => {
           <Text>
             Don't have an account? <br /> Join today, it's free and easy!
           </Text>
-          <Button light text="SIGN UP" />
+          <Button light text="SIGN UP" onClick={() => changePage(0)} />
+        </RightContainer>
+      </ContentWrapper>
+      <ContentWrapper display={page[1] ? true : false}>
+        <LeftContainer smol>
+          <Title light>Welcome!</Title>
+          <Text>
+            Already have an account? <br /> Sign in!
+          </Text>
+          <Button light text="SIGN IN" onClick={() => changePage(1)} />
+        </LeftContainer>
+        <RightContainer light img={Polygon} large>
+          <Title>Sign Up</Title>
+          <form>
+            <TextInput type="text" placeholder="Name" />
+            <br />
+            <TextInput type="text" placeholder="Email" />
+            <br />
+            <TextInput type="password" placeholder="Password" />
+            <br />
+            <TextInput type="password" placeholder="Confirm Password" />
+          </form>
+          <Link>I forgot my password</Link>
+          <Button text="SIGN IN" />
         </RightContainer>
       </ContentWrapper>
     </CenterContainer>
