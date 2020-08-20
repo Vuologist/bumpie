@@ -12,7 +12,6 @@ const Site = styled.div`
 `;
 
 const Main = styled.div`
-  display: flex;
   min-height: 80vh;
 `;
 
