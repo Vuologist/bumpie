@@ -1,9 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import AvatarPenguin from "./AvatarPenguin.png";
-
-import Layout from "../components/layout";
+import AvatarPenguin from "../assets/AvatarPenguin.png";
 
 const Img = styled.img`
   height: 200px;
@@ -28,8 +26,8 @@ const NameBlock = ({ avatar, name, description }) => (
       style={{
         fontFamily: "Quicksand",
         fontWeight: "bold",
-        fontSize: 55,
-        paddingTop: 20,
+        fontSize: 25,
+        paddingTop: 20
       }}
     >
       {name}
@@ -38,8 +36,8 @@ const NameBlock = ({ avatar, name, description }) => (
       style={{
         padding: "40px 0px 0px 60px",
         fontFamily: "Quicksand",
-        fontSize: 35,
-        width: "70%",
+        fontSize: 15,
+        width: "70%"
       }}
     >
       {description}
@@ -48,18 +46,16 @@ const NameBlock = ({ avatar, name, description }) => (
 );
 
 const AboutUsPage = () => (
-  <Layout>
-    <Container>
-      <NameBlock
-        name="Anthony Vu"
-        description='"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit."'
-      />
-      <NameBlock
-        name="Peggy Zhou"
-        description='"Lorem ipsum dolor sit amet, consectetur adipiscing elit."'
-      />
-    </Container>
-  </Layout>
+  <Container>
+    <NameBlock
+      name="Anthony Vu"
+      description='"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit."'
+    />
+    <NameBlock
+      name="Peggy Zhou"
+      description='"Lorem ipsum dolor sit amet, consectetur adipiscing elit."'
+    />
+  </Container>
 );
 
 export default AboutUsPage;

@@ -1,14 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import { useTransition, animated } from "react-spring";
-
-import Layout from "../components/layout";
-import GoogleSignInDarkNormalWeb2x from "./GoogleSignInDarkNormalWeb2x.png";
-import Polygon from "./Polygon.png";
-import SignInPolygon from "../images/SignInPolygon.svg";
-import DynamicButton from "../components/DynamicButton";
-import TextInput from "../components/TextInput";
-import { PassThrough } from "stream";
+//import { animated } from "react-spring";
+import GoogleSignInDarkNormalWeb2x from "../assets/GoogleSignInDarkNormalWeb2x.png";
+import Polygon from "../assets/Polygon.png";
+import DynamicButton from "../common/DynamicButton";
+import TextInput from "../common/TextInput";
 
 const CenterContainer = styled.div`
   display: flex;
@@ -125,8 +121,6 @@ const Link = styled.a`
     font-size: 12px;
   }
 `;
-
-const pages = [<animated.div>a</animated.div>];
 
 const SignIn = () => {
   return (
