@@ -21,15 +21,22 @@ const PageTitle = styled.h2`
   }
 `;
 
+const Wrapper = styled.div`
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+`;
+
 const NotificationSettings = () => {
   const [emailNotification, setEmailToggle] = useState(false);
   const [phoneNotification, setPhoneToggle] = useState(false);
   return (
-    <>
+    <Wrapper>
       <PageTitle>Notification Settings</PageTitle>
       <div
         style={{
-          margin: 80,
+          margin: 80
         }}
       >
         <SettingsSectionHeader title="Notify me through..." />
@@ -50,7 +57,7 @@ const NotificationSettings = () => {
         </label>
         <div
           style={{
-            marginTop: 40,
+            marginTop: 40
           }}
         >
           <SettingsSectionHeader title="Notify me..." />
@@ -62,7 +69,7 @@ const NotificationSettings = () => {
             style={{
               marginTop: 50,
               display: "flex",
-              justifyContent: "flex-end",
+              justifyContent: "flex-end"
             }}
           >
             <StyledButton text="reset" />
@@ -71,7 +78,7 @@ const NotificationSettings = () => {
         </div>
       </div>
       {/* end of reset and save button grouping...*/}
-    </>
+    </Wrapper>
   );
 };
 
