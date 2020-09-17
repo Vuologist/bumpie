@@ -4,6 +4,8 @@ import styled from "styled-components";
 import Polygon from "../assets/Polygon.png";
 import DynamicButton from "../common/DynamicButton";
 import TextInput from "../common/TextInput";
+import logo from "../assets/logo.png";
+import { device } from "../common/MediaBreakpoints";
 
 const CenterContainer = styled.div`
   display: flex;
@@ -36,6 +38,8 @@ const LeftContainer = styled.div`
   justify-content: center;
   align-items: center;
   background-image: url(${props => props.img});
+  background-position: center;
+  background-size: cover;
 `;
 const RightContainer = styled.div`
   width: 40%;
@@ -113,6 +117,20 @@ const Link = styled.a`
     font-size: 12px;
   }
 `;
+const Branding = styled.img`
+  height: 30px;
+  align-self: start;
+  margin-left: 40px;
+  margin-top: -100px;
+  @media ${device.mobileM} {
+    margin-left: 15px;
+    justify-self: start;
+  }
+  @media ${device.mobileL} {
+    margin-left: 25px;
+    justify-self: start;
+  }
+`;
 
 const SignIn = () => {
   const [page, setPage] = useState([true, false]);
@@ -133,7 +151,8 @@ const SignIn = () => {
     <CenterContainer>
       <ContentWrapper display={page[0] ? true : false}>
         <LeftContainer img={Polygon} light>
-          <Title>Sign In</Title>
+          <Branding src={logo} alt="logo" />
+          <Title style={{ marginTop: "40px" }}>Sign In</Title>
           <form>
             <TextInput type="text" placeholder="Email" />
             <br />
@@ -152,7 +171,10 @@ const SignIn = () => {
       </ContentWrapper>
       <ContentWrapper display={page[1] ? true : false}>
         <LeftContainer smol>
-          <Title light>Welcome!</Title>
+          <Branding style={{ marginTop: "-90px" }} src={logo} alt="logo" />
+          <Title light style={{ marginTop: "60px" }}>
+            Welcome!
+          </Title>
           <Text>
             Already have an account? <br /> Sign in!
           </Text>
