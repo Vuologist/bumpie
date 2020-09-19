@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { Auth } from "aws-amplify";
 //import { animated } from "react-spring";
 import Polygon from "../assets/Polygon.png";
 import DynamicButton from "../common/DynamicButton";
@@ -15,7 +16,7 @@ const CenterContainer = styled.div`
 const ContentWrapper = styled.div`
   height: 50%;
   width: 60%;
-  display: ${props => (props.display ? "flex" : "none")};
+  display: ${(props) => (props.display ? "flex" : "none")};
   margin-top: 10%;
   @media (max-width: 1024px) {
     margin-top: 25%;
@@ -28,30 +29,30 @@ const ContentWrapper = styled.div`
   }
 `;
 const LeftContainer = styled.div`
-  width: ${props => (props.smol ? "40%" : "60%")};
-  background-color: ${props => (props.light ? "#8fe8df" : "#005a52")};
+  width: ${(props) => (props.smol ? "40%" : "60%")};
+  background-color: ${(props) => (props.light ? "#8fe8df" : "#005a52")};
   border-radius: 41px 0px 0px 41px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url(${props => props.img});
+  background-image: url(${(props) => props.img});
 `;
 const RightContainer = styled.div`
   width: 40%;
-  background-color: ${props => (props.light ? "#8fe8df" : "#005a52")};
+  background-color: ${(props) => (props.light ? "#8fe8df" : "#005a52")};
   border-radius: 0px 41px 41px 0px;
   display: flex;
   flex-direction: column;
   flex: 1;
   justify-content: center;
   align-items: center;
-  background-image: url(${props => props.img});
+  background-image: url(${(props) => props.img});
   background-position: right;
 `;
 const Button = styled(DynamicButton)`
-  background-color: ${props => (props.light ? "#d0e6e3" : "#146058")};
-  color: ${props => (props.light ? "#005A52" : "#fff")};
+  background-color: ${(props) => (props.light ? "#d0e6e3" : "#146058")};
+  color: ${(props) => (props.light ? "#005A52" : "#fff")};
   font-family: "Roboto";
   font-size: 15px;
   width: 300px;
@@ -74,7 +75,7 @@ const Title = styled.h1`
   font-size: 40px;
   font-weight: "bold";
   margin-bottom: 30px;
-  color: ${props => (props.light ? "#fff" : "#000")};
+  color: ${(props) => (props.light ? "#fff" : "#000")};
   @media (max-width: 800px) {
     font-size: 22px;
     margin-bottom: 10px;
@@ -116,7 +117,38 @@ const Link = styled.a`
 
 const SignIn = () => {
   const [page, setPage] = useState([true, false]);
-  const changePage = index => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const validateForm = () => {
+    return (
+      email.length > 0 && password.length > 0 && password === confirmPassword
+    );
+  };
+
+  const handleOnSignUp = async (event) => {
+    event.preventDefault();
+
+    if (!validateForm()) {
+      alert("Invalid Form Submission");
+      return;
+    }
+
+    try {
+      await Auth.signUp({
+        username: email,
+        password: password,
+      });
+      setEmail("");
+      setPassword("");
+      setConfirmPassword("");
+    } catch (e) {
+      alert(e.message);
+    }
+  };
+
+  const changePage = (index) => {
     setPage(
       page.map((x, i) => {
         if (index !== i) {
@@ -160,17 +192,31 @@ const SignIn = () => {
         </LeftContainer>
         <RightContainer light img={Polygon} large>
           <Title>Sign Up</Title>
-          <form>
+          <form onSubmit={handleOnSignUp}>
             <TextInput type="text" placeholder="Name" />
             <br />
-            <TextInput type="text" placeholder="Email" />
+            <TextInput
+              type="text"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
             <br />
-            <TextInput type="password" placeholder="Password" />
+            <TextInput
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
             <br />
-            <TextInput type="password" placeholder="Confirm Password" />
+            <TextInput
+              type="password"
+              placeholder="Confirm Password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
           </form>
-          <Link>I forgot my password</Link>
-          <Button text="SIGN IN" />
+          <Button text="SIGN UP" onClick={handleOnSignUp} />
         </RightContainer>
       </ContentWrapper>
     </CenterContainer>
