@@ -79,7 +79,7 @@ const Title = styled.h1`
   font-weight: "bold";
   margin-bottom: 30px;
   color: ${props => (props.light ? "#fff" : "#000")};
-  margin-top: ${props => props.top};
+  margin-top: ${props => (props.top ? "50px" : "40px")};
   @media (max-width: 800px) {
     font-size: 22px;
     margin-bottom: 10px;
@@ -122,7 +122,7 @@ const Branding = styled.img`
   height: 30px;
   align-self: start;
   margin-left: 40px;
-  margin-top: ${props => props.top};
+  margin-top: ${props => (props.top ? "-60px" : "-85px")};
   @media ${device.mobileM} {
     margin-left: 15px;
     justify-self: start;
@@ -152,8 +152,8 @@ const SignIn = () => {
     <CenterContainer>
       <ContentWrapper display={page[0] ? true : false}>
         <LeftContainer img={Polygon} light>
-          <Branding src={logo} top="100px" alt="logo" />
-          <Title top="40px">Sign In</Title>
+          <Branding src={logo} top alt="logo" />
+          <Title>Sign In</Title>
           <form>
             <TextInput type="text" placeholder="Email" />
             <br />
@@ -172,8 +172,8 @@ const SignIn = () => {
       </ContentWrapper>
       <ContentWrapper display={page[1] ? true : false}>
         <LeftContainer smol>
-          <Branding top="100px" src={logo} alt="logo" />
-          <Title light top="50px">
+          <Branding src={logo} alt="logo" />
+          <Title light top>
             Welcome!
           </Title>
           <Text>
