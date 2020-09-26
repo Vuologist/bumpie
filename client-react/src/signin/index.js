@@ -134,9 +134,7 @@ const Branding = styled.img`
   }
 `;
 const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: contents;
 `;
 
 const SignIn = () => {
