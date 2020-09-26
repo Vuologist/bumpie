@@ -21,9 +21,9 @@ const Button = styled.button`
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 `;
 
-const DynamicButton = ({ text, onClick, className }) => {
+const DynamicButton = ({ text, type, onClick, className }) => {
   return (
-    <Button onClick={onClick} className={className}>
+    <Button onClick={onClick} type={type} className={className}>
       {text}
     </Button>
   );

@@ -133,6 +133,11 @@ const Branding = styled.img`
     justify-self: start;
   }
 `;
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 const SignIn = () => {
   const [page, setPage] = useState([true, false]);
@@ -215,31 +220,28 @@ const SignIn = () => {
         </LeftContainer>
         <RightContainer light img={Polygon} large>
           <Title>Sign Up</Title>
-          <form onSubmit={handleOnSignUp}>
+          <Form onSubmit={handleOnSignUp}>
             <TextInput type="text" placeholder="Name" />
-            <br />
             <TextInput
               type="text"
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <br />
             <TextInput
               type="password"
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <br />
             <TextInput
               type="password"
               placeholder="Confirm Password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
-          </form>
-          <Button text="SIGN UP" onClick={handleOnSignUp} />
+            <Button text="SIGN UP" type="submit" onClick={handleOnSignUp} />
+          </Form>
         </RightContainer>
       </ContentWrapper>
     </CenterContainer>
