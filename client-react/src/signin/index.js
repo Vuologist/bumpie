@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Auth } from "aws-amplify";
-//import { animated } from "react-spring";
 import Polygon from "../assets/Polygon.png";
 import DynamicButton from "../common/DynamicButton";
 import TextInput from "../common/TextInput";
@@ -170,6 +169,17 @@ const SignIn = () => {
     }
   };
 
+  const handleOnSignIn = async (event) => {
+    event.preventDefault();
+
+    try {
+      await Auth.signIn(email, password);
+      alert("Logged in");
+    } catch (e) {
+      alert(e.message);
+    }
+  };
+
   const changePage = (index) => {
     setPage(
       page.map((x, i) => {
@@ -189,13 +199,22 @@ const SignIn = () => {
         <LeftContainer img={Polygon} light>
           <Branding src={logo} top alt="logo" />
           <Title>Sign In</Title>
-          <form>
-            <TextInput type="text" placeholder="Email" />
-            <br />
-            <TextInput type="password" placeholder="Password" />
-          </form>
-          <Link>I forgot my password</Link>
-          <Button text="SIGN IN" />
+          <Form onSubmit={handleOnSignIn}>
+            <TextInput
+              type="text"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <TextInput
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <Link>I forgot my password</Link>
+            <Button text="SIGN IN" type="submit" onClick={handleOnSignIn} />
+          </Form>
         </LeftContainer>
         <RightContainer>
           <Title light>Welcome!</Title>
