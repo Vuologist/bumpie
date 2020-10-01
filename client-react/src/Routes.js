@@ -6,7 +6,7 @@ import SignIn from "./signin";
 import FAQ from "./faq";
 import Home from "./home";
 import AboutUsPage from "./about-us";
-
+import Dashboard from "./dashboard";
 export default function Routes() {
   return (
     <Switch>
@@ -24,6 +24,9 @@ export default function Routes() {
       </Route>
       <Route exact path="/about-us">
         <AboutUsPage />
+      </Route>
+      <Route exact path="/dashboard">
+        <Dashboard />
       </Route>
     </Switch>
   );
