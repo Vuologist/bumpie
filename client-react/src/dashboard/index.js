@@ -1,8 +1,13 @@
 import React from "react";
 import CategoryBox from "./CategoryBox";
+import HexagonBox from "./HexagonBox";
 
 const Dashboard = () => {
-  return <CategoryBox title="Category 1" />;
+  return (
+    <div>
+      <HexagonBox></HexagonBox>
+    </div>
+  );
 };
 
 export default Dashboard;
