@@ -1,5 +1,5 @@
 import React from "react";
-import CategoryBox from "./CategoryBox";
+//import CategoryBox from "./CategoryBox";
 import HexagonBox from "./HexagonBox";
 
 const Dashboard = () => {
