@@ -27,56 +27,55 @@ const Title = styled.h1`
 const ContentWrapper = styled.div`
   margin-left: 30px !important;
   margin: 10px;
-  display: ${(props) => (props.display ? "block" : "none")};
-`;
-
-const IconWrapper = styled.span`
-  display: ${(props) => (props.display ? "block" : "none")};
 `;
 
 const CategoryBox = ({ title }) => {
-  const [display, setDisplay] = useState([true, false]);
+  const [display, setDisplay] = useState(false);
 
-  const toggleCategory = (index) => {
-    setDisplay(
-      display.map((x, i) => {
-        if (index !== i) {
-          x = true;
-        } else {
-          x = false;
-        }
-        return x;
-      })
+  const showStuff = () => {
+    return (
+      <CategoryWrapper>
+        <TitleWrapper>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <span>
+              <FontAwesomeIcon
+                icon={faCaretDown}
+                size="lg"
+                onClick={() => setDisplay(!display)}
+              />
+            </span>
+            <Title>{title}</Title>
+          </div>
+          <FontAwesomeIcon icon={faEllipsisH} color="#707070" />
+        </TitleWrapper>
+        <ContentWrapper display={display[1] ? true : false}>
+          <div style={{ height: "50px" }}>PLACE HOLDER FOR REST OF CONTENT</div>
+        </ContentWrapper>
+      </CategoryWrapper>
     );
   };
 
-  return (
-    <CategoryWrapper>
-      <TitleWrapper>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <IconWrapper display={display[0] ? true : false}>
-            <FontAwesomeIcon
-              icon={faCaretRight}
-              size="lg"
-              onClick={() => toggleCategory(0)}
-            />
-          </IconWrapper>
-          <IconWrapper display={display[1] ? true : false}>
-            <FontAwesomeIcon
-              icon={faCaretDown}
-              size="lg"
-              onClick={() => toggleCategory(1)}
-            />
-          </IconWrapper>
-          <Title>{title}</Title>
-        </div>
-        <FontAwesomeIcon icon={faEllipsisH} color="#707070" />
-      </TitleWrapper>
-      <ContentWrapper display={display[1] ? true : false}>
-        <div style={{ height: "50px" }}>PLACE HOLDER FOR REST OF CONTENT</div>
-      </ContentWrapper>
-    </CategoryWrapper>
-  );
+  const hideStuff = () => {
+    return (
+      <CategoryWrapper>
+        <TitleWrapper>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <span>
+              <FontAwesomeIcon
+                icon={faCaretRight}
+                size="lg"
+                onClick={() => setDisplay(!display)}
+              />
+            </span>
+            <Title>{title}</Title>
+          </div>
+          <FontAwesomeIcon icon={faEllipsisH} color="#707070" />
+        </TitleWrapper>
+      </CategoryWrapper>
+    );
+  };
+
+  return display ? showStuff() : hideStuff();
 };
 
 export default CategoryBox;
