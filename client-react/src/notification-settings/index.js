@@ -30,13 +30,13 @@ const Wrapper = styled.div`
 
 const NotificationSettings = () => {
   const [emailNotification, setEmailToggle] = useState(false);
-  const [phoneNotification, setPhoneToggle] = useState(false);
+
   return (
     <Wrapper>
       <PageTitle>Notification Settings</PageTitle>
       <div
         style={{
-          margin: 80
+          margin: 80,
         }}
       >
         <SettingsSectionHeader title="Notify me through..." />
@@ -47,17 +47,9 @@ const NotificationSettings = () => {
             checked={emailNotification}
           />
         </label>
-        <br />
-        <label style={{ display: "flex", justifyContent: "space-between" }}>
-          <span>(123) 456-7890</span>
-          <ToggleButton
-            onChange={() => setPhoneToggle(!phoneNotification)}
-            checked={phoneNotification}
-          />
-        </label>
         <div
           style={{
-            marginTop: 40
+            marginTop: 40,
           }}
         >
           <SettingsSectionHeader title="Notify me..." />
@@ -69,7 +61,7 @@ const NotificationSettings = () => {
             style={{
               marginTop: 50,
               display: "flex",
-              justifyContent: "flex-end"
+              justifyContent: "flex-end",
             }}
           >
             <StyledButton text="reset" />
