@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Auth } from "aws-amplify";
+import { useHistory } from "react-router-dom";
+import { useAppContext } from "../libs/contextLib";
 import Polygon from "../assets/Polygon.png";
 import DynamicButton from "../common/DynamicButton";
 import TextInput from "../common/TextInput";
@@ -14,6 +16,7 @@ const CenterContainer = styled.div`
   height: 100vh;
   background-color: #c5c5c4;
 `;
+
 const ContentWrapper = styled.div`
   height: 50%;
   width: 60%;
@@ -29,6 +32,7 @@ const ContentWrapper = styled.div`
     height: 45%;
   }
 `;
+
 const LeftContainer = styled.div`
   width: ${(props) => (props.smol ? "40%" : "60%")};
   background-color: ${(props) => (props.light ? "#8fe8df" : "#005a52")};
@@ -41,6 +45,7 @@ const LeftContainer = styled.div`
   background-position: center;
   background-size: cover;
 `;
+
 const RightContainer = styled.div`
   width: 40%;
   background-color: ${(props) => (props.light ? "#8fe8df" : "#005a52")};
@@ -73,6 +78,7 @@ const Button = styled(DynamicButton)`
     font-size: 12px;
   }
 `;
+
 const Title = styled.h1`
   font-family: "Quicksand";
   font-size: 40px;
@@ -132,15 +138,18 @@ const Branding = styled.img`
     justify-self: start;
   }
 `;
+
 const Form = styled.form`
   display: contents;
 `;
 
-const SignIn = () => {
+const Authentication = () => {
   const [page, setPage] = useState([true, false]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const { userHasAuthenticated } = useAppContext();
+  const history = useHistory();
 
   const validateForm = () => {
     return (
@@ -174,7 +183,8 @@ const SignIn = () => {
 
     try {
       await Auth.signIn(email, password);
-      alert("Logged in");
+      userHasAuthenticated(true);
+      history.push("/dashboard");
     } catch (e) {
       alert(e.message);
     }
@@ -265,4 +275,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default Authentication;

@@ -21,6 +21,7 @@ const Container = styled.header`
     grid-template-columns: repeat(2, 1fr);
   }
 `;
+
 const Link = styled.a`
   font-size: 25px;
   font-weight: bold;

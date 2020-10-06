@@ -1,6 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+import { Auth } from "aws-amplify";
+import { useHistory, Link } from "react-router-dom";
 import { device } from "../common/MediaBreakpoints";
+import { useAppContext } from "../libs/contextLib";
+import DynamicButton from "../common/DynamicButton";
 
 const Card = styled.div`
   display: -webkit-box;
@@ -55,24 +59,37 @@ const ListItem = styled.li`
   padding-bottom: 12px;
 `;
 
-const Link = styled.a`
+const CustomLink = styled(Link)`
   color: black !important;
 `;
 
-const HeaderDropdown = ({ className }) => (
-  <Card className={className}>
-    <ListGroup>
-      <ListItem>
-        <Link>Notification Settings</Link>
-      </ListItem>
-      <ListItem>
-        <Link>User Settings</Link>
-      </ListItem>
-      <ListItem>
-        <Link>Log Out</Link>
-      </ListItem>
-    </ListGroup>
-  </Card>
-);
+const HeaderDropdown = ({ className }) => {
+  const history = useHistory();
+  const { userHasAuthenticated } = useAppContext();
+
+  const handleLogout = async () => {
+    await Auth.signOut();
+    userHasAuthenticated(false);
+    history.push("/sign-in");
+  };
+
+  return (
+    <Card className={className}>
+      <ListGroup>
+        <ListItem>
+          <CustomLink to="/notification-settings">
+            Notification Settings
+          </CustomLink>
+        </ListItem>
+        <ListItem>
+          <CustomLink to="/user-settings">User Settings</CustomLink>
+        </ListItem>
+        <ListItem>
+          <DynamicButton text="Log Out" type="button" onClick={handleLogout} />
+        </ListItem>
+      </ListGroup>
+    </Card>
+  );
+};
 
 export default HeaderDropdown;

@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 
 import NotificationSettings from "./notification-settings";
-import SignIn from "./signin";
+import Authentication from "./authentication";
 import FAQ from "./faq";
 import Home from "./home";
 import AboutUsPage from "./about-us";
@@ -14,7 +14,7 @@ export default function Routes() {
         <NotificationSettings />
       </Route>
       <Route exact path="/sign-in">
-        <SignIn />
+        <Authentication />
       </Route>
       <Route exact path="/faq">
         <FAQ />

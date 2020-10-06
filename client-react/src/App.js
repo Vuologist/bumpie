@@ -1,7 +1,8 @@
-import React from "react";
-import Routes from "./Routes";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-
+import { Auth } from "aws-amplify";
+import { AppContext } from "./libs/contextLib";
+import Routes from "./Routes";
 import Header from "./common/Header";
 import Footer from "./common/Footer";
 
@@ -16,15 +17,33 @@ const Main = styled.div`
 `;
 
 const App = () => {
-  const pathname = window.location.pathname;
+  const [isAuthenticated, userHasAuthenticated] = useState(false);
+
+  useEffect(() => {
+    onLoad();
+  }, []);
+
+  const onLoad = async () => {
+    try {
+      await Auth.currentSession();
+      userHasAuthenticated(true);
+    } catch (e) {
+      if (e !== "No current user") {
+        alert(e);
+      }
+    }
+  };
+
   return (
-    <Site>
-      {pathname === "/sign-in" ? "" : <Header />}
-      <Main>
-        <Routes />
-      </Main>
-      {pathname === "/sign-in" ? "" : <Footer />}
-    </Site>
+    <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated }}>
+      <Site>
+        {isAuthenticated && <Header />}
+        <Main>
+          <Routes />
+        </Main>
+        {isAuthenticated && <Footer />}
+      </Site>
+    </AppContext.Provider>
   );
 };
 
