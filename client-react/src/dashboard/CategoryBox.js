@@ -32,7 +32,7 @@ const ContentWrapper = styled.div`
 const CategoryBox = ({ title }) => {
   const [display, setDisplay] = useState(false);
 
-  const showStuff = () => {
+  const showCategoryContent = () => {
     return (
       <CategoryWrapper>
         <TitleWrapper>
@@ -55,7 +55,7 @@ const CategoryBox = ({ title }) => {
     );
   };
 
-  const hideStuff = () => {
+  const hideCategoryContent = () => {
     return (
       <CategoryWrapper>
         <TitleWrapper>
@@ -75,7 +75,7 @@ const CategoryBox = ({ title }) => {
     );
   };
 
-  return display ? showStuff() : hideStuff();
+  return display ? showCategoryContent() : hideCategoryContent();
 };
 
 export default CategoryBox;
