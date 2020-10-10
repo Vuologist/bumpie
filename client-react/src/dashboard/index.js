@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import CategoryBox from "./CategoryBox";
-import PentagonBox from "./HexagonBox";
+import PentagonBox from "./PentagonBox";
 
 const ContentWrapper = styled.div`
   display: grid;
@@ -11,7 +11,7 @@ const ContentWrapper = styled.div`
   background-color: #c5c5c4;
 `;
 
-const HexagonWrapper = styled.div`
+const PentagonWrapper = styled.div`
   padding: 20px;
 `;
 const CategoryWrapper = styled.div`
@@ -22,9 +22,9 @@ const CategoryWrapper = styled.div`
 const Dashboard = () => {
   return (
     <ContentWrapper>
-      <HexagonWrapper>
-        <HexagonBox></HexagonBox>
-      </HexagonWrapper>
+      <PentagonWrapper>
+        <PentagonBox></PentagonBox>
+      </PentagonWrapper>
       <CategoryWrapper>
         <CategoryBox title="Category 1"></CategoryBox>
         <CategoryBox title="Category 2"></CategoryBox>
