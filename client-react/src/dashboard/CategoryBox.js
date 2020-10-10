@@ -9,6 +9,7 @@ import {
 const CategoryWrapper = styled.div`
   background-color: white;
   padding: 15px;
+  margin-bottom: 25px;
 `;
 
 const TitleWrapper = styled.div`
@@ -21,7 +22,7 @@ const Title = styled.h1`
   color: #8fe8df;
   font-family: Quicksand;
   margin-left: 20px;
-  font-size: 25pt;
+  font-size: 15pt;
 `;
 
 const ContentWrapper = styled.div`

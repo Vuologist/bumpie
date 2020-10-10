@@ -6,7 +6,6 @@ const BoxWrapper = styled.div`
 `;
 
 const TitleWrapper = styled.div`
-  display: flex;
   align-items: center;
   justify-content: space-between;
 `;
@@ -15,7 +14,8 @@ const Title = styled.h1`
   color: #8fe8df;
   font-family: Quicksand;
   margin-left: 20px;
-  font-size: 25pt;
+  font-size: 15pt;
+  text-align: center;
 `;
 
 const HexagonBox = ({ title }) => {
