@@ -18,7 +18,7 @@ const Title = styled.h1`
   text-align: center;
 `;
 
-const HexagonBox = ({ title }) => {
+const PentagonBox = ({ title }) => {
   return (
     <BoxWrapper>
       <TitleWrapper>
@@ -29,4 +29,4 @@ const HexagonBox = ({ title }) => {
   );
 };
 
-export default HexagonBox;
+export default PentagonBox;

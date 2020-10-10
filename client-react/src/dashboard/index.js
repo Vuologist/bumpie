@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import CategoryBox from "./CategoryBox";
-import HexagonBox from "./HexagonBox";
+import PentagonBox from "./HexagonBox";
 
 const ContentWrapper = styled.div`
   display: grid;
