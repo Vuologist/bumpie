@@ -144,7 +144,7 @@ const Form = styled.form`
 `;
 
 const Authentication = () => {
-  const [page, setPage] = useState([true, false]);
+  const [page, setPage] = useState(["true", null]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -194,9 +194,9 @@ const Authentication = () => {
     setPage(
       page.map((x, i) => {
         if (index !== i) {
-          x = true;
+          x = "true";
         } else {
-          x = false;
+          x = null;
         }
         return x;
       })
@@ -205,7 +205,7 @@ const Authentication = () => {
 
   return (
     <CenterContainer>
-      <ContentWrapper display={page[0] ? true : false}>
+      <ContentWrapper display={page[0]}>
         <LeftContainer img={Polygon} light>
           <Branding src={logo} top alt="logo" />
           <Title>Sign In</Title>
@@ -234,7 +234,7 @@ const Authentication = () => {
           <Button light text="SIGN UP" onClick={() => changePage(0)} />
         </RightContainer>
       </ContentWrapper>
-      <ContentWrapper display={page[1] ? true : false}>
+      <ContentWrapper display={page[1]}>
         <LeftContainer smol>
           <Branding src={logo} alt="logo" />
           <Title light top>
