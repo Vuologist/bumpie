@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { device } from "../common/MediaBreakpoints";
-import DynamicButton from "../common/DynamicButton";
 
 const Card = styled.div`
   display: -webkit-box;
@@ -67,7 +65,6 @@ const CustomLink = styled.p`
 `;
 
 const Dropdown = ({ className }) => {
-  const [display, setDisplay] = useState(false);
   return (
     <Card className={className}>
       <ListGroup>
