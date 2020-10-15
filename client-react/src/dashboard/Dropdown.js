@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { device } from "../common/MediaBreakpoints";
 import DynamicButton from "../common/DynamicButton";
@@ -55,6 +55,9 @@ const ListItem = styled.li`
   padding-right: 5px;
   padding-top: 5px;
   padding-bottom: 0px;
+  &:hover {
+    background-color: #2ec4b6;
+  }
 `;
 
 const CustomLink = styled.p`
@@ -64,6 +67,7 @@ const CustomLink = styled.p`
 `;
 
 const Dropdown = ({ className }) => {
+  const [display, setDisplay] = useState(false);
   return (
     <Card className={className}>
       <ListGroup>
