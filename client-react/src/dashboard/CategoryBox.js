@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import SubCategory from "./SubCategory";
 import {
   faCaretRight,
   faEllipsisH,
@@ -30,6 +31,24 @@ const ContentWrapper = styled.div`
   margin: 10px;
 `;
 
+const SubcategoryGrid = styled.div`
+  display: grid;
+  grid-template-columns: 2fr 3fr 1fr;
+`;
+
+const SubHeader = styled.div`
+  color: #54494b;
+  font-family: Roboto;
+  font-size: 8pt;
+  display: flex;
+  justify-content: space-between;
+`;
+
+const Divider = styled.hr`
+  margin-top: 5px;
+  margin-bottom: 5px;
+`;
+
 const CategoryBox = ({ title }) => {
   const [display, setDisplay] = useState(false);
 
@@ -49,8 +68,19 @@ const CategoryBox = ({ title }) => {
           </div>
           <FontAwesomeIcon icon={faEllipsisH} color="#707070" />
         </TitleWrapper>
-        <ContentWrapper display={display[1] ? true : false}>
-          <div style={{ height: "50px" }}>PLACE HOLDER FOR REST OF CONTENT</div>
+        <ContentWrapper>
+          <SubcategoryGrid>
+            <SubHeader>
+              <span>SUB-CATEGORIES</span>
+            </SubHeader>
+            <SubHeader>
+              <div>BEGINNER</div>
+              <div>EXPERTISE</div>
+            </SubHeader>
+            <div></div>
+          </SubcategoryGrid>
+          <Divider />
+          <SubCategory title="Sub Category 1" />
         </ContentWrapper>
       </CategoryWrapper>
     );
