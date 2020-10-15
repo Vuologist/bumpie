@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-
+import { device } from "../common/MediaBreakpoints";
 const Card = styled.div`
   display: -webkit-box;
   display: -ms-flexbox;
