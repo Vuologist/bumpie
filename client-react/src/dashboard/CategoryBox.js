@@ -6,6 +6,7 @@ import {
   faCaretRight,
   faEllipsisH,
   faCaretDown,
+  faPlusCircle,
 } from "@fortawesome/free-solid-svg-icons";
 const CategoryWrapper = styled.div`
   background-color: white;
@@ -49,8 +50,15 @@ const Divider = styled.hr`
   margin-bottom: 5px;
 `;
 
+const FooterWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const CategoryBox = ({ title }) => {
   const [display, setDisplay] = useState(false);
+  const [count, setCount] = useState(0);
 
   const showCategoryContent = () => {
     return (
@@ -80,8 +88,18 @@ const CategoryBox = ({ title }) => {
             <div></div>
           </SubcategoryGrid>
           <Divider />
-          <SubCategory title="Sub Category 1" />
+          {count <= 5 && Array(count).fill(<SubCategory />)}
         </ContentWrapper>
+        <FooterWrapper>
+          <SubHeader>{count <= 5 && count} / 5 </SubHeader>
+          <FontAwesomeIcon
+            icon={faPlusCircle}
+            color="#2EC4B6"
+            size="2x"
+            style={{ marginLeft: "10px" }}
+            onClick={() => setCount(count + 1)}
+          />
+        </FooterWrapper>
       </CategoryWrapper>
     );
   };

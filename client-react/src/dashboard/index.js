@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import CategoryBox from "./CategoryBox";
 import PentagonBox from "./PentagonBox";
-
+import Slider from "rc-slider";
 const ContentWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 2fr;
