@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinusCircle } from "@fortawesome/free-solid-svg-icons";
 import Slider from "rc-slider";
+import "rc-slider/assets/index.css";
 
 const SubcategoryWrapper = styled.div`
   display: grid;
