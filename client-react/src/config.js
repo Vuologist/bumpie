@@ -1,22 +1,8 @@
-const dev = {
+export default {
   cognito: {
-    REGION: "us-east-1",
-    USER_POOL_ID: "us-east-1_W9xUtvYng",
-    APP_CLIENT_ID: "6veevn4el3p4bh3qgjeaug5ok2",
-    IDENTITY_POOL_ID: "us-east-1:fb6affaf-249a-4c81-b364-c3889e8530f3",
+    REGION: "us-east-2",
+    USER_POOL_ID: "us-east-2_7TkB1UjRo",
+    APP_CLIENT_ID: "9eru6ai21bgtqj067rgvjm0ud",
+    IDENTITY_POOL_ID: "us-east-2:91f208c3-a29c-476e-b42f-c04b30abeb12",
   },
 };
-
-const prod = {
-  cognito: {
-    REGION: "us-east-1",
-    USER_POOL_ID: "us-east-1_W9xUtvYng",
-    APP_CLIENT_ID: "6veevn4el3p4bh3qgjeaug5ok2",
-    IDENTITY_POOL_ID: "us-east-1:fb6affaf-249a-4c81-b364-c3889e8530f3",
-  },
-};
-
-// Default to dev if not set
-const config = process.env.REACT_APP_STAGE === "prod" ? prod : dev;
-
-export default config;

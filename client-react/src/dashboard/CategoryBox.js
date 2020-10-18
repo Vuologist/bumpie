@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Dropdown from "./Dropdown";
-import useOnclickOutside from "react-cool-onclickoutside";
-import { device } from "../common/MediaBreakpoints";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SubCategory from "./SubCategory";
 import {
@@ -34,35 +31,26 @@ const ContentWrapper = styled.div`
   margin: 10px;
 `;
 
-const EllipsisWrapper = styled.div`
-  position: relative;
-  justify-self: flex-end;
-  margin-right: 5px;
-  @media ${device.mobileM} {
-    justify-self: end;
-    margin-right: 10px;
-  }
-  @media ${device.mobileL} {
-    margin-right: 25px;
-    justify-self: end;
-  }
+const SubcategoryGrid = styled.div`
+  display: grid;
+  grid-template-columns: 2fr 3fr 1fr;
 `;
 
-const StyledDropdown = styled(Dropdown)`
+const SubHeader = styled.div`
+  color: #54494b;
+  font-family: Roboto;
+  font-size: 8pt;
   display: flex;
-  z-index: 1000;
-  @media ${device.mobileL} {
-    margin-right: 70px;
-  }
+  justify-content: space-between;
+`;
+
+const Divider = styled.hr`
+  margin-top: 5px;
+  margin-bottom: 5px;
 `;
 
 const CategoryBox = ({ title }) => {
   const [display, setDisplay] = useState(false);
-  const [dropdownDisplay, setDropdownDisplay] = useState(false);
-
-  const ref = useOnclickOutside(() => {
-    setDropdownDisplay(false);
-  });
 
   const showCategoryContent = () => {
     return (
@@ -78,21 +66,21 @@ const CategoryBox = ({ title }) => {
             </span>
             <Title>{title}</Title>
           </div>
-          <EllipsisWrapper>
-            <FontAwesomeIcon
-              icon={faEllipsisH}
-              color="#707070"
-              onClick={() => setDropdownDisplay(!dropdownDisplay)}
-            />
-            {dropdownDisplay && (
-              <div ref={ref}>
-                <StyledDropdown />
-              </div>
-            )}
-          </EllipsisWrapper>
+          <FontAwesomeIcon icon={faEllipsisH} color="#707070" />
         </TitleWrapper>
         <ContentWrapper>
-          <div style={{ height: "50px" }}>PLACE HOLDER FOR REST OF CONTENT</div>
+          <SubcategoryGrid>
+            <SubHeader>
+              <span>SUB-CATEGORIES</span>
+            </SubHeader>
+            <SubHeader>
+              <div>BEGINNER</div>
+              <div>EXPERTISE</div>
+            </SubHeader>
+            <div></div>
+          </SubcategoryGrid>
+          <Divider />
+          <SubCategory title="Sub Category 1" />
         </ContentWrapper>
       </CategoryWrapper>
     );
@@ -112,18 +100,7 @@ const CategoryBox = ({ title }) => {
             </span>
             <Title>{title}</Title>
           </div>
-          <EllipsisWrapper ref={ref}>
-            <FontAwesomeIcon
-              icon={faEllipsisH}
-              color="#707070"
-              onClick={() => setDropdownDisplay(!dropdownDisplay)}
-            />
-            {dropdownDisplay && (
-              <div ref={ref}>
-                <StyledDropdown />
-              </div>
-            )}
-          </EllipsisWrapper>
+          <FontAwesomeIcon icon={faEllipsisH} color="#707070" />
         </TitleWrapper>
       </CategoryWrapper>
     );
