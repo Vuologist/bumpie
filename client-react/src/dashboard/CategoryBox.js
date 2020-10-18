@@ -60,6 +60,13 @@ const CategoryBox = ({ title }) => {
   const [display, setDisplay] = useState(false);
   const [count, setCount] = useState(0);
 
+  //subcategory array
+  const subcategoryRender = [];
+
+  for (var i = 0; i < count; i++) {
+    // push the component to array!
+    subcategoryRender.push(<SubCategory key={i} />);
+  }
   const showCategoryContent = () => {
     return (
       <CategoryWrapper>
@@ -88,16 +95,16 @@ const CategoryBox = ({ title }) => {
             <div></div>
           </SubcategoryGrid>
           <Divider />
-          {count <= 5 && Array(count).fill(<SubCategory />)}
+          {subcategoryRender}
         </ContentWrapper>
         <FooterWrapper>
-          <SubHeader>{count <= 5 && count} / 5 </SubHeader>
+          <SubHeader>{count} / 5 </SubHeader>
           <FontAwesomeIcon
             icon={faPlusCircle}
             color="#2EC4B6"
             size="2x"
             style={{ marginLeft: "10px" }}
-            onClick={() => setCount(count + 1)}
+            onClick={() => setCount(count < 5 ? count + 1 : 5)}
           />
         </FooterWrapper>
       </CategoryWrapper>
