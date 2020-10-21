@@ -92,7 +92,7 @@ const CategoryBox = ({ title }) => {
           </EllipsisWrapper>
         </TitleWrapper>
         <ContentWrapper>
-          <div style={{ height: "50px" }}>PLACE HOLDER FOR REST OF CONTENT</div>
+          <SubCategory title="Subcategory 1" />
         </ContentWrapper>
       </CategoryWrapper>
     );
