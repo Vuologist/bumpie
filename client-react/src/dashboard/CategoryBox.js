@@ -33,6 +33,21 @@ const ContentWrapper = styled.div`
   margin-left: 30px !important;
   margin: 10px;
 `;
+const Divider = styled.hr`
+  margin-top: 5px;
+  margin-bottom: 5px;
+`;
+const SubcategoryGrid = styled.div`
+  display: grid;
+  grid-template-columns: 2fr 3fr 1fr;
+`;
+const SubHeader = styled.div`
+  color: #54494b;
+  font-family: Roboto;
+  font-size: 8pt;
+  display: flex;
+  justify-content: space-between;
+`;
 
 const EllipsisWrapper = styled.div`
   position: relative;
@@ -51,6 +66,7 @@ const EllipsisWrapper = styled.div`
 const StyledDropdown = styled(Dropdown)`
   display: flex;
   z-index: 1000;
+  justify-content: space-between;
   @media ${device.mobileL} {
     margin-right: 70px;
   }
@@ -92,7 +108,18 @@ const CategoryBox = ({ title }) => {
           </EllipsisWrapper>
         </TitleWrapper>
         <ContentWrapper>
-          <SubCategory title="Subcategory 1" />
+          <SubcategoryGrid>
+            <SubHeader>
+              <span>SUB-CATEGORIES</span>
+            </SubHeader>
+            <SubHeader>
+              <div>BEGINNER</div>
+              <div>EXPERTISE</div>
+            </SubHeader>
+            <div></div>
+          </SubcategoryGrid>
+          <Divider />
+          <SubCategory title="Sub Category 1" />
         </ContentWrapper>
       </CategoryWrapper>
     );
