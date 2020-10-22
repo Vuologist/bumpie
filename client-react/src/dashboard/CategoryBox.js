@@ -1,19 +1,25 @@
-import React, { useState } from "react";
-import styled from "styled-components";
+import React, { useState, useEffect } from "react";
+import styled, { css, keyframes } from "styled-components";
 import Dropdown from "./Dropdown";
 import useOnclickOutside from "react-cool-onclickoutside";
 import { device } from "../common/MediaBreakpoints";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SubCategory from "./SubCategory";
+import { slideOutUp, slideInDown } from "react-animations";
 import {
   faCaretRight,
   faEllipsisH,
   faCaretDown,
 } from "@fortawesome/free-solid-svg-icons";
+
+const slideOutUpAnimation = keyframes`${slideOutUp}`;
+const slideInDownAnimation = keyframes`${slideInDown}`;
+
 const CategoryWrapper = styled.div`
   background-color: white;
   padding: 15px;
   margin-bottom: 25px;
+  overflow: hidden;
 `;
 
 const TitleWrapper = styled.div`
@@ -29,9 +35,18 @@ const Title = styled.h1`
   font-size: 15pt;
 `;
 
+const outAnimation = css`
+  animation: 1s ${slideOutUpAnimation};
+`;
+const slideInAnimation = css`
+  animation: 1s ${slideInDownAnimation};
+`;
+
 const ContentWrapper = styled.div`
   margin-left: 30px !important;
   margin: 10px;
+  overflow: hidden;
+  ${(props) => (props.animate ? slideInAnimation : outAnimation)};
 `;
 const Divider = styled.hr`
   margin-top: 5px;
@@ -74,89 +89,71 @@ const StyledDropdown = styled(Dropdown)`
 
 const CategoryBox = ({ title }) => {
   const [display, setDisplay] = useState(false);
+  const [animate, setAnimate] = useState(false);
   const [dropdownDisplay, setDropdownDisplay] = useState(false);
 
   const ref = useOnclickOutside(() => {
     setDropdownDisplay(false);
   });
 
-  const showCategoryContent = () => {
-    return (
-      <CategoryWrapper>
-        <TitleWrapper>
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <span>
-              <FontAwesomeIcon
-                icon={faCaretDown}
-                size="lg"
-                onClick={() => setDisplay(!display)}
-              />
-            </span>
-            <Title>{title}</Title>
-          </div>
-          <EllipsisWrapper>
-            <FontAwesomeIcon
-              icon={faEllipsisH}
-              color="#707070"
-              onClick={() => setDropdownDisplay(!dropdownDisplay)}
-            />
-            {dropdownDisplay && (
-              <div ref={ref}>
-                <StyledDropdown />
-              </div>
-            )}
-          </EllipsisWrapper>
-        </TitleWrapper>
-        <ContentWrapper>
-          <SubcategoryGrid>
-            <SubHeader>
-              <span>SUB-CATEGORIES</span>
-            </SubHeader>
-            <SubHeader>
-              <div>BEGINNER</div>
-              <div>EXPERTISE</div>
-            </SubHeader>
-            <div></div>
-          </SubcategoryGrid>
-          <Divider />
-          <SubCategory title="Sub Category 1" />
-        </ContentWrapper>
-      </CategoryWrapper>
-    );
+  const timeoutAnimation = () => {
+    if (display) {
+      setAnimate(false);
+      setTimeout(() => {
+        setDisplay(false);
+      }, 600);
+    } else {
+      setDisplay(true);
+      setAnimate(true);
+    }
   };
 
-  const hideCategoryContent = () => {
-    return (
-      <CategoryWrapper>
-        <TitleWrapper>
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <span>
-              <FontAwesomeIcon
-                icon={faCaretRight}
-                size="lg"
-                onClick={() => setDisplay(!display)}
-              />
-            </span>
-            <Title>{title}</Title>
-          </div>
-          <EllipsisWrapper ref={ref}>
+  return (
+    <CategoryWrapper>
+      <TitleWrapper>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <span>
             <FontAwesomeIcon
-              icon={faEllipsisH}
-              color="#707070"
-              onClick={() => setDropdownDisplay(!dropdownDisplay)}
+              icon={faCaretDown}
+              size="lg"
+              onClick={timeoutAnimation}
             />
-            {dropdownDisplay && (
-              <div ref={ref}>
-                <StyledDropdown />
-              </div>
-            )}
-          </EllipsisWrapper>
-        </TitleWrapper>
-      </CategoryWrapper>
-    );
-  };
-
-  return display ? showCategoryContent() : hideCategoryContent();
+          </span>
+          <Title>{title}</Title>
+        </div>
+        <EllipsisWrapper>
+          <FontAwesomeIcon
+            icon={faEllipsisH}
+            color="#707070"
+            onClick={() => setDropdownDisplay(!dropdownDisplay)}
+          />
+          {dropdownDisplay && (
+            <div ref={ref}>
+              <StyledDropdown />
+            </div>
+          )}
+        </EllipsisWrapper>
+      </TitleWrapper>
+      <div style={{ overflow: "hidden" }}>
+        {display && (
+          <ContentWrapper animate={animate}>
+            <SubcategoryGrid>
+              <SubHeader>
+                <span>SUB-CATEGORIES</span>
+              </SubHeader>
+              <SubHeader>
+                <div>BEGINNER</div>
+                <div>EXPERTISE</div>
+              </SubHeader>
+              <div></div>
+            </SubcategoryGrid>
+            <Divider />
+            <SubCategory title="Sub Category 1" />
+          </ContentWrapper>
+        )}
+      </div>
+    </CategoryWrapper>
+  );
 };
 
 export default CategoryBox;
