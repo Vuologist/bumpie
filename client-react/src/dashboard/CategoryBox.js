@@ -50,24 +50,6 @@ const SubHeader = styled.div`
   justify-content: space-between;
 `;
 
-const SubcategoryGrid = styled.div`
-  display: grid;
-  grid-template-columns: 2fr 3fr 1fr;
-`;
-
-const SubHeader = styled.div`
-  color: #54494b;
-  font-family: Roboto;
-  font-size: 8pt;
-  display: flex;
-  justify-content: space-between;
-`;
-
-const Divider = styled.hr`
-  margin-top: 5px;
-  margin-bottom: 5px;
-`;
-
 const FooterWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -107,7 +89,9 @@ const CategoryBox = ({ title }) => {
 
   for (var i = 0; i < count; i++) {
     // push the component to array!
-    subcategoryRender.push(<SubCategory key={i} />);
+    subcategoryRender.push(
+      <SubCategory key={i} title={"Sub Category " + (i + 1)} />
+    );
   }
   const ref = useOnclickOutside(() => {
     setDropdownDisplay(false);
