@@ -1,13 +1,24 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes, css } from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinusCircle } from "@fortawesome/free-solid-svg-icons";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
+import { slideOutUp, slideInDown } from "react-animations";
+const slideOutUpAnimation = keyframes`${slideOutUp}`;
+const slideInDownAnimation = keyframes`${slideInDown}`;
+
+const outAnimation = css`
+  animation: 1s ${slideOutUpAnimation};
+`;
+const slideInAnimation = css`
+  animation: 1s ${slideInDownAnimation};
+`;
 
 const SubcategoryWrapper = styled.div`
   display: grid;
   grid-template-columns: 2fr 3fr 1fr;
+  ${(props) => (props.animate ? outAnimation : slideInAnimation)};
 `;
 const SubcategoryTitle = styled.p`
   font-size: 12pt;
@@ -27,7 +38,7 @@ const Divider = styled.hr`
   margi-bottom: 20px;
 `;
 
-const SubCategory = ({ title }) => {
+const SubCategory = ({ title, animation }) => {
   return (
     <>
       <SubcategoryWrapper>

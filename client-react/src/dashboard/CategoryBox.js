@@ -105,9 +105,15 @@ const CategoryBox = ({ title }) => {
 
   for (var i = 0; i < count; i++) {
     // push the component to array!
-    subcategoryRender.push(
-      <SubCategory key={i} title={"Sub Category " + (i + 1)} />
-    );
+    if (i === count) {
+      subcategoryRender.push(
+        <SubCategory key={i} title={"Sub Category " + (i + 1)} animation />
+      );
+    } else {
+      subcategoryRender.push(
+        <SubCategory key={i} title={"Sub Category " + (i + 1)} />
+      );
+    }
   }
   const ref = useOnclickOutside(() => {
     setDropdownDisplay(false);
@@ -123,18 +129,10 @@ const CategoryBox = ({ title }) => {
       setDisplay(true);
       setAnimate(true);
     }
-          <SubHeader>{count} / 5 </SubHeader>
-          {subcategoryRender}
-          <FontAwesomeIcon
-            icon={faPlusCircle}
-            color="#2EC4B6"
-            size="2x"
-            style={{ marginLeft: "10px" }}
-          />
-            onClick={() => setCount(count < 5 ? count + 1 : 5)}
-        </FooterWrapper>
-        <FooterWrapper>
-          <Divider />
+  };
+
+  const subCategoryAnimation = () => {
+    setCount(count < 5 ? count + 1 : 5);
   };
 
   return (
@@ -142,11 +140,20 @@ const CategoryBox = ({ title }) => {
       <TitleWrapper>
         <div style={{ display: "flex", alignItems: "center" }}>
           <span>
-            <FontAwesomeIcon
-              icon={faCaretDown}
-              size="lg"
-              onClick={timeoutAnimation}
-            />
+            {!display && (
+              <FontAwesomeIcon
+                icon={faCaretRight}
+                size="lg"
+                onClick={timeoutAnimation}
+              />
+            )}
+            {display && (
+              <FontAwesomeIcon
+                icon={faCaretDown}
+                size="lg"
+                onClick={timeoutAnimation}
+              />
+            )}
           </span>
           <Title>{title}</Title>
         </div>
@@ -165,20 +172,32 @@ const CategoryBox = ({ title }) => {
       </TitleWrapper>
       <div style={{ overflow: "hidden" }}>
         {display && (
-          <ContentWrapper animate={animate}>
-            <SubcategoryGrid>
-              <SubHeader>
-                <span>SUB-CATEGORIES</span>
-              </SubHeader>
-              <SubHeader>
-                <div>BEGINNER</div>
-                <div>EXPERTISE</div>
-              </SubHeader>
-              <div></div>
-            </SubcategoryGrid>
-            <Divider />
-            <SubCategory title="Sub Category 1" />
-          </ContentWrapper>
+          <>
+            <ContentWrapper animate={animate}>
+              <SubcategoryGrid>
+                <SubHeader>
+                  <span>SUB-CATEGORIES</span>
+                </SubHeader>
+                <SubHeader>
+                  <div>BEGINNER</div>
+                  <div>EXPERTISE</div>
+                </SubHeader>
+                <div></div>
+              </SubcategoryGrid>
+              <Divider />
+              {subcategoryRender}
+              <FooterWrapper>
+                <SubHeader>{count} / 5 </SubHeader>
+                <FontAwesomeIcon
+                  icon={faPlusCircle}
+                  color="#2EC4B6"
+                  size="2x"
+                  style={{ marginLeft: "10px" }}
+                  onClick={() => setCount(count < 5 ? count + 1 : 5)}
+                />
+              </FooterWrapper>
+            </ContentWrapper>
+          </>
         )}
       </div>
     </CategoryWrapper>
