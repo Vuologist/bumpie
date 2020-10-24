@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled, { css, keyframes } from "styled-components";
 import Dropdown from "./Dropdown";
 import useOnclickOutside from "react-cool-onclickoutside";
@@ -129,10 +129,6 @@ const CategoryBox = ({ title }) => {
       setDisplay(true);
       setAnimate(true);
     }
-  };
-
-  const subCategoryAnimation = () => {
-    setCount(count < 5 ? count + 1 : 5);
   };
 
   return (
