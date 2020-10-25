@@ -10,6 +10,7 @@ const SubcategoryWrapper = styled.div`
   grid-template-columns: 2fr 3fr 1fr;
 `;
 const SubcategoryTitle = styled.p`
+  color: ${(props) => (props.one ? "#a6a6a6" : "black")};
   font-size: 12pt;
   margin-bottom: 0px;
   margin-top: -6px;
@@ -27,12 +28,12 @@ const Divider = styled.hr`
   margi-bottom: 20px;
 `;
 
-const SubCategory = ({ title }) => {
+const SubCategory = ({ title, one }) => {
   return (
     <>
       <SubcategoryWrapper>
         <GridDiv>
-          <SubcategoryTitle>{title}</SubcategoryTitle>
+          <SubcategoryTitle one={one}>{title}</SubcategoryTitle>
         </GridDiv>
         <GridDiv>
           <Slider

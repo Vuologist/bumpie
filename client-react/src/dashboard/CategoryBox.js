@@ -90,7 +90,7 @@ const CategoryBox = ({ title }) => {
   for (var i = 0; i < count; i++) {
     // push the component to array!
     if (count === 1) {
-      subcategoryRender.push(<SubCategory key={i} title={title} />);
+      subcategoryRender.push(<SubCategory key={i} title={title} one />);
     } else {
       subcategoryRender.push(
         <SubCategory key={i} title={"Sub Category " + (i + 1)} />
