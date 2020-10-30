@@ -81,7 +81,7 @@ const StyledDropdown = styled(Dropdown)`
 
 const CategoryBox = ({ title }) => {
   const [display, setDisplay] = useState(false);
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
   const [dropdownDisplay, setDropdownDisplay] = useState(false);
 
   //subcategory array
