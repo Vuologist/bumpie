@@ -6,12 +6,7 @@ import { device } from "../common/MediaBreakpoints";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SubCategory from "./SubCategory";
 import { slideOutUp, slideInDown } from "react-animations";
-import {
-  faCaretRight,
-  faEllipsisH,
-  faCaretDown,
-  faPlusCircle,
-} from "@fortawesome/free-solid-svg-icons";
+import { faEllipsisH, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import Collapse, { Panel } from "rc-collapse";
 import "rc-collapse/assets/index.css";
 
@@ -48,27 +43,6 @@ const StyledCollapse = styled(Collapse)`
       outline: none;
     }
   }
-`;
-
-const CategoryWrapper = styled.div`
-  background-color: white;
-  padding: 15px;
-  margin-bottom: 25px;
-  overflow: hidden;
-  height: auto;
-`;
-
-const TitleWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-const Title = styled.h1`
-  color: #8fe8df;
-  font-family: Quicksand;
-  margin-left: 20px;
-  font-size: 15pt;
 `;
 
 const outAnimation = css`
@@ -139,8 +113,6 @@ const CategoryBox = ({ title }) => {
   const [animate, setAnimate] = useState(false);
   const [count, setCount] = useState(0);
   const [dropdownDisplay, setDropdownDisplay] = useState(false);
-  const [height, setHeight] = useState(0);
-
   //subcategory array
   const subcategoryRender = [];
 
