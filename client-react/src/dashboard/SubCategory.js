@@ -3,8 +3,9 @@ import styled, { keyframes, css } from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinusCircle } from "@fortawesome/free-solid-svg-icons";
 import Slider from "rc-slider";
-import "rc-slider/assets/index.css";
 import { slideOutUp, slideInDown } from "react-animations";
+import "rc-slider/assets/index.css";
+
 const slideOutUpAnimation = keyframes`${slideOutUp}`;
 const slideInDownAnimation = keyframes`${slideInDown}`;
 
@@ -21,6 +22,7 @@ const SubcategoryWrapper = styled.div`
   ${(props) => (props.animate ? outAnimation : slideInAnimation)};
 `;
 const SubcategoryTitle = styled.p`
+  color: ${(props) => (props.one ? "#a6a6a6" : "black")};
   font-size: 12pt;
   margin-bottom: 0px;
   margin-top: -6px;
@@ -38,12 +40,12 @@ const Divider = styled.hr`
   margi-bottom: 20px;
 `;
 
-const SubCategory = ({ title, animation }) => {
+const SubCategory = ({ title, one, animation }) => {
   return (
     <>
-      <SubcategoryWrapper>
+      <SubcategoryWrapper animate={animation} className="test">
         <GridDiv>
-          <SubcategoryTitle>{title}</SubcategoryTitle>
+          <SubcategoryTitle one={one}>{title}</SubcategoryTitle>
         </GridDiv>
         <GridDiv>
           <Slider

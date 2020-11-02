@@ -12,15 +12,50 @@ import {
   faCaretDown,
   faPlusCircle,
 } from "@fortawesome/free-solid-svg-icons";
+import Collapse, { Panel } from "rc-collapse";
+import "rc-collapse/assets/index.css";
 
 const slideOutUpAnimation = keyframes`${slideOutUp}`;
 const slideInDownAnimation = keyframes`${slideInDown}`;
+
+const StyledCollapse = styled(Collapse)`
+  &.rc-collapse {
+    width: 100%;
+    border-radius: 0px;
+    border-color: transparent;
+    > .rc-collapse-item-active .rc-collapse-header .arrow {
+      position: relative;
+      top: 2px;
+      border-left: 5px solid transparent !important;
+      border-right: 5px solid transparent !important;
+      border-top: 8px solid #666 !important;
+      margin-right: 6px;
+    }
+    > .rc-collapse-item {
+      border: 0px;
+      > .rc-collapse-header {
+        color: #8fe8df !important;
+        > .arrow {
+          border-top: 5px solid transparent;
+          border-bottom: 5px solid transparent;
+          border-bottom: 5px solid transparent;
+          border-left: 8px solid #666;
+        }
+      }
+    }
+    .rc-collapse-header:focus {
+      border: 0px;
+      outline: none;
+    }
+  }
+`;
 
 const CategoryWrapper = styled.div`
   background-color: white;
   padding: 15px;
   margin-bottom: 25px;
   overflow: hidden;
+  height: auto;
 `;
 
 const TitleWrapper = styled.div`
@@ -44,11 +79,14 @@ const slideInAnimation = css`
 `;
 
 const ContentWrapper = styled.div`
-  margin-left: 30px !important;
-  margin: 10px;
   overflow: hidden;
-  ${(props) => (props.animate ? slideInAnimation : outAnimation)};
+  /*${(props) => (props.animate ? slideInAnimation : outAnimation)};*/
 `;
+
+const CollapseWrapper = styled.div`
+  margin-bottom: 25px;
+`;
+
 const Divider = styled.hr`
   margin-top: 5px;
   margin-bottom: 5px;
@@ -73,8 +111,10 @@ const FooterWrapper = styled.div`
 
 const EllipsisWrapper = styled.div`
   position: relative;
-  justify-self: flex-end;
-  margin-right: 5px;
+  float: right;
+  margin-top: 20px;
+  margin-right: 20px;
+  z-index: 200;
   @media ${device.mobileM} {
     justify-self: end;
     margin-right: 10px;
@@ -99,6 +139,7 @@ const CategoryBox = ({ title }) => {
   const [animate, setAnimate] = useState(false);
   const [count, setCount] = useState(0);
   const [dropdownDisplay, setDropdownDisplay] = useState(false);
+  const [height, setHeight] = useState(0);
 
   //subcategory array
   const subcategoryRender = [];
@@ -107,7 +148,12 @@ const CategoryBox = ({ title }) => {
     // push the component to array!
     if (i === count) {
       subcategoryRender.push(
-        <SubCategory key={i} title={"Sub Category " + (i + 1)} animation />
+        <SubCategory
+          id="test"
+          key={i}
+          title={"Sub Category " + (i + 1)}
+          animation
+        />
       );
     } else {
       subcategoryRender.push(
@@ -122,9 +168,7 @@ const CategoryBox = ({ title }) => {
   const timeoutAnimation = () => {
     if (display) {
       setAnimate(false);
-      setTimeout(() => {
-        setDisplay(false);
-      }, 600);
+      setDisplay(false);
     } else {
       setDisplay(true);
       setAnimate(true);
@@ -132,71 +176,60 @@ const CategoryBox = ({ title }) => {
   };
 
   return (
-    <CategoryWrapper>
-      <TitleWrapper>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <span>
-            {!display && (
-              <FontAwesomeIcon
-                icon={faCaretRight}
-                size="lg"
-                onClick={timeoutAnimation}
-              />
-            )}
-            {display && (
-              <FontAwesomeIcon
-                icon={faCaretDown}
-                size="lg"
-                onClick={timeoutAnimation}
-              />
-            )}
-          </span>
-          <Title>{title}</Title>
-        </div>
-        <EllipsisWrapper>
-          <FontAwesomeIcon
-            icon={faEllipsisH}
-            color="#707070"
-            onClick={() => setDropdownDisplay(!dropdownDisplay)}
-          />
-          {dropdownDisplay && (
-            <div ref={ref}>
-              <StyledDropdown />
-            </div>
-          )}
-        </EllipsisWrapper>
-      </TitleWrapper>
-      <div style={{ overflow: "hidden" }}>
-        {display && (
-          <>
-            <ContentWrapper animate={animate}>
-              <SubcategoryGrid>
-                <SubHeader>
-                  <span>SUB-CATEGORIES</span>
-                </SubHeader>
-                <SubHeader>
-                  <div>BEGINNER</div>
-                  <div>EXPERTISE</div>
-                </SubHeader>
-                <div></div>
-              </SubcategoryGrid>
-              <Divider />
-              {subcategoryRender}
-              <FooterWrapper>
-                <SubHeader>{count} / 5 </SubHeader>
-                <FontAwesomeIcon
-                  icon={faPlusCircle}
-                  color="#2EC4B6"
-                  size="2x"
-                  style={{ marginLeft: "10px" }}
-                  onClick={() => setCount(count < 5 ? count + 1 : 5)}
-                />
-              </FooterWrapper>
-            </ContentWrapper>
-          </>
+    <CollapseWrapper>
+      <EllipsisWrapper>
+        <FontAwesomeIcon
+          icon={faEllipsisH}
+          color="#707070"
+          onClick={() => setDropdownDisplay(!dropdownDisplay)}
+        />
+        {dropdownDisplay && (
+          <div ref={ref}>
+            <StyledDropdown />
+          </div>
         )}
-      </div>
-    </CategoryWrapper>
+      </EllipsisWrapper>
+      <StyledCollapse defaultActiveKey="1" onChange={timeoutAnimation}>
+        <Panel
+          header={title}
+          style={{
+            fontFamily: "Quicksand",
+            fontSize: "15pt",
+            backgroundColor: "white",
+            padding: "15px",
+          }}
+        >
+          {display && (
+            <>
+              <ContentWrapper animate={animate}>
+                <SubcategoryGrid>
+                  <SubHeader>
+                    <span>SUB-CATEGORIES</span>
+                  </SubHeader>
+                  <SubHeader>
+                    <div>BEGINNER</div>
+                    <div>EXPERTISE</div>
+                  </SubHeader>
+                  <div></div>
+                </SubcategoryGrid>
+                <Divider />
+                {subcategoryRender}
+                <FooterWrapper>
+                  <SubHeader>{count} / 5 </SubHeader>
+                  <FontAwesomeIcon
+                    icon={faPlusCircle}
+                    color="#2EC4B6"
+                    size="2x"
+                    style={{ marginLeft: "10px" }}
+                    onClick={() => setCount(count < 5 ? count + 1 : 5)}
+                  />
+                </FooterWrapper>
+              </ContentWrapper>
+            </>
+          )}
+        </Panel>
+      </StyledCollapse>
+    </CollapseWrapper>
   );
 };
 

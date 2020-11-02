@@ -1,0 +1,9 @@
+.rc-collapse-header {
+  color: #8fe8df !important;
+}
+
+.rc-collapse-header:focus {
+  border: none;
+}
+
+.arrow {}
