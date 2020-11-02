@@ -161,6 +161,7 @@ const CategoryBox = ({ title }) => {
       );
     }
   }
+
   const ref = useOnclickOutside(() => {
     setDropdownDisplay(false);
   });

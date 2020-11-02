@@ -3,6 +3,7 @@ import * as iam from "@aws-cdk/aws-iam";
 import * as cognito from "@aws-cdk/aws-cognito";
 import * as sst from "@serverless-stack/resources";
 import CognitoAuthRole from "./CognitoAuthRole";
+import { VerificationEmailStyle } from "@aws-cdk/aws-cognito";
 
 export default class CognitoStack extends sst.Stack {
   constructor(scope, id, props) {
@@ -10,8 +11,21 @@ export default class CognitoStack extends sst.Stack {
 
     const userPool = new cognito.UserPool(this, "UserPool", {
       selfSignUpEnabled: true, // Allow users to sign up
-      autoVerify: { email: true }, // Verify email addresses by sending a verification code
+      autoVerify: { email: true }, // Verify email addresses by sending a verification email
       signInAliases: { email: true }, // Set email as an alias
+      userVerification: {
+        emailBody:
+          "Welcome to Bumpie!! Verify your account by clicking here -> {##Verify Email##}",
+        emailStyle: VerificationEmailStyle.LINK,
+        emailSubject: "Bumpie Email Verification",
+      },
+    });
+
+    const userPoolDomain = new cognito.UserPoolDomain(this, "UserPoolDomain", {
+      userPool,
+      cognitoDomain: {
+        domainPrefix: "bumpie-apps",
+      },
     });
 
     const userPoolClient = new cognito.UserPoolClient(this, "UserPoolClient", {
