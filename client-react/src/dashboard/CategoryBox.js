@@ -46,15 +46,15 @@ const StyledCollapse = styled(Collapse)`
 `;
 
 const outAnimation = css`
-  animation: 1s ${slideOutUpAnimation};
+  animation: 0.5s ${slideOutUpAnimation};
 `;
 const slideInAnimation = css`
-  animation: 1s ${slideInDownAnimation};
+  animation: 0.5s ${slideInDownAnimation};
 `;
 
 const ContentWrapper = styled.div`
   overflow: hidden;
-  /*${(props) => (props.animate ? slideInAnimation : outAnimation)};*/
+  ${(props) => (props.animate ? slideInAnimation : outAnimation)};*/
 `;
 
 const CollapseWrapper = styled.div`
@@ -111,7 +111,7 @@ const StyledDropdown = styled(Dropdown)`
 const CategoryBox = ({ title }) => {
   const [display, setDisplay] = useState(false);
   const [animate, setAnimate] = useState(false);
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
   const [dropdownDisplay, setDropdownDisplay] = useState(false);
   //subcategory array
   const subcategoryRender = [];
@@ -183,7 +183,6 @@ const CategoryBox = ({ title }) => {
                     <div>BEGINNER</div>
                     <div>EXPERTISE</div>
                   </SubHeader>
-                  <div></div>
                 </SubcategoryGrid>
                 <Divider />
                 {subcategoryRender}

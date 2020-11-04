@@ -43,7 +43,7 @@ const Divider = styled.hr`
 const SubCategory = ({ title, one, animation }) => {
   return (
     <>
-      <SubcategoryWrapper animate={animation} className="test">
+      <SubcategoryWrapper animate={animation}>
         <GridDiv>
           <SubcategoryTitle one={one}>{title}</SubcategoryTitle>
         </GridDiv>
