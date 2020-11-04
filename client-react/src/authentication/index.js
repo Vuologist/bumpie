@@ -64,6 +64,7 @@ const Button = styled(DynamicButton)`
   font-family: "Roboto";
   font-size: 15px;
   width: 300px;
+  height: 45px;
   border-radius: 37px;
   border: 1px solid transparent;
   cursor: pointer;
