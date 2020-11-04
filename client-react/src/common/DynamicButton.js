@@ -5,7 +5,6 @@ const Button = styled.button`
   display: inline-block;
   font-weight: 400;
   color: #212529;
-  height: 45px;
   text-align: center;
   vertical-align: middle;
   cursor: pointer;

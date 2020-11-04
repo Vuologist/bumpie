@@ -16,6 +16,9 @@ export default function Routes() {
       <Route exact path="/sign-in">
         <Authentication />
       </Route>
+      <Route path="/password-reset">
+        <Authentication passwordReset />
+      </Route>
       <Route exact path="/faq">
         <FAQ />
       </Route>
