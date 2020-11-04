@@ -54,7 +54,7 @@ const slideInAnimation = css`
 
 const ContentWrapper = styled.div`
   overflow: hidden;
-  ${(props) => (props.animate ? slideInAnimation : outAnimation)};*/
+  ${(props) => (props.animate ? slideInAnimation : outAnimation)};
 `;
 
 const CollapseWrapper = styled.div`
