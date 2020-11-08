@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styled, { css, keyframes } from "styled-components";
 import Dropdown from "./Dropdown";
 import useOnclickOutside from "react-cool-onclickoutside";
@@ -9,6 +9,7 @@ import { slideOutUp, slideInDown } from "react-animations";
 import { faEllipsisH, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import Collapse, { Panel } from "rc-collapse";
 import "rc-collapse/assets/index.css";
+import DynamicButton from "../common/DynamicButton";
 
 const slideOutUpAnimation = keyframes`${slideOutUp}`;
 const slideInDownAnimation = keyframes`${slideInDown}`;
@@ -26,10 +27,13 @@ const StyledCollapse = styled(Collapse)`
       border-top: 8px solid #666 !important;
       margin-right: 6px;
     }
+    > .rc-collapse-item-disabled {
+    }
     > .rc-collapse-item {
       border: 0px;
       > .rc-collapse-header {
         color: #8fe8df !important;
+        background-color: #fff !important;
         > .arrow {
           border-top: 5px solid transparent;
           border-bottom: 5px solid transparent;
@@ -99,6 +103,21 @@ const EllipsisWrapper = styled.div`
   }
 `;
 
+const StyledInput = styled.input`
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 15pt;
+  line-height: 1.42857143;
+  color: #2ec4b6;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  z-index: 200;
+`;
+
 const StyledDropdown = styled(Dropdown)`
   display: flex;
   z-index: 1000;
@@ -108,11 +127,21 @@ const StyledDropdown = styled(Dropdown)`
   }
 `;
 
+const RadButton = styled(DynamicButton)`
+  background-color: #2ec4b6;
+  color: white;
+  border-radius: 16px;
+  padding: 6px 40px 6px 40px;
+  margin-left: 5px;
+`;
+
 const CategoryBox = ({ title }) => {
   const [display, setDisplay] = useState(false);
   const [animate, setAnimate] = useState(false);
   const [count, setCount] = useState(1);
   const [dropdownDisplay, setDropdownDisplay] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [newTitle, setNewTitle] = useState(title);
   //subcategory array
   const subcategoryRender = [];
 
@@ -148,6 +177,10 @@ const CategoryBox = ({ title }) => {
     }
   };
 
+  const saveClick = () => {
+    setIsEditing(false);
+  };
+
   return (
     <CollapseWrapper>
       <EllipsisWrapper>
@@ -158,19 +191,30 @@ const CategoryBox = ({ title }) => {
         />
         {dropdownDisplay && (
           <div ref={ref}>
-            <StyledDropdown />
+            <StyledDropdown onEdit={() => setIsEditing(true)} />
           </div>
         )}
       </EllipsisWrapper>
       <StyledCollapse defaultActiveKey="1" onChange={timeoutAnimation}>
         <Panel
-          header={title}
+          header={
+            isEditing ? (
+              <StyledInput
+                type="text"
+                placeholder={newTitle}
+                onChange={(event) => setNewTitle(event.target.value)}
+              />
+            ) : (
+              <>{newTitle}</>
+            )
+          }
           style={{
             fontFamily: "Quicksand",
             fontSize: "15pt",
             backgroundColor: "white",
             padding: "15px",
           }}
+          disabled={isEditing ? true : false}
         >
           {display && (
             <>
@@ -195,6 +239,9 @@ const CategoryBox = ({ title }) => {
                     style={{ marginLeft: "10px" }}
                     onClick={() => setCount(count < 5 ? count + 1 : 5)}
                   />
+                  {isEditing && (
+                    <RadButton text="save" onClick={() => saveClick()} />
+                  )}
                 </FooterWrapper>
               </ContentWrapper>
             </>
