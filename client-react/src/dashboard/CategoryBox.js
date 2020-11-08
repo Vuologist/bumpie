@@ -127,7 +127,7 @@ const StyledDropdown = styled(Dropdown)`
   }
 `;
 
-const RadButton = styled(DynamicButton)`
+const SaveButton = styled(DynamicButton)`
   background-color: #2ec4b6;
   color: white;
   border-radius: 16px;
@@ -255,7 +255,7 @@ const CategoryBox = ({ title }) => {
                 onClick={() => setCount(count < 5 ? count + 1 : 5)}
               />
               {isEditing && (
-                <RadButton text="save" onClick={() => saveClick()} />
+                <SaveButton text="save" onClick={() => saveClick()} />
               )}
             </FooterWrapper>
           </ContentWrapper>
