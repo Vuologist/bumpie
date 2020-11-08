@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import styled, { css, keyframes } from "styled-components";
 import Dropdown from "./Dropdown";
 import useOnclickOutside from "react-cool-onclickoutside";
