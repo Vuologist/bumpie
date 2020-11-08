@@ -136,12 +136,12 @@ const RadButton = styled(DynamicButton)`
 `;
 
 const CategoryBox = ({ title }) => {
-  const [display, setDisplay] = useState(false);
   const [animate, setAnimate] = useState(false);
   const [count, setCount] = useState(1);
   const [dropdownDisplay, setDropdownDisplay] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [newTitle, setNewTitle] = useState(title);
+  const [activeKey, setActiveKey] = useState(2);
   //subcategory array
   const subcategoryRender = [];
 
@@ -167,18 +167,30 @@ const CategoryBox = ({ title }) => {
     setDropdownDisplay(false);
   });
 
-  const timeoutAnimation = () => {
-    if (display) {
-      setAnimate(false);
-      setDisplay(false);
-    } else {
-      setDisplay(true);
-      setAnimate(true);
-    }
-  };
-
   const saveClick = () => {
     setIsEditing(false);
+  };
+
+  const onEdit = () => {
+    // Open the collapsed panel and animate
+    setActiveKey(1);
+    setAnimate(true);
+
+    // Show input and hide dropdown after click
+    setIsEditing(true);
+    setDropdownDisplay(false);
+  };
+
+  const onCollapse = () => {
+    // Toggle the animation
+    setAnimate(!animate);
+
+    // Logic for opening and closing panel
+    if (activeKey === 1) {
+      setActiveKey(2);
+    } else {
+      setActiveKey(1);
+    }
   };
 
   return (
@@ -191,11 +203,15 @@ const CategoryBox = ({ title }) => {
         />
         {dropdownDisplay && (
           <div ref={ref}>
-            <StyledDropdown onEdit={() => setIsEditing(true)} />
+            <StyledDropdown onEdit={() => onEdit()} />
           </div>
         )}
       </EllipsisWrapper>
-      <StyledCollapse defaultActiveKey="1" onChange={timeoutAnimation}>
+      <StyledCollapse
+        defaultActiveKey="1"
+        onChange={() => onCollapse()}
+        activeKey={activeKey}
+      >
         <Panel
           header={
             isEditing ? (
@@ -215,37 +231,34 @@ const CategoryBox = ({ title }) => {
             padding: "15px",
           }}
           disabled={isEditing ? true : false}
+          key="1"
         >
-          {display && (
-            <>
-              <ContentWrapper animate={animate}>
-                <SubcategoryGrid>
-                  <SubHeader>
-                    <span>SUB-CATEGORIES</span>
-                  </SubHeader>
-                  <SubHeader>
-                    <div>BEGINNER</div>
-                    <div>EXPERTISE</div>
-                  </SubHeader>
-                </SubcategoryGrid>
-                <Divider />
-                {subcategoryRender}
-                <FooterWrapper>
-                  <SubHeader>{count} / 5 </SubHeader>
-                  <FontAwesomeIcon
-                    icon={faPlusCircle}
-                    color="#2EC4B6"
-                    size="2x"
-                    style={{ marginLeft: "10px" }}
-                    onClick={() => setCount(count < 5 ? count + 1 : 5)}
-                  />
-                  {isEditing && (
-                    <RadButton text="save" onClick={() => saveClick()} />
-                  )}
-                </FooterWrapper>
-              </ContentWrapper>
-            </>
-          )}
+          <ContentWrapper animate={animate}>
+            <SubcategoryGrid>
+              <SubHeader>
+                <span>SUB-CATEGORIES</span>
+              </SubHeader>
+              <SubHeader>
+                <div>BEGINNER</div>
+                <div>EXPERTISE</div>
+              </SubHeader>
+            </SubcategoryGrid>
+            <Divider />
+            {subcategoryRender}
+            <FooterWrapper>
+              <SubHeader>{count} / 5 </SubHeader>
+              <FontAwesomeIcon
+                icon={faPlusCircle}
+                color="#2EC4B6"
+                size="2x"
+                style={{ marginLeft: "10px" }}
+                onClick={() => setCount(count < 5 ? count + 1 : 5)}
+              />
+              {isEditing && (
+                <RadButton text="save" onClick={() => saveClick()} />
+              )}
+            </FooterWrapper>
+          </ContentWrapper>
         </Panel>
       </StyledCollapse>
     </CollapseWrapper>
