@@ -9,6 +9,7 @@ import { slideOutUp, slideInDown } from "react-animations";
 import { faEllipsisH, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import Collapse, { Panel } from "rc-collapse";
 import "rc-collapse/assets/index.css";
+import DynamicButton from "../common/DynamicButton";
 
 const slideOutUpAnimation = keyframes`${slideOutUp}`;
 const slideInDownAnimation = keyframes`${slideInDown}`;
@@ -30,6 +31,7 @@ const StyledCollapse = styled(Collapse)`
       border: 0px;
       > .rc-collapse-header {
         color: #8fe8df !important;
+        background-color: #fff !important;
         > .arrow {
           border-top: 5px solid transparent;
           border-bottom: 5px solid transparent;
@@ -99,6 +101,21 @@ const EllipsisWrapper = styled.div`
   }
 `;
 
+const StyledInput = styled.input`
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 15pt;
+  line-height: 1.42857143;
+  color: #2ec4b6;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  z-index: 200;
+`;
+
 const StyledDropdown = styled(Dropdown)`
   display: flex;
   z-index: 1000;
@@ -108,11 +125,21 @@ const StyledDropdown = styled(Dropdown)`
   }
 `;
 
+const SaveButton = styled(DynamicButton)`
+  background-color: #2ec4b6;
+  color: white;
+  border-radius: 16px;
+  padding: 6px 40px 6px 40px;
+  margin-left: 5px;
+`;
+
 const CategoryBox = ({ title }) => {
-  const [display, setDisplay] = useState(false);
   const [animate, setAnimate] = useState(false);
   const [count, setCount] = useState(1);
   const [dropdownDisplay, setDropdownDisplay] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [newTitle, setNewTitle] = useState(title);
+  const [activeKey, setActiveKey] = useState(2);
   //subcategory array
   const subcategoryRender = [];
 
@@ -138,13 +165,29 @@ const CategoryBox = ({ title }) => {
     setDropdownDisplay(false);
   });
 
-  const timeoutAnimation = () => {
-    if (display) {
-      setAnimate(false);
-      setDisplay(false);
+  const saveClick = () => {
+    setIsEditing(false);
+  };
+
+  const onEdit = () => {
+    // Open the collapsed panel and animate
+    setActiveKey(1);
+    setAnimate(true);
+
+    // Show input and hide dropdown after click
+    setIsEditing(true);
+    setDropdownDisplay(false);
+  };
+
+  const onCollapse = () => {
+    // Toggle the animation
+    setAnimate(!animate);
+
+    // Logic for opening and closing panel
+    if (activeKey === 1) {
+      setActiveKey(2);
     } else {
-      setDisplay(true);
-      setAnimate(true);
+      setActiveKey(1);
     }
   };
 
@@ -158,47 +201,62 @@ const CategoryBox = ({ title }) => {
         />
         {dropdownDisplay && (
           <div ref={ref}>
-            <StyledDropdown />
+            <StyledDropdown onEdit={() => onEdit()} />
           </div>
         )}
       </EllipsisWrapper>
-      <StyledCollapse defaultActiveKey="1" onChange={timeoutAnimation}>
+      <StyledCollapse
+        defaultActiveKey="1"
+        onChange={() => onCollapse()}
+        activeKey={activeKey}
+      >
         <Panel
-          header={title}
+          header={
+            isEditing ? (
+              <StyledInput
+                type="text"
+                placeholder={newTitle}
+                onChange={(event) => setNewTitle(event.target.value)}
+              />
+            ) : (
+              <>{newTitle}</>
+            )
+          }
           style={{
             fontFamily: "Quicksand",
             fontSize: "15pt",
             backgroundColor: "white",
             padding: "15px",
           }}
+          disabled={isEditing ? true : false}
+          key="1"
         >
-          {display && (
-            <>
-              <ContentWrapper animate={animate}>
-                <SubcategoryGrid>
-                  <SubHeader>
-                    <span>SUB-CATEGORIES</span>
-                  </SubHeader>
-                  <SubHeader>
-                    <div>BEGINNER</div>
-                    <div>EXPERTISE</div>
-                  </SubHeader>
-                </SubcategoryGrid>
-                <Divider />
-                {subcategoryRender}
-                <FooterWrapper>
-                  <SubHeader>{count} / 5 </SubHeader>
-                  <FontAwesomeIcon
-                    icon={faPlusCircle}
-                    color="#2EC4B6"
-                    size="2x"
-                    style={{ marginLeft: "10px" }}
-                    onClick={() => setCount(count < 5 ? count + 1 : 5)}
-                  />
-                </FooterWrapper>
-              </ContentWrapper>
-            </>
-          )}
+          <ContentWrapper animate={animate}>
+            <SubcategoryGrid>
+              <SubHeader>
+                <span>SUB-CATEGORIES</span>
+              </SubHeader>
+              <SubHeader>
+                <div>BEGINNER</div>
+                <div>EXPERTISE</div>
+              </SubHeader>
+            </SubcategoryGrid>
+            <Divider />
+            {subcategoryRender}
+            <FooterWrapper>
+              <SubHeader>{count} / 5 </SubHeader>
+              <FontAwesomeIcon
+                icon={faPlusCircle}
+                color="#2EC4B6"
+                size="2x"
+                style={{ marginLeft: "10px" }}
+                onClick={() => setCount(count < 5 ? count + 1 : 5)}
+              />
+              {isEditing && (
+                <SaveButton text="save" onClick={() => saveClick()} />
+              )}
+            </FooterWrapper>
+          </ContentWrapper>
         </Panel>
       </StyledCollapse>
     </CollapseWrapper>
