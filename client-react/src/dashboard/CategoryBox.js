@@ -27,8 +27,6 @@ const StyledCollapse = styled(Collapse)`
       border-top: 8px solid #666 !important;
       margin-right: 6px;
     }
-    > .rc-collapse-item-disabled {
-    }
     > .rc-collapse-item {
       border: 0px;
       > .rc-collapse-header {
