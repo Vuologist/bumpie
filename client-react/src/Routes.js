@@ -7,6 +7,8 @@ import FAQ from "./faq";
 import Home from "./home";
 import AboutUsPage from "./about-us";
 import Dashboard from "./dashboard";
+import UserSettingsHome from "./user-settings";
+
 export default function Routes() {
   return (
     <Switch>
@@ -18,6 +20,9 @@ export default function Routes() {
       </Route>
       <Route exact path="/faq">
         <FAQ />
+      </Route>
+      <Route exact path="/user-settings">
+        <UserSettingsHome />
       </Route>
       <Route exact path="/home">
         <Home />
