@@ -11,7 +11,6 @@ import { device } from "../common/MediaBreakpoints";
 
 const CenterContainer = styled.div`
   display: flex;
-  //justify-content: center;
   padding: 30px;
   height: 100vh;
   background-color: #c5c5c4;
@@ -28,16 +27,6 @@ const ContentWrapper = styled.div`
   width: 90%;
   max-width: 1150px;
   display: ${(props) => (props.display ? "flex" : "none")};
-
-  @media screen and (max-height: 464px) {
-    height: 100%;
-    position: relative;
-    margin-top: 20px;
-    top: unset;
-    left: unset;
-    transform: none;
-    border-radius: 0;
-  }
 `;
 
 const LeftContainer = styled.div`
@@ -170,7 +159,7 @@ const Form = styled.form`
 `;
 
 const Authentication = (props) => {
-  const [page, setPage] = useState([null, null, null, null, "true"]);
+  const [page, setPage] = useState(["true", null, null, null, null]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -333,11 +322,6 @@ const Authentication = (props) => {
         setEmailSignUpError("Email already exists.");
       }
     }
-  };
-
-  const handleForgotPassword = (event) => {
-    event.preventDefault();
-    console.log("forgot password");
   };
 
   const changePage = (index) => {
