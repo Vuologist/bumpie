@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Auth } from "aws-amplify";
 import { useHistory, useLocation } from "react-router-dom";
@@ -564,7 +564,10 @@ const Authentication = (props) => {
     </ContentWrapper>
   );
 
-  if (props.passwordReset) changePage(4);
+  useEffect(() => {
+    if (props.type === "PasswordReset") changePage(4);
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <CenterContainer>
