@@ -564,7 +564,7 @@ const Authentication = (props) => {
     </ContentWrapper>
   );
 
-  if (props.forgotPassword) changePage(4);
+  if (props.passwordReset) changePage(4);
 
   return (
     <CenterContainer>
