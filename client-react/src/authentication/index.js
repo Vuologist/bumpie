@@ -71,6 +71,7 @@ const Button = styled(DynamicButton)`
   font-family: "Roboto";
   font-size: 15px;
   width: 300px;
+  height: 45px;
   border-radius: 37px;
   border: 1px solid transparent;
   cursor: pointer;
@@ -332,6 +333,11 @@ const Authentication = (props) => {
         setEmailSignUpError("Email already exists.");
       }
     }
+  };
+
+  const handleForgotPassword = (event) => {
+    event.preventDefault();
+    console.log("forgot password");
   };
 
   const changePage = (index) => {

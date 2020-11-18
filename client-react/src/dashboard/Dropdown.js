@@ -64,12 +64,12 @@ const CustomLink = styled.p`
   margin-bottom: 5px;
 `;
 
-const Dropdown = ({ className }) => {
+const Dropdown = ({ className, onEdit }) => {
   return (
     <Card className={className}>
       <ListGroup>
         <ListItem>
-          <CustomLink>Rename Category</CustomLink>
+          <CustomLink onClick={onEdit}>Rename Category</CustomLink>
         </ListItem>
         <ListItem>
           <CustomLink>User Settings</CustomLink>
