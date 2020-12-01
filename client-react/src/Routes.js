@@ -9,6 +9,7 @@ import AboutUsPage from "./about-us";
 import Dashboard from "./dashboard";
 import UserSettingsHome from "./user-settings";
 import ChangeEmail from "./user-settings/ChangeEmail";
+import ChangePassword from "./user-settings/ChangePassword";
 
 export default function Routes() {
   return (
@@ -33,6 +34,9 @@ export default function Routes() {
       </Route>
       <Route exact path="/user-settings/email">
         <ChangeEmail />
+      </Route>
+      <Route exact path="/user-settings/password">
+        <ChangePassword />
       </Route>
       <Route exact path="/about-us">
         <AboutUsPage />
