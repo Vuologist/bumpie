@@ -10,6 +10,7 @@ import Dashboard from "./dashboard";
 import UserSettingsHome from "./user-settings";
 import ChangeEmail from "./user-settings/ChangeEmail";
 import ChangePassword from "./user-settings/ChangePassword";
+import ChangeName from "./user-settings/ChangeName";
 
 export default function Routes() {
   return (
@@ -37,6 +38,9 @@ export default function Routes() {
       </Route>
       <Route exact path="/user-settings/password">
         <ChangePassword />
+      </Route>
+      <Route exact path="/user-settings/name">
+        <ChangeName />
       </Route>
       <Route exact path="/about-us">
         <AboutUsPage />
