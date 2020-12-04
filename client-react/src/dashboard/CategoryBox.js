@@ -143,21 +143,25 @@ const CategoryBox = ({ title }) => {
   //subcategory array
   const subcategoryRender = [];
 
-  for (var i = 0; i < count; i++) {
-    // push the component to array!
-    if (i === count) {
-      subcategoryRender.push(
-        <SubCategory
-          id="test"
-          key={i}
-          title={"Sub Category " + (i + 1)}
-          animation
-        />
-      );
-    } else {
-      subcategoryRender.push(
-        <SubCategory key={i} title={"Sub Category " + (i + 1)} />
-      );
+  if (count === 1) {
+    subcategoryRender.push(<SubCategory key={i} title={title} one />);
+  } else {
+    for (var i = 0; i < count; i++) {
+      // push the component to array!
+      if (i === count) {
+        subcategoryRender.push(
+          <SubCategory
+            id="test"
+            key={i}
+            title={"Sub Category " + (i + 1)}
+            animation
+          />
+        );
+      } else {
+        subcategoryRender.push(
+          <SubCategory key={i} title={"Sub Category " + (i + 1)} />
+        );
+      }
     }
   }
 
