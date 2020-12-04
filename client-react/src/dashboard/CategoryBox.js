@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import styled, { css, keyframes } from "styled-components";
 import Dropdown from "./Dropdown";
 import useOnclickOutside from "react-cool-onclickoutside";
@@ -140,26 +140,22 @@ const CategoryBox = ({ title }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [newTitle, setNewTitle] = useState(title);
   const [activeKey, setActiveKey] = useState(2);
-  //subcategory array
-  const subcategoryRender = [];
+  const [subcategoryRender, setSubcategoryRender] = useState([]);
 
-  for (var i = 0; i < count; i++) {
-    // push the component to array!
-    if (i === count) {
-      subcategoryRender.push(
+  useEffect(() => {
+    const renderArr = [...subcategoryRender];
+    for (var i = subcategoryRender.length; i < count; ++i) {
+      renderArr.push(
         <SubCategory
-          id="test"
           key={i}
           title={"Sub Category " + (i + 1)}
-          animation
+          onDelete={() => onDelete(i)}
         />
       );
-    } else {
-      subcategoryRender.push(
-        <SubCategory key={i} title={"Sub Category " + (i + 1)} />
-      );
     }
-  }
+    console.log(renderArr);
+    setSubcategoryRender([...renderArr]);
+  }, [count]);
 
   const ref = useOnclickOutside(() => {
     setDropdownDisplay(false);
@@ -189,6 +185,18 @@ const CategoryBox = ({ title }) => {
     } else {
       setActiveKey(1);
     }
+  };
+
+  const onDelete = (key) => {
+    // FUCK REFERENCES
+    const renderArr = [...subcategoryRender];
+    // ACTUALLY REMOVE ANIMATION
+    if (renderArr.length > 1) {
+      renderArr.splice(key, 1);
+    }
+    // CALC THE NEW COUNT && SET ANIMATION TO ABSOLUTELY NOTHING THEN RERENDER
+    setCount(renderArr.length);
+    setSubcategoryRender(renderArr);
   };
 
   return (
@@ -242,7 +250,15 @@ const CategoryBox = ({ title }) => {
               </SubHeader>
             </SubcategoryGrid>
             <Divider />
-            {subcategoryRender}
+            {subcategoryRender.map((value, i) => {
+              return (
+                <SubCategory
+                  key={i}
+                  title={"Sub Category " + (i + 1)}
+                  onDelete={() => onDelete(i)}
+                />
+              );
+            })}
             <FooterWrapper>
               <SubHeader>{count} / 5 </SubHeader>
               <FontAwesomeIcon

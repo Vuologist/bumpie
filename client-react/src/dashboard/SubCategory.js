@@ -6,20 +6,9 @@ import Slider from "rc-slider";
 import { slideOutUp, slideInDown } from "react-animations";
 import "rc-slider/assets/index.css";
 
-const slideOutUpAnimation = keyframes`${slideOutUp}`;
-const slideInDownAnimation = keyframes`${slideInDown}`;
-
-const outAnimation = css`
-  animation: 1s ${slideOutUpAnimation};
-`;
-const slideInAnimation = css`
-  animation: 1s ${slideInDownAnimation};
-`;
-
 const SubcategoryWrapper = styled.div`
   display: grid;
   grid-template-columns: 2fr 3fr 1fr;
-  ${(props) => (props.animate ? outAnimation : slideInAnimation)};
 `;
 const SubcategoryTitle = styled.p`
   color: ${(props) => (props.one ? "#a6a6a6" : "black")};
@@ -40,10 +29,10 @@ const Divider = styled.hr`
   margi-bottom: 20px;
 `;
 
-const SubCategory = ({ title, one, animation }) => {
+const SubCategory = ({ title, one, onDelete }) => {
   return (
     <>
-      <SubcategoryWrapper animate={animation}>
+      <SubcategoryWrapper>
         <GridDiv>
           <SubcategoryTitle one={one}>{title}</SubcategoryTitle>
         </GridDiv>
@@ -68,7 +57,12 @@ const SubCategory = ({ title, one, animation }) => {
           />
         </GridDiv>
         <GridDiv>
-          <FontAwesomeIcon icon={faMinusCircle} size="lg" color="#2EC4B6" />
+          <FontAwesomeIcon
+            icon={faMinusCircle}
+            size="lg"
+            color="#2EC4B6"
+            onClick={onDelete}
+          />
         </GridDiv>
       </SubcategoryWrapper>
       <Divider />
