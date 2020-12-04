@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import CategorySummary from "./CategorySummary";
 const BoxWrapper = styled.div`
   background-color: white;
   padding: 15px;
@@ -25,6 +26,7 @@ const PentagonBox = ({ title }) => {
         <Title>My Stats</Title>
       </TitleWrapper>
       <div>THIS IS PLACE HOLDER CONTENT</div>
+      <CategorySummary />
     </BoxWrapper>
   );
 };
