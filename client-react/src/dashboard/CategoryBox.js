@@ -144,7 +144,7 @@ const CategoryBox = ({ title }) => {
   const subcategoryRender = [];
 
   if (count === 1) {
-    subcategoryRender.push(<SubCategory key={i} title={title} one />);
+    subcategoryRender.push(<SubCategory key="1" title={title} one />);
   } else {
     for (var i = 0; i < count; i++) {
       // push the component to array!
