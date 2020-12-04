@@ -1,70 +1,71 @@
 import React from "react";
-// import styled from "styled-components";
-//import "bootstrap/dist/css/bootstrap.min.css"
-// import Layout from "../common/layout";
+import styled from "styled-components";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Layout from "../common/layout";
 
-// import DrawingIllustration from "../assets/DrawingBikeIllustration.svg";
-// import PostItDrawing from "../assets/PostItDrawing.svg";
-// import ScienceIllustration from "../assets/ScienceIllustration.svg";
-// import LandingMiddleBackground from "../assets/LandingMiddleBackground.svg";
-//
-// import ClipboardSwirls from "../assets/ClipboardSwirls.svg";
-// import CoffeeMidSmoke from "../assets/CoffeeMidSmoke.svg";
-// import CoffeeSwirls from "../assets/CoffeeSwirls.svg";
-// import PostItSwirl from "../assets/PostItSwirl.svg";
+import { ReactComponent as DrawingIllustration } from "../assets/DrawingBikeIllustration.svg";
+import { ReactComponent as PostItDrawing } from "../assets/PostItDrawing.svg";
+import { ReactComponent as ScienceIllustration } from "../assets/ScienceIllustration.svg";
+import { ReactComponent as LandingMiddleBackground } from "../assets/LandingMiddleBackground.svg";
 
-// const HomePageH1 = styled.h1`
-//   font-family: Quicksand;
-//   font-size: 55px;
-//   font-weight: bold;
-// `;
-// const HomePageH2 = styled.h2`
-//   font-family: Quicksand;
-//   font-size: 55px;
-//   font-weight: bold;
-//   color: ${props => (props.white ? "#fff" : "#000")};
-// `;
-// const HomePageHeroP = styled.p`
-//   font-family: Roboto;
-//   font-size: 35px;
-//   padding: 50px 0px;
-//   color: ${props => (props.white ? "#fff" : "#000")};
-// `;
-// const StartBtn = styled.button`
-//   border-color: #ff7690;
-//   background-color: #ff7690;
-//   fontweight: 400px;
-//   text-align: center;
-//   border: 1px solid transparent;
-//   padding: 0.375rem 1rem;
-//   border-radius: 39px;
-//   color: #fff;
-//   font-size: 2rem;
-//   font-family: Roboto;
-//   cursor: pointer;
-// `;
+import { ReactComponent as CoffeeMidSmoke } from "../assets/CoffeeMidSmoke.svg";
+import { ReactComponent as CoffeeSwirls } from "../assets/CoffeeSwirls.svg";
+import { ReactComponent as PostItSwirl } from "../assets/PostItSwirl.svg";
+
+const HomePageH1 = styled.h1`
+  font-family: Quicksand;
+  font-size: 55px;
+  font-weight: bold;
+`;
+
+const HomePageH2 = styled.h2`
+  font-family: Quicksand;
+  font-size: 55px;
+  font-weight: bold;
+  color: ${(props) => (props.white ? "#fff" : "#000")};
+`;
+
+const HomePageHeroP = styled.p`
+  font-family: Roboto;
+  font-size: 35px;
+  padding: 50px 0px;
+  color: ${(props) => (props.white ? "#fff" : "#000")};
+`;
+
+const StartBtn = styled.button`
+  border-color: #ff7690;
+  background-color: #ff7690;
+  fontweight: 400px;
+  text-align: center;
+  border: 1px solid transparent;
+  padding: 0.375rem 1rem;
+  border-radius: 39px;
+  color: #fff;
+  font-size: 2rem;
+  font-family: Roboto;
+  cursor: pointer;
+`;
 
 const Home = () => (
   <main style={{ backgroundColor: "#8fe8df" }}>
-    {/*
     <Layout>
       <section style={{ height: 1000 }}>
-        <ClipboardSwirls
+        {/* <ClipboardSwirls
           style={{
             position: "absolute",
             height: "auto",
             width: 1500,
             left: 50,
-            top: 70
+            top: 70,
           }}
-        />
+        /> */}
         <DrawingIllustration
           style={{
             position: "absolute",
             right: "-20%",
             height: 780,
             width: "auto",
-            top: 110
+            top: 110,
           }}
         />
 
@@ -72,7 +73,7 @@ const Home = () => (
           style={{
             position: "relative",
             margin: "138px 0px 0px 0px",
-            padding: 0
+            padding: 0,
           }}
         >
           <HomePageH1>
@@ -92,7 +93,7 @@ const Home = () => (
             top: 590,
             height: "auto",
             width: 2000,
-            left: -60
+            left: -60,
           }}
         />
         <PostItSwirl
@@ -101,7 +102,7 @@ const Home = () => (
             height: "auto",
             width: 2250,
             left: -180,
-            top: 790
+            top: 790,
           }}
         />
         <div>
@@ -111,7 +112,7 @@ const Home = () => (
               left: 0,
               top: 920,
               height: "auto",
-              width: "40%"
+              width: "40%",
             }}
           />
           <div style={{ position: "relative", width: "50%", float: "right" }}>
@@ -133,7 +134,7 @@ const Home = () => (
             width: 1500,
             overflowY: "hidden",
             top: -130,
-            left: -70
+            left: -70,
           }}
         />
         <ScienceIllustration
@@ -143,7 +144,7 @@ const Home = () => (
             top: -150,
             height: "auto",
             width: 860,
-            overflow: "hidden"
+            overflow: "hidden",
           }}
         />
         <CoffeeMidSmoke
@@ -152,7 +153,7 @@ const Home = () => (
             height: "auto",
             width: 290,
             top: -340,
-            right: 0
+            right: 0,
           }}
         />
         <div style={{ width: "50%", position: "relative" }}>
@@ -166,7 +167,6 @@ const Home = () => (
         </div>
       </section>
     </Layout>
-    */}
   </main>
 );
 

@@ -12,6 +12,9 @@ import UserSettingsHome from "./user-settings";
 export default function Routes() {
   return (
     <Switch>
+      <Route exact path="/">
+        <Home />
+      </Route>
       <Route exact path="/notification-settings">
         <NotificationSettings />
       </Route>
@@ -26,9 +29,6 @@ export default function Routes() {
       </Route>
       <Route exact path="/user-settings">
         <UserSettingsHome />
-      </Route>
-      <Route exact path="/home">
-        <Home />
       </Route>
       <Route exact path="/about-us">
         <AboutUsPage />

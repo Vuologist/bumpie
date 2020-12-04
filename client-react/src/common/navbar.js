@@ -1,6 +1,6 @@
 import React from "react";
-//import { Link } from "gatsby";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 import BumpieLogo from "../assets/logo.png";
 
@@ -14,7 +14,8 @@ const Nav = styled.nav`
   width: 100%;
   box-sizing: border-box;
 `;
-/* const LinkBase = styled(Link)`
+
+const LinkBase = styled(Link)`
   font-family: Quicksand;
   font-size: 25px;
   font-weight: bold;
@@ -29,7 +30,7 @@ const LinkRight = styled(LinkBase)`
 const LinkPink = styled(LinkBase)`
   color: #ff4d4d;
 `;
-*/
+
 const Img = styled.img`
   height: auto;
   width: 30px;
@@ -38,12 +39,14 @@ const Img = styled.img`
 const Navbar = () => (
   <Nav>
     <div>
-      <Img src={BumpieLogo} alt="Bumpie Logo" />
-      <p>ABOUT US</p>
-      <p to="/FAQ">FAQ</p>
+      <Link to="/home" style={{ marginRight: 40 }}>
+        <Img src={BumpieLogo} alt="Bumpie Logo" />
+      </Link>
+      <LinkRight to="/about-us">ABOUT US</LinkRight>
+      <LinkRight to="/FAQ">FAQ</LinkRight>
     </div>
     <div>
-      <p to="/SignIn">SIGN IN</p>
+      <LinkPink to="/sign-in">SIGN IN</LinkPink>
     </div>
   </Nav>
 );

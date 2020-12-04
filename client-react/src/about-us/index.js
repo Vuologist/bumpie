@@ -29,7 +29,7 @@ const NameBlock = ({ avatar, name, description }) => (
         fontFamily: "Quicksand",
         fontWeight: "bold",
         fontSize: 55,
-        paddingTop: 20
+        paddingTop: 20,
       }}
     >
       {name}
@@ -39,7 +39,7 @@ const NameBlock = ({ avatar, name, description }) => (
         padding: "40px 0px 0px 60px",
         fontFamily: "Quicksand",
         fontSize: 35,
-        width: "70%"
+        width: "70%",
       }}
     >
       {description}
