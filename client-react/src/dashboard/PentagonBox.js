@@ -20,14 +20,6 @@ const Title = styled.h1`
   text-align: center;
 `;
 
-const Dot = styled.span`
-  height: 25px;
-  width: 25px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-`;
-
 const data = [
   {
     category: "Category 1",
