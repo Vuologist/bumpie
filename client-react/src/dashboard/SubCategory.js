@@ -1,9 +1,9 @@
 import React from "react";
-import styled, { keyframes, css } from "styled-components";
+import styledfrom "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinusCircle } from "@fortawesome/free-solid-svg-icons";
 import Slider from "rc-slider";
-import { slideOutUp, slideInDown } from "react-animations";
+//import { slideOutUp, slideInDown } from "react-animations";
 import "rc-slider/assets/index.css";
 
 const SubcategoryWrapper = styled.div`
