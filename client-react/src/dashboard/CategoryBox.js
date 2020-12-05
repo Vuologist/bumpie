@@ -133,29 +133,25 @@ const SaveButton = styled(DynamicButton)`
   margin-left: 5px;
 `;
 
-const CategoryBox = ({ title }) => {
+const CategoryBox = ({ title, onChange, data }) => {
   const [animate, setAnimate] = useState(false);
-  const [count, setCount] = useState(1);
   const [dropdownDisplay, setDropdownDisplay] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [newTitle, setNewTitle] = useState(title);
   const [activeKey, setActiveKey] = useState(2);
-  const [subcategoryRender, setSubcategoryRender] = useState([]);
 
-  useEffect(() => {
-    const renderArr = [...subcategoryRender];
-    for (var i = subcategoryRender.length; i < count; ++i) {
-      renderArr.push(
-        <SubCategory
-          key={i}
-          title={"Sub Category " + (i + 1)}
-          onDelete={() => onDelete(i)}
-        />
-      );
-    }
-    console.log(renderArr);
-    setSubcategoryRender([...renderArr]);
-  }, [count]);
+  if (data.length === 0) {
+    onChange([{ title: "Sub Category " + (data.length + 1), value: 0 }]);
+  }
+
+  const addSubCat = () => {
+    const renderArr = [...data];
+    renderArr.push({
+      title: "Sub Category " + (data.length + 1),
+      value: 0,
+    });
+    onChange(renderArr);
+  };
 
   const ref = useOnclickOutside(() => {
     setDropdownDisplay(false);
@@ -187,16 +183,23 @@ const CategoryBox = ({ title }) => {
     }
   };
 
+  // Remove sub category
   const onDelete = (key) => {
     // FUCK REFERENCES
-    const renderArr = [...subcategoryRender];
+    const renderArr = [...data];
     // ACTUALLY REMOVE ANIMATION
     if (renderArr.length > 1) {
       renderArr.splice(key, 1);
     }
     // CALC THE NEW COUNT && SET ANIMATION TO ABSOLUTELY NOTHING THEN RERENDER
-    setCount(renderArr.length);
-    setSubcategoryRender(renderArr);
+    onChange(renderArr);
+  };
+
+  const onSliderChange = (i, sliderKey) => {
+    const renderArr = [...data];
+    // update value with new slider val
+    renderArr[i].value = sliderKey;
+    onChange(renderArr);
   };
 
   return (
@@ -250,23 +253,25 @@ const CategoryBox = ({ title }) => {
               </SubHeader>
             </SubcategoryGrid>
             <Divider />
-            {subcategoryRender.map((value, i) => {
+            {data.map((subcat, i) => {
               return (
                 <SubCategory
                   key={i}
-                  title={"Sub Category " + (i + 1)}
+                  title={subcat.title}
                   onDelete={() => onDelete(i)}
+                  value={subcat.value}
+                  onChange={(sliderVal) => onSliderChange(i, sliderVal)}
                 />
               );
             })}
             <FooterWrapper>
-              <SubHeader>{count} / 5 </SubHeader>
+              <SubHeader>{data.length} / 5 </SubHeader>
               <FontAwesomeIcon
                 icon={faPlusCircle}
                 color="#2EC4B6"
                 size="2x"
                 style={{ marginLeft: "10px" }}
-                onClick={() => setCount(count < 5 ? count + 1 : 5)}
+                onClick={() => addSubCat()}
               />
               {isEditing && (
                 <SaveButton text="save" onClick={() => saveClick()} />

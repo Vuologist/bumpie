@@ -29,7 +29,7 @@ const Divider = styled.hr`
   margi-bottom: 20px;
 `;
 
-const SubCategory = ({ title, one, onDelete }) => {
+const SubCategory = ({ title, one, onDelete, onChange }) => {
   return (
     <>
       <SubcategoryWrapper>
@@ -54,6 +54,7 @@ const SubCategory = ({ title, one, onDelete }) => {
             trackStyle={{
               backgroundColor: "#707070",
             }}
+            onAfterChange={onChange}
           />
         </GridDiv>
         <GridDiv>
