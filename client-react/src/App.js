@@ -12,10 +12,6 @@ const Site = styled.div`
   flex-direction: column;
 `;
 
-const Main = styled.div`
-  min-height: 80vh;
-`;
-
 const App = () => {
   const [isAuthenticated, userHasAuthenticated] = useState(false);
 
@@ -38,9 +34,7 @@ const App = () => {
     <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated }}>
       <Site>
         {isAuthenticated && <Header />}
-        <Main>
-          <Routes />
-        </Main>
+        <Routes />
         {isAuthenticated && <Footer />}
       </Site>
     </AppContext.Provider>

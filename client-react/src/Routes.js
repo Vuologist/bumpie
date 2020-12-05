@@ -7,20 +7,32 @@ import FAQ from "./faq";
 import Home from "./home";
 import AboutUsPage from "./about-us";
 import Dashboard from "./dashboard";
+import UserSettingsHome from "./user-settings";
+import ChangeEmail from "./user-settings/ChangeEmail";
+
 export default function Routes() {
   return (
     <Switch>
+      <Route exact path="/">
+        <Home />
+      </Route>
       <Route exact path="/notification-settings">
         <NotificationSettings />
       </Route>
       <Route exact path="/sign-in">
         <Authentication />
       </Route>
+      <Route path="/password-reset">
+        <Authentication type="PasswordReset" />
+      </Route>
       <Route exact path="/faq">
         <FAQ />
       </Route>
-      <Route exact path="/home">
-        <Home />
+      <Route exact path="/user-settings">
+        <UserSettingsHome />
+      </Route>
+      <Route exact path="/user-settings/email">
+        <ChangeEmail />
       </Route>
       <Route exact path="/about-us">
         <AboutUsPage />

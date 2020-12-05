@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import Layout from "../common/layout";
+
 const Q = styled.h3`
   font-family: "Quicksand";
   font-size: 20px;
@@ -13,6 +15,7 @@ const Q = styled.h3`
   margin-top: 40px;
   padding-left: 5px;
 `;
+
 const A = styled.p`
   font-family: "Quicksand";
   font-size: 20px;
@@ -42,16 +45,18 @@ const FAQitem = () => (
 );
 
 const FAQ = () => (
-  <Wrapper>
-    <h1 style={{ fontFamily: "Quicksand", fontWeight: "bold", fontSize: 30 }}>
-      Frequently Asked Questions
-    </h1>
-    <FAQitem />
-    <FAQitem />
-    <FAQitem />
-    <FAQitem />
-    <FAQitem />
-  </Wrapper>
+  <Layout>
+    <Wrapper>
+      <h1 style={{ fontFamily: "Quicksand", fontWeight: "bold", fontSize: 30 }}>
+        Frequently Asked Questions
+      </h1>
+      <FAQitem />
+      <FAQitem />
+      <FAQitem />
+      <FAQitem />
+      <FAQitem />
+    </Wrapper>
+  </Layout>
 );
 
 export default FAQ;

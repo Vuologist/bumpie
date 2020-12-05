@@ -7,7 +7,7 @@ const Input = styled.input`
   margin-bottom: 20px;
   border-radius: 12px;
   border: ${(props) =>
-    props.invalid ? "1px solid #FF4D4D" : "1px solid transparent"};
+    props.invalid ? "1px solid #FF4D4D" : "1px solid #707070"};
   padding: 10px;
 
   &:focus {

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="396" height="152.271" viewBox="0 0 396 152.271">
+  <path id="Path_63" data-name="Path 63" d="M0,8.256,10.643,3.791,4.069,0Z" transform="translate(45.026 21.14) rotate(43)" fill="#fff"/>
+  <ellipse id="Ellipse_85" data-name="Ellipse 85" cx="198" cy="16" rx="198" ry="16" transform="translate(0 120.271)" fill="#005a52"/>
+  <path id="Union_2" data-name="Union 2" d="M0,10.863,1.031,4.6,1.882.712,2.144.99,2.174.8,3.1,0,5.664,4.261.544,11.94.216,12.8Z" transform="translate(47.382 18.073) rotate(43)" fill="#005a52"/>
+  <path id="Path_60" data-name="Path 60" d="M62.539,0,0,13.805l12.085,13.02Z" transform="translate(57.751 0) rotate(43)" fill="#fff"/>
+  <path id="Subtraction_1" data-name="Subtraction 1" d="M6.932,27.654h0l-.442-.785-1.081.623L0,21.068,55.15,0,6.933,27.653Z" transform="translate(62.646 4.868) rotate(43)" fill="#005a52"/>
+  <path id="Path_58" data-name="Path 58" d="M52.852,0,14.267,37.937,0,25.291Z" transform="translate(64.744 6.521) rotate(43)" fill="#fff"/>
+  <path id="Union_7" data-name="Union 7" d="M0,77V8A8,8,0,0,1,8,0H21.686a8,8,0,0,1,8,8v.751H117V77Z" transform="translate(189 47.271)" fill="#fff"/>
+  <rect id="Rectangle_205" data-name="Rectangle 205" width="89" height="60" transform="matrix(0.999, 0.035, -0.035, 0.999, 196.074, 56.736)" fill="#005a52"/>
+  <rect id="Rectangle_204" data-name="Rectangle 204" width="89" height="60" transform="matrix(0.998, -0.07, 0.07, 0.998, 213.016, 64.448)" fill="#8fe8df"/>
+  <path id="Union_6" data-name="Union 6" d="M0,77V8A8,8,0,0,1,8,0H21.686a8,8,0,0,1,8,8v.751H117V77Z" transform="translate(189 58.271)" fill="#fff"/>
+  <rect id="Rectangle_201" data-name="Rectangle 201" width="15" height="4" rx="2" transform="translate(196 61.271)" fill="#005a52"/>
+  <rect id="Rectangle_202" data-name="Rectangle 202" width="59" height="4" rx="2" transform="translate(218 94.271)" fill="#005a52"/>
+  <rect id="Rectangle_203" data-name="Rectangle 203" width="59" height="4" rx="2" transform="translate(218 104.271)" fill="#005a52"/>
+</svg>
