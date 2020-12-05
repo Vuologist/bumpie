@@ -62,6 +62,8 @@ const LabelComponent = ({ id, anchor }) => {
     case 4:
       color = "#005A52";
       break;
+    default:
+      color = "#8FE8DF";
   }
   i++;
   return (
