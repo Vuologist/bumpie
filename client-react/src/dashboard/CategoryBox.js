@@ -133,7 +133,7 @@ const SaveButton = styled(DynamicButton)`
   margin-left: 5px;
 `;
 
-const CategoryBox = ({ title, onChange, data }) => {
+const CategoryBox = ({ title, onChange, data, one }) => {
   const [animate, setAnimate] = useState(false);
   const [dropdownDisplay, setDropdownDisplay] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -261,6 +261,7 @@ const CategoryBox = ({ title, onChange, data }) => {
                   onDelete={() => onDelete(i)}
                   value={subcat.value}
                   onChange={(sliderVal) => onSliderChange(i, sliderVal)}
+                  one={one}
                 />
               );
             })}
