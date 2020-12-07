@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import CategoryBox from "./CategoryBox";
 import PentagonBox from "./PentagonBox";
@@ -21,6 +21,28 @@ const CategoryWrapper = styled.div`
 const Dashboard = () => {
   // All categories data
   const [allData, setAllData] = useState([[], [], [], [], []]);
+  const [radarData, setRadarData] = useState([
+    {
+      category: "",
+      value: 0,
+    },
+    {
+      category: "",
+      value: 0,
+    },
+    {
+      category: "",
+      value: 0,
+    },
+    {
+      category: "",
+      value: 0,
+    },
+    {
+      category: "",
+      value: 0,
+    },
+  ]);
 
   const onChange = (i, newData) => {
     // Create COPY and set new data
@@ -29,20 +51,44 @@ const Dashboard = () => {
     if (copyAllData[i].length === 1) {
       copyAllData[i][0].previousTitle = copyAllData[i][0].title;
       copyAllData[i][0].title = "Category " + (i + 1);
-      console.log(copyAllData[i][0].title);
     } else {
       if (copyAllData[i][0].previousTitle !== null) {
         copyAllData[i][0].title = copyAllData[i][0].previousTitle;
         copyAllData[i][0].previousTitle = null;
       }
     }
+    radarDataCalc(i, newData);
     setAllData(copyAllData);
+  };
+
+  const radarDataCalc = (i, newData) => {
+    // copy data instead of ref
+    const copyAllData = [...allData];
+    const newRadarData = [...radarData];
+    //loop through data
+    var currentAvg = 0;
+    for (var k = 0; k < copyAllData[i].length; k++) {
+      // adding all values together
+      currentAvg += copyAllData[i][k].value;
+    }
+
+    // logic to not divide by 0
+    var subCatCount = copyAllData[i].length;
+    if (subCatCount < 1) {
+      subCatCount = 1;
+    }
+
+    // finish calculating avg
+    currentAvg = currentAvg / subCatCount;
+    newRadarData[i].value = currentAvg;
+
+    setRadarData(newRadarData);
   };
 
   return (
     <ContentWrapper>
       <PentagonWrapper>
-        <PentagonBox></PentagonBox>
+        <PentagonBox radarData={[...radarData]}></PentagonBox>
       </PentagonWrapper>
       <CategoryWrapper>
         <CategoryBox

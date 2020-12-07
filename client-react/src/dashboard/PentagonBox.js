@@ -20,28 +20,28 @@ const Title = styled.h1`
   text-align: center;
 `;
 
-const data = [
-  {
-    category: "Category 1",
-    score: 75,
-  },
-  {
-    category: "Category 2",
-    score: 65,
-  },
-  {
-    category: "Category 3",
-    score: 49,
-  },
-  {
-    category: "Category 4",
-    score: 80,
-  },
-  {
-    category: "Category 5",
-    score: 17,
-  },
-];
+// const data = [
+//   {
+//     category: "Category 1",
+//     score: 75,
+//   },
+//   {
+//     category: "Category 2",
+//     score: 65,
+//   },
+//   {
+//     category: "Category 3",
+//     score: 49,
+//   },
+//   {
+//     category: "Category 4",
+//     score: 80,
+//   },
+//   {
+//     category: "Category 5",
+//     score: 17,
+//   },
+// ];
 
 var i = 0;
 const LabelComponent = ({ id, anchor }) => {
@@ -73,7 +73,7 @@ const LabelComponent = ({ id, anchor }) => {
   );
 };
 
-const PentagonBox = ({ title }) => {
+const PentagonBox = ({ radarData }) => {
   return (
     <BoxWrapper>
       <TitleWrapper>
@@ -81,8 +81,8 @@ const PentagonBox = ({ title }) => {
       </TitleWrapper>
       <div style={{ height: "400px" }}>
         <ResponsiveRadar
-          data={data}
-          keys={["score"]}
+          data={radarData}
+          keys={["value"]}
           indexBy="category"
           maxValue="100"
           margin={{ top: 70, right: 80, bottom: 40, left: 80 }}
@@ -131,7 +131,7 @@ const PentagonBox = ({ title }) => {
           }}
         />
       </div>
-      <CategorySummary />
+      <CategorySummary radarData={radarData} />
     </BoxWrapper>
   );
 };

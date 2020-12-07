@@ -26,7 +26,7 @@ const SummaryWrapper = styled.div`
   margin-right: 5em;
 `;
 
-const CategorySummary = () => {
+const CategorySummary = ({ radarData }) => {
   return (
     <SummaryWrapper>
       <CategoryUL>
@@ -35,35 +35,35 @@ const CategorySummary = () => {
             <FontAwesomeIcon icon={faCircle} size="lg" color="#D0E6E3" />
             <CategoryLabel>Category 1</CategoryLabel>
           </div>
-          <PercentageLabel>000%</PercentageLabel>
+          <PercentageLabel>{radarData[0].value + "%"}</PercentageLabel>
         </CategoryLine>
         <CategoryLine>
           <div>
             <FontAwesomeIcon icon={faCircle} size="lg" color="#8FE8DF" />
             <CategoryLabel>Category 2</CategoryLabel>
           </div>
-          <PercentageLabel>000%</PercentageLabel>
+          <PercentageLabel>{radarData[1].value + "%"}</PercentageLabel>
         </CategoryLine>
         <CategoryLine>
           <div>
             <FontAwesomeIcon icon={faCircle} size="lg" color="#2EC4B6" />
             <CategoryLabel>Category 3</CategoryLabel>
           </div>
-          <PercentageLabel>000%</PercentageLabel>
+          <PercentageLabel>{radarData[2].value + "%"}</PercentageLabel>
         </CategoryLine>
         <CategoryLine>
           <div>
             <FontAwesomeIcon icon={faCircle} size="lg" color="#0B9387" />
             <CategoryLabel>Category 4</CategoryLabel>
           </div>
-          <PercentageLabel>000%</PercentageLabel>
+          <PercentageLabel>{radarData[3].value + "%"}</PercentageLabel>
         </CategoryLine>
         <CategoryLine>
           <div>
             <FontAwesomeIcon icon={faCircle} size="lg" color="#005A52" />
             <CategoryLabel>Category 5</CategoryLabel>
           </div>
-          <PercentageLabel>000%</PercentageLabel>
+          <PercentageLabel>{radarData[4].value + "%"}</PercentageLabel>
         </CategoryLine>
       </CategoryUL>
     </SummaryWrapper>
