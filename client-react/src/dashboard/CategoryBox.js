@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styled, { css, keyframes } from "styled-components";
 import Dropdown from "./Dropdown";
 import useOnclickOutside from "react-cool-onclickoutside";
@@ -133,11 +133,10 @@ const SaveButton = styled(DynamicButton)`
   margin-left: 5px;
 `;
 
-const CategoryBox = ({ title, onChange, data, one }) => {
+const CategoryBox = ({ title, onChange, data, one, onTitleChange, key }) => {
   const [animate, setAnimate] = useState(false);
   const [dropdownDisplay, setDropdownDisplay] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const [newTitle, setNewTitle] = useState(title);
   const [activeKey, setActiveKey] = useState(2);
 
   if (data.length === 0) {
@@ -158,6 +157,7 @@ const CategoryBox = ({ title, onChange, data, one }) => {
   });
 
   const saveClick = () => {
+    onTitleChange(inputRef.current.value);
     setIsEditing(false);
   };
 
@@ -202,6 +202,8 @@ const CategoryBox = ({ title, onChange, data, one }) => {
     onChange(renderArr);
   };
 
+  const inputRef = useRef(null);
+
   return (
     <CollapseWrapper>
       <EllipsisWrapper>
@@ -224,13 +226,9 @@ const CategoryBox = ({ title, onChange, data, one }) => {
         <Panel
           header={
             isEditing ? (
-              <StyledInput
-                type="text"
-                placeholder={newTitle}
-                onChange={(event) => setNewTitle(event.target.value)}
-              />
+              <StyledInput type="text" placeholder={title} ref={inputRef} />
             ) : (
-              <>{newTitle}</>
+              <>{title}</>
             )
           }
           style={{

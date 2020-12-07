@@ -21,6 +21,13 @@ const CategoryWrapper = styled.div`
 const Dashboard = () => {
   // All categories data
   const [allData, setAllData] = useState([[], [], [], [], []]);
+  const [catTitles, setCatTitles] = useState([
+    "Category 1",
+    "Category 2",
+    "Category 3",
+    "Category 4",
+    "Category 5",
+  ]);
 
   const onChange = (i, newData) => {
     // Create COPY and set new data
@@ -29,7 +36,6 @@ const Dashboard = () => {
     if (copyAllData[i].length === 1) {
       copyAllData[i][0].previousTitle = copyAllData[i][0].title;
       copyAllData[i][0].title = "Category " + (i + 1);
-      console.log(copyAllData[i][0].title);
     } else {
       if (copyAllData[i][0].previousTitle !== null) {
         copyAllData[i][0].title = copyAllData[i][0].previousTitle;
@@ -39,40 +45,51 @@ const Dashboard = () => {
     setAllData(copyAllData);
   };
 
+  const onTitleChange = (title, i) => {
+    const copyCatTitles = [...catTitles];
+    copyCatTitles[i] = title;
+    setCatTitles(copyCatTitles);
+  };
+
   return (
     <ContentWrapper>
       <PentagonWrapper>
-        <PentagonBox></PentagonBox>
+        <PentagonBox titles={catTitles}></PentagonBox>
       </PentagonWrapper>
       <CategoryWrapper>
         <CategoryBox
-          title="Category 1"
+          title={catTitles[0]}
           data={allData[0]}
           onChange={(data) => onChange(0, data)}
+          onTitleChange={(title) => onTitleChange(title, 0)}
           one={allData[0].length > 1 ? false : true}
         ></CategoryBox>
         <CategoryBox
-          title="Category 2"
+          title={catTitles[1]}
           data={allData[1]}
           onChange={(data) => onChange(1, data)}
+          onTitleChange={(title) => onTitleChange(title, 1)}
           one={allData[1].length > 1 ? false : true}
         ></CategoryBox>
         <CategoryBox
-          title="Category 3"
+          title={catTitles[2]}
           data={allData[2]}
           onChange={(data) => onChange(2, data)}
+          onTitleChange={(title) => onTitleChange(title, 2)}
           one={allData[2].length > 1 ? false : true}
         ></CategoryBox>
         <CategoryBox
-          title="Category 4"
+          title={catTitles[3]}
           data={allData[3]}
           onChange={(data) => onChange(3, data)}
+          onTitleChange={(title) => onTitleChange(title, 3)}
           one={allData[3].length > 1 ? false : true}
         ></CategoryBox>
         <CategoryBox
-          title="Category 5"
+          title={catTitles[4]}
           data={allData[4]}
           onChange={(data) => onChange(4, data)}
+          onTitleChange={(title) => onTitleChange(title, 4)}
           one={allData[4].length > 1 ? false : true}
         ></CategoryBox>
       </CategoryWrapper>

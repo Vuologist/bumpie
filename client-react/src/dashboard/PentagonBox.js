@@ -65,7 +65,7 @@ const LabelComponent = ({ id, anchor }) => {
     default:
       color = "#8FE8DF";
   }
-  i++;
+  i = (i + 1) % 5;
   return (
     <g transform="translate(-15, -15)">
       <circle cx="15" cy="15" r="15" fill={color} />
@@ -73,7 +73,7 @@ const LabelComponent = ({ id, anchor }) => {
   );
 };
 
-const PentagonBox = ({ title }) => {
+const PentagonBox = ({ titles }) => {
   return (
     <BoxWrapper>
       <TitleWrapper>
@@ -131,7 +131,7 @@ const PentagonBox = ({ title }) => {
           }}
         />
       </div>
-      <CategorySummary />
+      <CategorySummary titles={[...titles]} />
     </BoxWrapper>
   );
 };
