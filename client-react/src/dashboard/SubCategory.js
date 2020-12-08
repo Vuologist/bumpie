@@ -17,7 +17,7 @@ const SubcategoryTitle = styled.p`
   margin-top: -6px;
 `;
 const GridDiv = styled.div`
-  margin-top: 15px;
+  margin-top: ${(props) => (props.edit ? "5px" : "15px")};
   &:last-child {
     margin-top: 10px;
     display: flex;
@@ -29,12 +29,42 @@ const Divider = styled.hr`
   margi-bottom: 20px;
 `;
 
-const SubCategory = ({ title, one, onDelete, onChange }) => {
+const StyledInput = styled.input`
+  display: block;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 15pt;
+  line-height: 1.42857143;
+  color: #2ec4b6;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  z-index: 200;
+`;
+
+const SubCategory = ({
+  title,
+  one,
+  onDelete,
+  onAfterChange,
+  edit,
+  onSubEdit,
+  i,
+}) => {
   return (
     <>
       <SubcategoryWrapper>
-        <GridDiv>
-          <SubcategoryTitle one={one}>{title}</SubcategoryTitle>
+        <GridDiv edit={edit}>
+          {edit ? (
+            <StyledInput
+              type="text"
+              placeholder={title}
+              onChange={(event) => onSubEdit(event, i)}
+            />
+          ) : (
+            <SubcategoryTitle one={one}>{title}</SubcategoryTitle>
+          )}
         </GridDiv>
         <GridDiv>
           <Slider
@@ -54,7 +84,7 @@ const SubCategory = ({ title, one, onDelete, onChange }) => {
             trackStyle={{
               backgroundColor: "#707070",
             }}
-            onAfterChange={onChange}
+            onAfterChange={onAfterChange}
           />
         </GridDiv>
         <GridDiv>

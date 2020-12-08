@@ -29,7 +29,6 @@ const Dashboard = () => {
     if (copyAllData[i].length === 1) {
       copyAllData[i][0].previousTitle = copyAllData[i][0].title;
       copyAllData[i][0].title = "Category " + (i + 1);
-      console.log(copyAllData[i][0].title);
     } else {
       if (copyAllData[i][0].previousTitle !== null) {
         copyAllData[i][0].title = copyAllData[i][0].previousTitle;

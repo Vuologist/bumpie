@@ -139,6 +139,7 @@ const CategoryBox = ({ title, onChange, data, one }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [newTitle, setNewTitle] = useState(title);
   const [activeKey, setActiveKey] = useState(2);
+  const [subEdit, setSubEdit] = useState(false);
 
   if (data.length === 0) {
     onChange([{ title: "Sub Category " + (data.length + 1), value: 0 }]);
@@ -159,16 +160,30 @@ const CategoryBox = ({ title, onChange, data, one }) => {
 
   const saveClick = () => {
     setIsEditing(false);
+    setSubEdit(false);
   };
 
-  const onEdit = () => {
+  const onEdit = (type) => {
     // Open the collapsed panel and animate
     setActiveKey(1);
     setAnimate(true);
-
     // Show input and hide dropdown after click
-    setIsEditing(true);
+    if (type === "Category") {
+      setIsEditing(true);
+      setSubEdit(false);
+    }
+
+    if (type === "Sub") {
+      setSubEdit(true);
+      setIsEditing(false);
+    }
     setDropdownDisplay(false);
+  };
+
+  const onSubEdit = (event, i) => {
+    const renderArr = [...data];
+    renderArr[i].title = event.target.value;
+    onChange(renderArr);
   };
 
   const onCollapse = () => {
@@ -212,7 +227,10 @@ const CategoryBox = ({ title, onChange, data, one }) => {
         />
         {dropdownDisplay && (
           <div ref={ref}>
-            <StyledDropdown onEdit={() => onEdit()} />
+            <StyledDropdown
+              onEdit={() => onEdit("Category")}
+              onSubEdit={() => onEdit("Sub")}
+            />
           </div>
         )}
       </EllipsisWrapper>
@@ -239,7 +257,7 @@ const CategoryBox = ({ title, onChange, data, one }) => {
             backgroundColor: "white",
             padding: "15px",
           }}
-          disabled={isEditing ? true : false}
+          disabled={isEditing || subEdit ? true : false}
           key="1"
         >
           <ContentWrapper animate={animate}>
@@ -260,8 +278,10 @@ const CategoryBox = ({ title, onChange, data, one }) => {
                   title={subcat.title}
                   onDelete={() => onDelete(i)}
                   value={subcat.value}
-                  onChange={(sliderVal) => onSliderChange(i, sliderVal)}
+                  onAfterChange={(sliderVal) => onSliderChange(i, sliderVal)}
                   one={one}
+                  edit={subEdit}
+                  onSubEdit={(event) => onSubEdit(event, i)}
                 />
               );
             })}
@@ -274,7 +294,7 @@ const CategoryBox = ({ title, onChange, data, one }) => {
                 style={{ marginLeft: "10px" }}
                 onClick={() => addSubCat()}
               />
-              {isEditing && (
+              {(isEditing || subEdit) && (
                 <SaveButton text="save" onClick={() => saveClick()} />
               )}
             </FooterWrapper>
