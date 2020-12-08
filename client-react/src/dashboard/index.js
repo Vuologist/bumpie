@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import CategoryBox from "./CategoryBox";
 import PentagonBox from "./PentagonBox";
@@ -80,7 +80,7 @@ const Dashboard = () => {
 
     // finish calculating avg
     currentAvg = currentAvg / subCatCount;
-    newRadarData[i].value = currentAvg;
+    newRadarData[i].value = Math.round(currentAvg);
 
     setRadarData(newRadarData);
   };
