@@ -21,6 +21,28 @@ const CategoryWrapper = styled.div`
 const Dashboard = () => {
   // All categories data
   const [allData, setAllData] = useState([[], [], [], [], []]);
+  const [radarData, setRadarData] = useState([
+    {
+      category: "",
+      value: 0,
+    },
+    {
+      category: "",
+      value: 0,
+    },
+    {
+      category: "",
+      value: 0,
+    },
+    {
+      category: "",
+      value: 0,
+    },
+    {
+      category: "",
+      value: 0,
+    },
+  ]);
   const [catTitles, setCatTitles] = useState([
     "Category 1",
     "Category 2",
@@ -42,6 +64,7 @@ const Dashboard = () => {
         copyAllData[i][0].previousTitle = null;
       }
     }
+    radarDataCalc(i, newData);
     setAllData(copyAllData);
   };
 
@@ -66,6 +89,7 @@ const Dashboard = () => {
     <ContentWrapper>
       <PentagonWrapper>
         <PentagonBox titles={catTitles}></PentagonBox>
+        <PentagonBox radarData={[...radarData]}></PentagonBox>
       </PentagonWrapper>
       <CategoryWrapper>
         <CategoryBox
