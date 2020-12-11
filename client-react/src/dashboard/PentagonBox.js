@@ -20,29 +20,6 @@ const Title = styled.h1`
   text-align: center;
 `;
 
-// const data = [
-//   {
-//     category: "Category 1",
-//     score: 75,
-//   },
-//   {
-//     category: "Category 2",
-//     score: 65,
-//   },
-//   {
-//     category: "Category 3",
-//     score: 49,
-//   },
-//   {
-//     category: "Category 4",
-//     score: 80,
-//   },
-//   {
-//     category: "Category 5",
-//     score: 17,
-//   },
-// ];
-
 var i = 0;
 const LabelComponent = ({ id, anchor }) => {
   var color = "";
@@ -73,8 +50,7 @@ const LabelComponent = ({ id, anchor }) => {
   );
 };
 
-const PentagonBox = ({ radarData }) => {
-const PentagonBox = ({ titles }) => {
+const PentagonBox = ({ titles, radarData }) => {
   return (
     <BoxWrapper>
       <TitleWrapper>
@@ -132,8 +108,7 @@ const PentagonBox = ({ titles }) => {
           }}
         />
       </div>
-      <CategorySummary titles={[...titles]} />
-      <CategorySummary radarData={radarData} />
+      <CategorySummary radarData={[...radarData]} titles={[...titles]} />
     </BoxWrapper>
   );
 };

@@ -26,8 +26,7 @@ const SummaryWrapper = styled.div`
   margin-right: 5em;
 `;
 
-const CategorySummary = ({ radarData }) => {
-const CategorySummary = ({ titles }) => {
+const CategorySummary = ({ titles, radarData }) => {
   return (
     <SummaryWrapper>
       <CategoryUL>
