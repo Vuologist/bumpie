@@ -6,7 +6,6 @@ const ContentWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 2fr;
   padding: 50px;
-  height: 80vh;
   background-color: #c5c5c4;
 `;
 
