@@ -27,7 +27,6 @@ const SummaryWrapper = styled.div`
 `;
 
 const CategorySummary = ({ titles }) => {
-  console.log(titles);
   return (
     <SummaryWrapper>
       <CategoryUL>

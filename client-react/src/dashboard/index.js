@@ -35,7 +35,7 @@ const Dashboard = () => {
     copyAllData[i] = newData;
     if (copyAllData[i].length === 1) {
       copyAllData[i][0].previousTitle = copyAllData[i][0].title;
-      copyAllData[i][0].title = "Category " + (i + 1);
+      copyAllData[i][0].title = catTitles[i];
     } else {
       if (copyAllData[i][0].previousTitle !== null) {
         copyAllData[i][0].title = copyAllData[i][0].previousTitle;
@@ -49,6 +49,17 @@ const Dashboard = () => {
     const copyCatTitles = [...catTitles];
     copyCatTitles[i] = title;
     setCatTitles(copyCatTitles);
+    const copyAllData = [...allData];
+    if (copyAllData[i].length === 1) {
+      copyAllData[i][0].previousTitle = copyAllData[i][0].title;
+      copyAllData[i][0].title = copyCatTitles[i];
+    } else {
+      if (copyAllData[i][0].previousTitle !== null) {
+        copyAllData[i][0].title = copyAllData[i][0].previousTitle;
+        copyAllData[i][0].previousTitle = null;
+      }
+    }
+    setAllData(copyAllData);
   };
 
   return (
