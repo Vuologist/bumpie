@@ -50,7 +50,7 @@ const LabelComponent = ({ id, anchor }) => {
   );
 };
 
-const PentagonBox = ({ titles, radarData }) => {
+const PentagonBox = ({ radarData }) => {
   return (
     <BoxWrapper>
       <TitleWrapper>
@@ -108,7 +108,7 @@ const PentagonBox = ({ titles, radarData }) => {
           }}
         />
       </div>
-      <CategorySummary radarData={[...radarData]} titles={[...titles]} />
+      <CategorySummary radarData={[...radarData]} />
     </BoxWrapper>
   );
 };
