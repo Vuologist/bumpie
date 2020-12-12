@@ -10,6 +10,7 @@ const Site = styled.div`
   flex: 1 0 auto;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 `;
 
 const App = () => {
