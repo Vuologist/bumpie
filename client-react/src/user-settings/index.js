@@ -10,7 +10,6 @@ const Wrapper = styled.div`
   flex-direction: column;
   flex: 1;
   justify-content: space-between;
-  min-height: 80vh;
 `;
 
 const Container = styled.div`

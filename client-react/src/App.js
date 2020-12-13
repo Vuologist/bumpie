@@ -10,7 +10,11 @@ const Site = styled.div`
   flex: 1 0 auto;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 100%;
+`;
+
+const Wrapper = styled.div`
+  min-height: 80vh;
 `;
 
 const App = () => {
@@ -35,7 +39,9 @@ const App = () => {
     <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated }}>
       <Site>
         {isAuthenticated && <Header />}
-        <Routes />
+        <Wrapper>
+          <Routes />
+        </Wrapper>
         {isAuthenticated && <Footer />}
       </Site>
     </AppContext.Provider>
