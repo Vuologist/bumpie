@@ -25,7 +25,6 @@ const Wrapper = styled.div`
   margin-left: 100px;
   margin-right: 100px;
   padding-top: 25px;
-  min-height: 79vh;
 `;
 
 const NotificationSettings = () => {

@@ -11,7 +11,6 @@ const Wrapper = styled.div`
   flex-direction: column;
   flex: 1;
   padding: 50px 100px 50px 100px;
-  min-height: 79vh;
 `;
 
 const Container = styled.div`
