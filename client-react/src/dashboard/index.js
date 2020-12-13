@@ -7,6 +7,7 @@ const ContentWrapper = styled.div`
   grid-template-columns: 1fr 2fr;
   padding: 50px;
   background-color: #c5c5c4;
+  min-height: 80vh;
 `;
 
 const PentagonWrapper = styled.div`
