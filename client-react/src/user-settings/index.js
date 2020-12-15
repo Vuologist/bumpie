@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import DynamicButton from "../common/DynamicButton";
 
 const Wrapper = styled.div`
-  margin: 50px 100px 50px 100px;
+  padding: 50px 100px 50px 100px;
   display: flex;
   flex-direction: column;
   flex: 1;

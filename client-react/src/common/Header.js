@@ -15,8 +15,7 @@ const Container = styled.header`
   align-items: center;
   background-color: #8fe8df;
   color: #ff4d4d;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  min-height: 10vh;
   @media ${device.mobileL} {
     grid-template-columns: repeat(2, 1fr);
   }

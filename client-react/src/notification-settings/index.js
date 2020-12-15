@@ -24,8 +24,7 @@ const PageTitle = styled.h2`
 const Wrapper = styled.div`
   margin-left: 100px;
   margin-right: 100px;
-  margin-top: 25px;
-  margin-bottom: 25px;
+  padding-top: 25px;
 `;
 
 const NotificationSettings = () => {
