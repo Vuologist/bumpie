@@ -15,6 +15,7 @@ const Card = styled.div`
   -ms-flex-direction: column;
   flex-direction: column;
   min-width: 0;
+  z-index: 300 !important;
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;

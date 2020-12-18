@@ -64,9 +64,9 @@ const CustomLink = styled.p`
   margin-bottom: 5px;
 `;
 
-const Dropdown = ({ className, onEdit, onSubEdit }) => {
+const Dropdown = ({ onEdit, onSubEdit }) => {
   return (
-    <Card className={className}>
+    <Card>
       <ListGroup>
         <ListItem>
           <CustomLink onClick={onEdit}>Rename Category</CustomLink>
