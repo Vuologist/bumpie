@@ -58,6 +58,7 @@ const Dashboard = () => {
         copyAllData[i][0].previousTitle = null;
       }
     }
+    console.log(copyAllData);
     radarDataCalc(i, newData);
     setAllData(copyAllData);
   };

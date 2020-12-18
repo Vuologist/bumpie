@@ -158,7 +158,9 @@ const CategoryBox = ({ title, onChange, data, one, onTitleChange, key }) => {
   });
 
   const saveClick = () => {
-    onTitleChange(inputRef.current.value);
+    if (isEditing) {
+      onTitleChange(inputRef.current.value);
+    }
     setIsEditing(false);
     setSubEdit(false);
   };
@@ -180,10 +182,12 @@ const CategoryBox = ({ title, onChange, data, one, onTitleChange, key }) => {
     setDropdownDisplay(false);
   };
 
-  const onSubEdit = (event, i) => {
+  const onSubEdit = (name, i) => {
     const renderArr = [...data];
-    renderArr[i].title = event.target.value;
-    onChange(renderArr);
+    if (name !== undefined) {
+      renderArr[i].title = name;
+      onChange(renderArr);
+    }
   };
 
   const onCollapse = () => {

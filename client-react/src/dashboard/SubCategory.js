@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinusCircle } from "@fortawesome/free-solid-svg-icons";
@@ -52,6 +52,7 @@ const SubCategory = ({
   onSubEdit,
   i,
 }) => {
+  const inputRef = useRef(null);
   return (
     <>
       <SubcategoryWrapper>
@@ -60,7 +61,8 @@ const SubCategory = ({
             <StyledInput
               type="text"
               placeholder={title}
-              onChange={(event) => onSubEdit(event, i)}
+              onChange={() => onSubEdit(inputRef.current.value, i)}
+              ref={inputRef}
             />
           ) : (
             <SubcategoryTitle one={one}>{title}</SubcategoryTitle>
