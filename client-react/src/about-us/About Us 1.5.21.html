@@ -1,0 +1,192 @@
+<html>
+
+<head>
+  <style>
+    .st0 {
+      fill: #FFFFFF;
+    }
+
+    .st1 {
+      fill: #8FE8DF;
+    }
+
+    .st2 {
+      fill: #FFFFFF;
+    }
+
+    svg:hover .st0,
+    svg:hover .st2 {
+      fill: #8FE8DF;
+    }
+
+    svg:hover .st0 {
+      stroke: #FFFFFF;
+    }
+
+    svg:hover .st1 {
+      fill: #FFFFFF;
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 20px;
+      align-items: center;
+      background-color: #8fe8df;
+      color: #ff4d4d;
+      min-height: 10vh;
+    }
+
+    @media (max-width: 425px) {
+      header {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      header img {
+        margin-left: 25px;
+        justify-self: start;
+      }
+    }
+
+    header a {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 25px;
+      font-weight: bold;
+      color: white;
+      text-decoration: none;
+      justify-self: flex-start;
+      margin-left: 115px;
+    }
+
+    header img {
+      height: 50px;
+      justify-self: center;
+    }
+
+    header div {
+      margin-right: 25px;
+      justify-self: end;
+    }
+
+    `;
+
+    @media (max-width: 375px) {
+      header img {
+        margin-left: 15px;
+        justify-self: start;
+      }
+    }
+
+    header div {
+      position: relative;
+      justify-self: flex-end;
+      margin-right: 70px;
+    }
+
+    footer {
+      background-color: #fff;
+      text-align: center;
+      color: #C5C5C4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-shrink: 0;
+      width: 100%;
+      min-height: 10vh;
+    }
+
+    main {
+      min-height: 80vh;
+      padding: 125px;
+    }
+
+    .flex-container-images {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+
+    .flex-container-text {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+
+    .flex-images {
+        border: 1px solid #707070;
+        width: 340px;
+        height: 225px;
+        margin-right: 115px;
+        margin-bottom: 35px;
+    }
+
+    .flex-header {
+        font-family: 'Quicksand', sans-serif;
+        font-weight: bold;
+        font-size: 20px;
+        margin-right: 115px;
+        line-height: 30px;
+        width: 340px;
+        height: 250px;
+    }
+
+    .flex-text {
+        font-family: 'Roboto', sans-serif;
+        font-size: 15px;
+        width: 340px;
+        height: 225px;
+        margin-right: 115px;
+        margin-top: -190px;
+        margin-bottom: 35px;
+    }
+
+    body {
+      flex: 1 0 auto;
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <a>Dashboard</a>
+    <img src="logo.png" />
+    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 24 24" height="57">
+      <g>
+        <circle class="st0 st3" cx="12.5" cy="12.5" r="9.5" />
+      </g>
+      <g>
+        <path class="st1 st4" d="M7.5,17.5v-1c0-1.8,0.98-3.47,2.55-4.36l0.52-0.29l-0.38-0.46C9.74,10.84,9.5,10.19,9.5,9.5c0-1.65,1.35-3,3-3
+    		s3,1.35,3,3c0,0.69-0.24,1.34-0.69,1.89l-0.38,0.46l0.52,0.29c1.57,0.89,2.55,2.56,2.55,4.36v1H7.5z" />
+        <path class="st2 st5" d="M12.5,7C13.88,7,15,8.12,15,9.5c0,0.72-0.31,1.25-0.58,1.57l-0.76,0.92l1.04,0.58c1.42,0.8,2.3,2.3,2.3,3.92
+    		V17H8v-0.5c0-1.62,0.88-3.12,2.3-3.92l1.04-0.58l-0.76-0.92C10.31,10.75,10,10.22,10,9.5C10,8.12,11.12,7,12.5,7 M12.5,6
+    		C10.57,6,9,7.57,9,9.5c0,0.84,0.31,1.6,0.81,2.21C8.13,12.65,7,14.44,7,16.5V18h11v-1.5c0-2.06-1.13-3.85-2.81-4.79
+    		C15.69,11.1,16,10.34,16,9.5C16,7.57,14.43,6,12.5,6L12.5,6z" />
+      </g>
+    </svg>
+  </header>
+  <main>
+    <div class="flex-container-images">
+    <div class="flex-images">image goes here</div>
+    <div class="flex-images">image goes here</div>
+    <div class="flex-images">image goes here</div>
+    </div>
+    <div class="flex-container-text">
+    <div class="flex-header">Anthony Vu</div>
+    <div class="flex-header">Heather Tran</div>
+    <div class="flex-header">Peggy Zhou</div>
+    </div>
+    <div class="flex-container-text">
+    <div class="flex-text">Pellentesque ac erat dignissim, tincidunt augue a, dignissim est. Maecenas non orci at est vehicula vehicula. Sed non eleifend eros. Nam mauris massa, porta non auctor at, faucibus a tellus. Duis nibh erat, viverra vitae fermentum a, scelerisque a nibh. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi finibus pellentesque diam ut hendrerit. Sed a metus erat. In tempus nec dui sit amet pellentesque. Aliquam augue ligula, dictum quis posuere sed, dictum at ex.
+    </div>
+    <div class="flex-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vestibulum quis risus volutpat vestibulum. Sed eu porttitor justo, non egestas ipsum. Aliquam ut euismod dui. Vestibulum et condimentum dolor. Etiam vel imperdiet dolor, in accumsan nisi. Sed posuere, magna at hendrerit viverra, urna lacus feugiat lacus, eu venenatis ex nisi id odio.</div>
+    <div class="flex-text">Duis at ultricies magna. Morbi posuere odio ut nisi feugiat vestibulum. Praesent vel magna leo. Aenean sollicitudin tempus nisi, eget porta mi dapibus eu. Vivamus volutpat ligula nibh, ut convallis augue ornare non. Fusce elementum mattis ipsum, ullamcorper ornare velit sagittis blandit. Suspendisse pharetra tortor ac sem maximus, id consequat augue vehicula. Integer egestas lectus a dolor posuere, sit amet cursus ipsum porttitor. Morbi ac placerat ipsum. Integer mollis sapien ipsum, in viverra nulla tristique ac.</div>
+    </div>
+</main>
+  <footer>
+    BUMPIE. All Rights Reserved.
+  </footer>
+</body>
+
+</html>
