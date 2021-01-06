@@ -52,13 +52,7 @@ const Dashboard = () => {
     if (copyAllData[i].length === 1) {
       copyAllData[i][0].previousTitle = copyAllData[i][0].title;
       copyAllData[i][0].title = radarData[i].category;
-    } else {
-      if (copyAllData[i][0].previousTitle !== null) {
-        copyAllData[i][0].title = copyAllData[i][0].previousTitle;
-        copyAllData[i][0].previousTitle = null;
-      }
     }
-    console.log(copyAllData);
     radarDataCalc(i, newData);
     setAllData(copyAllData);
   };
