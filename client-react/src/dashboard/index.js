@@ -48,13 +48,15 @@ const Dashboard = () => {
   const onChange = (i, newData) => {
     // Create COPY and set new data
     const copyAllData = [...allData];
-    copyAllData[i] = newData;
-    if (copyAllData[i].length === 1) {
-      copyAllData[i][0].previousTitle = copyAllData[i][0].title;
-      copyAllData[i][0].title = radarData[i].category;
+    if (copyAllData[i].length < 5) {
+      copyAllData[i] = newData;
+
+      if (copyAllData[i].length === 1) {
+        copyAllData[i][0].title = radarData[i].category;
+      }
+      radarDataCalc(i, newData);
+      setAllData(copyAllData);
     }
-    radarDataCalc(i, newData);
-    setAllData(copyAllData);
   };
 
   const onTitleChange = (title, i) => {
