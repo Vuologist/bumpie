@@ -47,7 +47,6 @@ const Dashboard = () => {
 
   const onChange = (i, newData) => {
     // Create COPY and set new data
-    console.log(newData);
     const copyAllData = [...allData];
     copyAllData[i] = newData;
 
