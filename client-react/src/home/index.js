@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Layout from "../common/layout";
 import Navbar from "../common/navbar";
 import Footer from "../common/Footer";
 
@@ -62,9 +61,9 @@ const BikeSection = styled.section`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-image: url(${ClipboardSwirls});
-  background-position: left bottom;
-  background-size: 130%;
+  background-image: url(${PostItSwirl});
+  background-position: left center;
+  background-size: 120%;
   background-repeat: no-repeat;
   min-height: 1500px;
 `;
