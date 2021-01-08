@@ -47,21 +47,16 @@ const Dashboard = () => {
 
   const onChange = (i, newData) => {
     // Create COPY and set new data
+    console.log(newData);
     const copyAllData = [...allData];
-    if (copyAllData[i].length <= 5) {
-      copyAllData[i] = newData;
+    copyAllData[i] = newData;
 
-      if (copyAllData[i].length === 1) {
-        copyAllData[i][0].title = radarData[i].category;
-      }
-
-      // remove if there happens to be a 6
-      if (copyAllData[i].length > 5) {
-        copyAllData[i].pop();
-      }
-      radarDataCalc(i, newData);
-      setAllData(copyAllData);
+    if (copyAllData[i].length === 1) {
+      copyAllData[i][0].title = radarData[i].category;
     }
+
+    radarDataCalc(i, newData);
+    setAllData(copyAllData);
   };
 
   const onTitleChange = (title, i) => {

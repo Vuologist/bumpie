@@ -146,11 +146,13 @@ const CategoryBox = ({ title, onChange, data, one, onTitleChange, key }) => {
 
   const addSubCat = () => {
     const renderArr = [...data];
-    renderArr.push({
-      title: "Sub Category " + (data.length + 1),
-      value: 0,
-    });
-    onChange(renderArr);
+    if (renderArr.length < 5) {
+      renderArr.push({
+        title: "Sub Category " + (data.length + 1),
+        value: 0,
+      });
+      onChange(renderArr);
+    }
   };
 
   const ref = useOnclickOutside(() => {
