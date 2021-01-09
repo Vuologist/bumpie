@@ -158,6 +158,7 @@ const CategoryBox = ({ title, onChange, data, one, onTitleChange, key }) => {
       renderArr.push({
         title: "Sub Category " + (data.length + 1),
         value: 0,
+        key: globalKey++,
       });
       onChange(renderArr);
     }

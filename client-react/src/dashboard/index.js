@@ -45,6 +45,30 @@ const Dashboard = () => {
     },
   ]);
   useEffect(() => {
+    const radarDataCalc = () => {
+      // copy data instead of ref
+      const copyAllData = [...allData];
+      const newRadarData = [...radarData];
+      //loop through data
+      for (var i = 0; i < copyAllData.length; i++) {
+        var currentAvg = 0;
+        for (var k = 0; k < copyAllData[i].length; k++) {
+          // adding all values together
+          currentAvg += copyAllData[i][k].value;
+        }
+
+        // logic to not divide by 0
+        var subCatCount = copyAllData[i].length;
+        if (subCatCount < 1) {
+          subCatCount = 1;
+        }
+
+        // finish calculating avg
+        currentAvg = currentAvg / subCatCount;
+        newRadarData[i].value = Math.round(currentAvg);
+      }
+      setRadarData(newRadarData);
+    };
     radarDataCalc();
   }, [allData]);
 
@@ -56,7 +80,6 @@ const Dashboard = () => {
     if (copyAllData[i].length === 1) {
       copyAllData[i][0].title = radarData[i].category;
     }
-    console.log(copyAllData);
     setAllData(copyAllData);
   };
 
@@ -75,31 +98,6 @@ const Dashboard = () => {
       }
     }
     setAllData(copyAllData);
-  };
-
-  const radarDataCalc = () => {
-    // copy data instead of ref
-    const copyAllData = [...allData];
-    const newRadarData = [...radarData];
-    //loop through data
-    for (var i = 0; i < copyAllData.length; i++) {
-      var currentAvg = 0;
-      for (var k = 0; k < copyAllData[i].length; k++) {
-        // adding all values together
-        currentAvg += copyAllData[i][k].value;
-      }
-
-      // logic to not divide by 0
-      var subCatCount = copyAllData[i].length;
-      if (subCatCount < 1) {
-        subCatCount = 1;
-      }
-
-      // finish calculating avg
-      currentAvg = currentAvg / subCatCount;
-      newRadarData[i].value = Math.round(currentAvg);
-    }
-    setRadarData(newRadarData);
   };
 
   return (
