@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import CategoryBox from "./CategoryBox";
 import PentagonBox from "./PentagonBox";
@@ -44,6 +44,9 @@ const Dashboard = () => {
       value: 0,
     },
   ]);
+  useEffect(() => {
+    radarDataCalc();
+  }, [allData]);
 
   const onChange = (i, newData) => {
     // Create COPY and set new data
@@ -53,7 +56,7 @@ const Dashboard = () => {
       copyAllData[i][0].previousTitle = copyAllData[i][0].title;
       copyAllData[i][0].title = radarData[i].category;
     }
-    radarDataCalc(i, newData);
+    console.log(copyAllData);
     setAllData(copyAllData);
   };
 
@@ -74,27 +77,28 @@ const Dashboard = () => {
     setAllData(copyAllData);
   };
 
-  const radarDataCalc = (i, newData) => {
+  const radarDataCalc = () => {
     // copy data instead of ref
     const copyAllData = [...allData];
     const newRadarData = [...radarData];
     //loop through data
-    var currentAvg = 0;
-    for (var k = 0; k < copyAllData[i].length; k++) {
-      // adding all values together
-      currentAvg += copyAllData[i][k].value;
+    for (var i = 0; i < copyAllData.length; i++) {
+      var currentAvg = 0;
+      for (var k = 0; k < copyAllData[i].length; k++) {
+        // adding all values together
+        currentAvg += copyAllData[i][k].value;
+      }
+
+      // logic to not divide by 0
+      var subCatCount = copyAllData[i].length;
+      if (subCatCount < 1) {
+        subCatCount = 1;
+      }
+
+      // finish calculating avg
+      currentAvg = currentAvg / subCatCount;
+      newRadarData[i].value = Math.round(currentAvg);
     }
-
-    // logic to not divide by 0
-    var subCatCount = copyAllData[i].length;
-    if (subCatCount < 1) {
-      subCatCount = 1;
-    }
-
-    // finish calculating avg
-    currentAvg = currentAvg / subCatCount;
-    newRadarData[i].value = Math.round(currentAvg);
-
     setRadarData(newRadarData);
   };
 

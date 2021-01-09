@@ -50,6 +50,7 @@ const SubCategory = ({
   onAfterChange,
   edit,
   onSubEdit,
+  value,
   i,
 }) => {
   const inputRef = useRef(null);
@@ -87,6 +88,7 @@ const SubCategory = ({
               backgroundColor: "#707070",
             }}
             onAfterChange={onAfterChange}
+            defaultValue={value}
           />
         </GridDiv>
         <GridDiv>
