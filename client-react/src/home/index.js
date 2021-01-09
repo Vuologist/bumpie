@@ -1,16 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Layout from "../common/layout";
+import Navbar from "../common/navbar";
+import Footer from "../common/Footer";
 
 import { ReactComponent as DrawingIllustration } from "../assets/DrawingBikeIllustration.svg";
 import { ReactComponent as PostItDrawing } from "../assets/PostItDrawing.svg";
 import { ReactComponent as ScienceIllustration } from "../assets/ScienceIllustration.svg";
-import { ReactComponent as LandingMiddleBackground } from "../assets/LandingMiddleBackground.svg";
-
 import { ReactComponent as CoffeeMidSmoke } from "../assets/CoffeeMidSmoke.svg";
-import { ReactComponent as CoffeeSwirls } from "../assets/CoffeeSwirls.svg";
-import { ReactComponent as PostItSwirl } from "../assets/PostItSwirl.svg";
+
+import CoffeeSwirls from "../assets/CoffeeSwirls.svg";
+import PostItSwirl from "../assets/PostItSwirl.svg";
+import LandingMiddleBackground from "../assets/LandingMiddleBackground.svg";
+import ClipboardSwirls from "../assets/clipboard_swirls.svg";
 
 const HomePageH1 = styled.h1`
   font-family: Quicksand;
@@ -45,128 +47,120 @@ const StartBtn = styled.button`
   font-family: Roboto;
   cursor: pointer;
 `;
+const ClipBoardSection = styled.section`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 1000px;
+  overflow: hidden;
+  background-image: url(${ClipboardSwirls});
+  background-size: 120%;
+`;
+
+const BikeSection = styled.section`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-image: url(${PostItSwirl});
+  background-position: left center;
+  background-size: 120%;
+  background-repeat: no-repeat;
+  min-height: 1500px;
+`;
+
+const PostItDiv = styled.div`
+  background-image: url(${LandingMiddleBackground});
+  background-position: left top;
+  background-size: 2000px;
+  background-repeat: no-repeat;
+  min-height: 1500px;
+`;
+
+const CoffeeSection = styled.section`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-height: 1000px;
+  background-image: url(${CoffeeSwirls});
+  background-size: 140%;
+  background-position: center top;
+  background-repeat: no-repeat;
+  overflow: "hidden";
+`;
+
+const TextDiv = styled.div`
+  margin-left: 100px;
+  margin-right: 100px;
+`;
 
 const Home = () => (
-  <main style={{ backgroundColor: "#8fe8df" }}>
-    <Layout>
-      <section style={{ height: 1000 }}>
-        {/* <ClipboardSwirls
-          style={{
-            position: "absolute",
-            height: "auto",
-            width: 1500,
-            left: 50,
-            top: 70,
-          }}
-        /> */}
-        <DrawingIllustration
-          style={{
-            position: "absolute",
-            right: "-20%",
-            height: 780,
-            width: "auto",
-            top: 110,
-          }}
-        />
-
-        <div
+  <main style={{ backgroundColor: "#8fe8df", overflowX: "hidden" }}>
+    <Navbar />
+    <ClipBoardSection>
+      <TextDiv>
+        <HomePageH1>
+          Track your progress. <br />
+          Improve your life.
+        </HomePageH1>
+        <HomePageHeroP>
+          Visualize and track your strengths. Build your stats.
+        </HomePageHeroP>
+        <StartBtn>Get Started</StartBtn>
+      </TextDiv>
+      <DrawingIllustration
+        style={{
+          position: "relative",
+          height: "900px",
+          right: -300,
+        }}
+      />
+    </ClipBoardSection>
+    <PostItDiv>
+      <BikeSection>
+        <PostItDrawing
           style={{
             position: "relative",
-            margin: "138px 0px 0px 0px",
-            padding: 0,
+            left: 0,
+            width: 2800,
           }}
-        >
-          <HomePageH1>
-            Track your progress. <br />
-            Improve your life.
-          </HomePageH1>
-          <HomePageHeroP>
-            Visualize and track your strengths. Build your stats.
+        />
+        <TextDiv>
+          <HomePageH2 white>Bump up your life with Bumpie!</HomePageH2>
+          <HomePageHeroP white>
+            Bumpie allows you to track your life skills through five categories.
+            Each category has sub-categories that allows you to track your
+            advancements! Bump up your life and progress yourself today!
           </HomePageHeroP>
-          <StartBtn>Get Started</StartBtn>
-        </div>
-      </section>
-      <section style={{ height: 1000 }}>
-        <LandingMiddleBackground
-          style={{
-            position: "absolute",
-            top: 590,
-            height: "auto",
-            width: 2000,
-            left: -60,
-          }}
-        />
-        <PostItSwirl
-          style={{
-            position: "absolute",
-            height: "auto",
-            width: 2250,
-            left: -180,
-            top: 790,
-          }}
-        />
-        <div>
-          <PostItDrawing
-            style={{
-              position: "absolute",
-              left: 0,
-              top: 920,
-              height: "auto",
-              width: "40%",
-            }}
-          />
-          <div style={{ position: "relative", width: "50%", float: "right" }}>
-            <HomePageH2 white>Bump up your life with Bumpie!</HomePageH2>
-            <HomePageHeroP white>
-              Bumpie allows you to track your life skills through five
-              categories. Each category has sub-categories that allows you to
-              track your advancements! Bump up your life and progress yourself
-              today!
-            </HomePageHeroP>
-          </div>
-        </div>
-      </section>
-      <section style={{ position: "relative", height: 650 }}>
-        <CoffeeSwirls
-          style={{
-            position: "absolute",
-            height: "auto",
-            width: 1500,
-            overflowY: "hidden",
-            top: -130,
-            left: -70,
-          }}
-        />
+        </TextDiv>
+      </BikeSection>
+    </PostItDiv>
+    <CoffeeSection>
+      <TextDiv>
+        <HomePageH2>Personalize your categories.</HomePageH2>
+        <HomePageHeroP>
+          Whether you are trying to build your fitness goals or improve your
+          culinary skills, Bumpie allows you to personalize your categories
+          based on your own life. Your stats will increase and/or decrease over
+          time, allowing you to visualize your own progress!
+        </HomePageHeroP>
+      </TextDiv>
+      <div style={{ alignSelf: "flex-end" }}>
         <ScienceIllustration
           style={{
-            position: "absolute",
-            right: -100,
-            top: -150,
-            height: "auto",
-            width: 860,
-            overflow: "hidden",
+            width: 980,
           }}
         />
         <CoffeeMidSmoke
           style={{
-            position: "absolute",
-            height: "auto",
-            width: 290,
-            top: -340,
-            right: 0,
+            position: "relative",
+            width: 195,
+            top: -1173,
+            left: 604,
           }}
         />
-        <div style={{ width: "50%", position: "relative" }}>
-          <HomePageH2>Personalize your categories.</HomePageH2>
-          <HomePageHeroP>
-            Whether you are trying to build your fitness goals or improve your
-            culinary skills, Bumpie allows you to personalize your categories
-            based on your own life. Your stats will increase and/or decrease
-            over time, allowing you to visualize your own progress!
-          </HomePageHeroP>
-        </div>
-      </section>
-    </Layout>
+      </div>
+    </CoffeeSection>
+    <Footer green />
   </main>
 );
 

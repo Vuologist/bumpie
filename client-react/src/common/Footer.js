@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 
 const Container = styled.footer`
-  background-color: #ffd217;
+  background-color: ${(props) => (props.green ? "#46A3A5" : "#ffd217")};
   text-align: center;
-  color: #ff4d4d;
+  color: ${(props) => (props.green ? "#8FE8DF" : "#ff4d4d")};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,9 +13,9 @@ const Container = styled.footer`
   min-height: 10vh;
 `;
 
-const Footer = () => {
+const Footer = (green) => {
   return (
-    <Container>
+    <Container green={green}>
       © {new Date().getFullYear()} BUMPIE. All Rights Reserved.
     </Container>
   );
