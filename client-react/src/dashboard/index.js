@@ -70,7 +70,7 @@ const Dashboard = () => {
       setRadarData(newRadarData);
     };
     radarDataCalc();
-  }, [allData]);
+  }, [allData, radarData]);
 
   const onChange = (i, newData) => {
     // Create COPY and set new data
