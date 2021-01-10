@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import CategoryBox from "./CategoryBox";
 import PentagonBox from "./PentagonBox";
@@ -44,33 +44,6 @@ const Dashboard = () => {
       value: 0,
     },
   ]);
-  useEffect(() => {
-    const radarDataCalc = () => {
-      // copy data instead of ref
-      const copyAllData = [...allData];
-      const newRadarData = [...radarData];
-      //loop through data
-      for (var i = 0; i < copyAllData.length; i++) {
-        var currentAvg = 0;
-        for (var k = 0; k < copyAllData[i].length; k++) {
-          // adding all values together
-          currentAvg += copyAllData[i][k].value;
-        }
-
-        // logic to not divide by 0
-        var subCatCount = copyAllData[i].length;
-        if (subCatCount < 1) {
-          subCatCount = 1;
-        }
-
-        // finish calculating avg
-        currentAvg = currentAvg / subCatCount;
-        newRadarData[i].value = Math.round(currentAvg);
-      }
-      setRadarData(newRadarData);
-    };
-    radarDataCalc();
-  }, [allData, radarData]);
 
   const onChange = (i, newData) => {
     // Create COPY and set new data
@@ -80,6 +53,7 @@ const Dashboard = () => {
     if (copyAllData[i].length === 1) {
       copyAllData[i][0].title = radarData[i].category;
     }
+    radarDataCalc(copyAllData);
     setAllData(copyAllData);
   };
 
@@ -98,6 +72,30 @@ const Dashboard = () => {
       }
     }
     setAllData(copyAllData);
+  };
+
+  const radarDataCalc = (copyAllData) => {
+    // copy data instead of ref
+    const newRadarData = [...radarData];
+    //loop through data
+    for (var i = 0; i < copyAllData.length; i++) {
+      var currentAvg = 0;
+      for (var k = 0; k < copyAllData[i].length; k++) {
+        // adding all values together
+        currentAvg += copyAllData[i][k].value;
+      }
+
+      // logic to not divide by 0
+      var subCatCount = copyAllData[i].length;
+      if (subCatCount < 1) {
+        subCatCount = 1;
+      }
+
+      // finish calculating avg
+      currentAvg = currentAvg / subCatCount;
+      newRadarData[i].value = Math.round(currentAvg);
+    }
+    setRadarData(newRadarData);
   };
 
   return (
