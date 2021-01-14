@@ -78,8 +78,8 @@ const TextDiv = styled.div`
 
 const SwirlsDiv = styled.div`
   background-image: url(${AllSwirls});
-  background-position: left center;
-  background-size: 2100px;
+  background-position: center center;
+  background-size: 2500px;
 `;
 
 const StyledMain = styled.main`
