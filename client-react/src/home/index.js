@@ -160,7 +160,6 @@ const Home = () => (
         />
       </div>
     </CoffeeSection>
-    <Footer green />
   </main>
 );
 

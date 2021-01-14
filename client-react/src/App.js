@@ -17,6 +17,19 @@ const Wrapper = styled.div`
   min-height: 80vh;
 `;
 
+const handleFooterColor = (path) => {
+  switch (path) {
+    case "/about-us":
+      return "white";
+    case "/faq":
+      return "white";
+    case "/":
+      return "green";
+    default:
+      return "yellow";
+  }
+};
+
 const App = () => {
   const [isAuthenticated, userHasAuthenticated] = useState(false);
 
@@ -35,6 +48,9 @@ const App = () => {
     }
   };
 
+  const pathname = window.location.pathname;
+  var footerColor = handleFooterColor(pathname);
+
   return (
     <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated }}>
       <Site>
@@ -42,7 +58,7 @@ const App = () => {
         <Wrapper>
           <Routes />
         </Wrapper>
-        {isAuthenticated && <Footer />}
+        {isAuthenticated && <Footer bg={footerColor} />}
       </Site>
     </AppContext.Provider>
   );
