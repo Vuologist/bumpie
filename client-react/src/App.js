@@ -5,6 +5,7 @@ import { AppContext } from "./libs/contextLib";
 import Routes from "./Routes";
 import Header from "./common/Header";
 import Footer from "./common/Footer";
+import Navbar from "./common/navbar";
 
 const Site = styled.div`
   flex: 1 0 auto;
@@ -50,11 +51,14 @@ const App = () => {
 
   const pathname = window.location.pathname;
   var footerColor = handleFooterColor(pathname);
-
+  console.log(pathname);
   return (
     <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated }}>
       <Site>
-        {isAuthenticated && <Header />}
+        {isAuthenticated &&
+          (pathname !== "/sign-in" || pathname !== "/sign-up") && <Header />}
+        {!isAuthenticated &&
+          (pathname !== "/sign-in" || pathname !== "/sign-up") && <Navbar />}
         <Wrapper>
           <Routes />
         </Wrapper>
