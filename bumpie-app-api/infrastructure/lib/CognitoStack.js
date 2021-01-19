@@ -9,48 +9,81 @@ export default class CognitoStack extends sst.Stack {
   constructor(scope, id, props) {
     super(scope, id, props);
 
-    const userPool = new cognito.UserPool(this, "UserPool", {
+    const customForgotPasswordEmailLambda = new sst.Function(
+      this,
+      "bumpie-ForgotPassEmailLambda",
+      {
+        handler: "CustomForgotPassword.handler",
+      }
+    );
+
+    const userPool = new cognito.UserPool(this, "bumpie-UserPool", {
       selfSignUpEnabled: true, // Allow users to sign up
       autoVerify: { email: true }, // Verify email addresses by sending a verification email
-      signInAliases: { email: true }, // Set email as an alias
+      signInAliases: { username: true, email: true }, // Set email as an alias
       userVerification: {
         emailBody:
           "Welcome to Bumpie!! Verify your account by clicking here -> {##Verify Email##}",
         emailStyle: VerificationEmailStyle.LINK,
         emailSubject: "Bumpie Email Verification",
       },
-    });
-
-    const userPoolDomain = new cognito.UserPoolDomain(this, "UserPoolDomain", {
-      userPool,
-      cognitoDomain: {
-        domainPrefix: "bumpie-apps",
+      standardAttributes: {
+        givenName: {
+          required: true,
+          mutable: true,
+        },
+        email: {
+          required: true,
+          mutable: true,
+        },
+      },
+      lambdaTriggers: {
+        customMessage: customForgotPasswordEmailLambda,
       },
     });
 
-    const userPoolClient = new cognito.UserPoolClient(this, "UserPoolClient", {
-      userPool,
-      generateSecret: false, // Don't need to generate secret for web app running on browsers
-    });
-
-    const identityPool = new cognito.CfnIdentityPool(this, "IdentityPool", {
-      allowUnauthenticatedIdentities: false, // Don't allow unauthenticated users
-      cognitoIdentityProviders: [
-        {
-          clientId: userPoolClient.userPoolClientId,
-          providerName: userPool.userPoolProviderName,
+    const userPoolDomain = new cognito.UserPoolDomain(
+      this,
+      "bumpie-UserPoolDomain",
+      {
+        userPool,
+        cognitoDomain: {
+          domainPrefix: "bumpie-apps",
         },
-      ],
-    });
+      }
+    );
+
+    const userPoolClient = new cognito.UserPoolClient(
+      this,
+      "bumpie-UserPoolClient",
+      {
+        userPool,
+        generateSecret: false, // Don't need to generate secret for web app running on browsers
+      }
+    );
+
+    const identityPool = new cognito.CfnIdentityPool(
+      this,
+      "bumpie-IdentityPool",
+      {
+        allowUnauthenticatedIdentities: false, // Don't allow unauthenticated users
+        cognitoIdentityProviders: [
+          {
+            clientId: userPoolClient.userPoolClientId,
+            providerName: userPool.userPoolProviderName,
+          },
+        ],
+      }
+    );
 
     // Export values
-    new CfnOutput(this, "UserPoolId", {
+    new CfnOutput(this, "bumpie-UserPoolId", {
       value: userPool.userPoolId,
     });
-    new CfnOutput(this, "UserPoolClientId", {
+    new CfnOutput(this, "bumpie-UserPoolClientId", {
       value: userPoolClient.userPoolClientId,
     });
-    new CfnOutput(this, "IdentityPoolId", {
+    new CfnOutput(this, "bumpie-IdentityPoolId", {
       value: identityPool.ref,
     });
   }
