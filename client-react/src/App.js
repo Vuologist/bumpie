@@ -21,13 +21,15 @@ const Wrapper = styled.div`
 const handleFooterColor = (path) => {
   switch (path) {
     case "/about-us":
-      return "white";
+      return <Footer bg="white" />;
     case "/faq":
-      return "white";
+      return <Footer bg="white" />;
     case "/":
-      return "green";
+      return <Footer bg="green" />;
+    case "/sign-in":
+      return "";
     default:
-      return "yellow";
+      return <Footer bg="yellow" />;
   }
 };
 
@@ -50,19 +52,25 @@ const App = () => {
   };
 
   const pathname = window.location.pathname;
-  var footerColor = handleFooterColor(pathname);
-  console.log(pathname);
+  let actualFooter = handleFooterColor(pathname);
+
+  let actualHeader;
+  if (pathname == "/sign-in") {
+    actualHeader = "";
+  } else if (isAuthenticated) {
+    actualHeader = <Header />;
+  } else if (!isAuthenticated) {
+    actualHeader = <Navbar />;
+  }
+
   return (
     <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated }}>
       <Site>
-        {isAuthenticated &&
-          (pathname !== "/sign-in" || pathname !== "/sign-up") && <Header />}
-        {!isAuthenticated &&
-          (pathname !== "/sign-in" || pathname !== "/sign-up") && <Navbar />}
         <Wrapper>
+          {actualHeader}
           <Routes />
+          {actualFooter}
         </Wrapper>
-        {isAuthenticated && <Footer bg={footerColor} />}
       </Site>
     </AppContext.Provider>
   );

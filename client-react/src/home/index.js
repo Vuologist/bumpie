@@ -95,7 +95,6 @@ const TextDiv = styled.div`
 
 const Home = () => (
   <main style={{ backgroundColor: "#8fe8df", overflowX: "hidden" }}>
-    <Navbar />
     <ClipBoardSection>
       <TextDiv>
         <HomePageH1>
