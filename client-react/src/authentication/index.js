@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Auth } from "aws-amplify";
 import { useHistory, useLocation } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 import { useAppContext } from "../libs/contextLib";
 import DynamicButton from "../common/DynamicButton";
 import TextInput from "../common/TextInput";
@@ -235,8 +236,12 @@ const Authentication = (props) => {
 
     try {
       await Auth.signUp({
-        username: email,
+        username: uuidv4(),
         password: password,
+        attributes: {
+          email: email,
+          given_name: name,
+        },
       });
       resetUserInput();
     } catch (e) {
