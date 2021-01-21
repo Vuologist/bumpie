@@ -56,7 +56,7 @@ const App = () => {
 
   let actualHeader;
   if (pathname == "/sign-in") {
-    actualHeader = "";
+    actualHeader = <div></div>;
   } else if (isAuthenticated) {
     actualHeader = <Header />;
   } else if (!isAuthenticated) {

@@ -5,6 +5,7 @@ import logo from "../assets/logo.png";
 import UserLogo from "../common/UserLogo";
 import HeaderDropdown from "../common/HeaderDropdown";
 import { device } from "../common/MediaBreakpoints";
+import { Link } from "react-router-dom";
 
 const rubberAnimation = keyframes`${rubberBand}`;
 
@@ -21,7 +22,7 @@ const Container = styled.header`
   }
 `;
 
-const Link = styled.a`
+const StyledLink = styled(Link)`
   font-size: 25px;
   font-weight: bold;
   color: white;
@@ -80,8 +81,10 @@ const StyledDropdown = styled(HeaderDropdown)`
 const Header = () => {
   return (
     <Container>
-      <Link href="#">DASHBOARD</Link>
-      <Branding src={logo} alt="logo" />
+      <StyledLink to="/dashboard">DASHBOARD</StyledLink>
+      <StyledLink to="/">
+        <Branding src={logo} alt="logo" />
+      </StyledLink>
       <Wrapper>
         <UserLogo />
         <StyledDropdown />
