@@ -33,11 +33,28 @@ const handleFooterColor = (path) => {
   }
 };
 
+const handleHeader = (pathname, auth) => {
+  var header = <div></div>;
+  if (pathname === "/sign-in") {
+    header = <div></div>;
+  } else if (auth) {
+    header = <Header />;
+  } else if (!auth) {
+    header = <Navbar />;
+  }
+  return header;
+};
+
 const App = () => {
   const [isAuthenticated, userHasAuthenticated] = useState(false);
+  const pathname = window.location.pathname;
+  var actualFooter;
+  var actualHeader;
 
   useEffect(() => {
     onLoad();
+    actualFooter = handleFooterColor(pathname);
+    actualHeader = handleHeader(pathname, isAuthenticated);
   }, []);
 
   const onLoad = async () => {
@@ -50,19 +67,6 @@ const App = () => {
       }
     }
   };
-
-  const pathname = window.location.pathname;
-  let actualFooter = handleFooterColor(pathname);
-
-  let actualHeader;
-  if (pathname == "/sign-in") {
-    actualHeader = <div></div>;
-  } else if (isAuthenticated) {
-    actualHeader = <Header />;
-  } else if (!isAuthenticated) {
-    actualHeader = <Navbar />;
-  }
-
   return (
     <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated }}>
       <Site>

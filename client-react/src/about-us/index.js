@@ -1,10 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-
-import AvatarPenguin from "../assets/AvatarPenguin.png";
-
-import Layout from "../common/layout";
-
 const FContainer = styled.div`
   display: flex;
   flex-wrap: nowrap;

@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Navbar from "../common/navbar";
-import Footer from "../common/Footer";
 
 import { ReactComponent as DrawingIllustration } from "../assets/DrawingBikeIllustration.svg";
 import { ReactComponent as PostItDrawing } from "../assets/PostItDrawing.svg";

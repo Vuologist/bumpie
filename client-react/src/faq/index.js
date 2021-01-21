@@ -20,12 +20,6 @@ const FContainerHeader = styled.div`
   justify-content: space-between;
 `;
 
-const FContainerQA = styled.div`
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-`;
-
 const FAQHeader = styled.p`
   font-family: "Quicksand", sans-serif;
   font-weight: bold;
