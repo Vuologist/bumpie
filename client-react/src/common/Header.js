@@ -81,7 +81,7 @@ const StyledDropdown = styled(HeaderDropdown)`
 
 const Header = (isAuth) => {
   let HeaderReturn;
-  if (isAuth) {
+  if (isAuth.isAuth) {
     HeaderReturn = (
       <Container>
         <StyledLink to="/dashboard">DASHBOARD</StyledLink>
