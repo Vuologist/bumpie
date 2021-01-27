@@ -5,7 +5,6 @@ import { AppContext } from "./libs/contextLib";
 import Routes from "./Routes";
 import Header from "./common/Header";
 import Footer from "./common/Footer";
-import Navbar from "./common/navbar";
 
 const Site = styled.div`
   flex: 1 0 auto;
@@ -20,7 +19,6 @@ const Wrapper = styled.div`
 
 const App = () => {
   const [isAuthenticated, userHasAuthenticated] = useState(false);
-  const bg = "";
   const pathname = window.location.pathname;
 
   useEffect(() => {
