@@ -39,7 +39,7 @@ const Img = styled.img`
 const Navbar = () => (
   <Nav>
     <div>
-      <Link to="/home" style={{ marginRight: 40 }}>
+      <Link to="/" style={{ marginRight: 40 }}>
         <Img src={BumpieLogo} alt="Bumpie Logo" />
       </Link>
       <LinkRight to="/about-us">ABOUT US</LinkRight>
