@@ -9,7 +9,7 @@ import { ReactComponent as PostItDrawing } from "../assets/PostItDrawing.svg";
 import { ReactComponent as ScienceIllustration } from "../assets/ScienceIllustration.svg";
 import { ReactComponent as CoffeeMidSmoke } from "../assets/CoffeeMidSmoke.svg";
 import LandingMiddleBackground from "../assets/LandingMiddleBackground.svg";
-import AllSwirls from "../assets/allswirlstogether.svg";
+import AllSwirls from "../assets/allswirlslarge.svg";
 
 const HomePageH1 = styled.h1`
   font-family: Quicksand;
