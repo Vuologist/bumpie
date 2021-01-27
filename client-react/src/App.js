@@ -18,43 +18,13 @@ const Wrapper = styled.div`
   min-height: 80vh;
 `;
 
-const handleFooterColor = (path) => {
-  switch (path) {
-    case "/about-us":
-      return <Footer bg="white" />;
-    case "/faq":
-      return <Footer bg="white" />;
-    case "/":
-      return <Footer bg="green" />;
-    case "/sign-in":
-      return "";
-    default:
-      return <Footer bg="yellow" />;
-  }
-};
-
-const handleHeader = (pathname, auth) => {
-  var header = <div></div>;
-  if (pathname === "/sign-in") {
-    header = <div></div>;
-  } else if (auth) {
-    header = <Header />;
-  } else if (!auth) {
-    header = <Navbar />;
-  }
-  return header;
-};
-
 const App = () => {
   const [isAuthenticated, userHasAuthenticated] = useState(false);
+  const bg = "";
   const pathname = window.location.pathname;
-  var actualFooter;
-  var actualHeader;
 
   useEffect(() => {
     onLoad();
-    actualFooter = handleFooterColor(pathname);
-    actualHeader = handleHeader(pathname, isAuthenticated);
   }, []);
 
   const onLoad = async () => {
@@ -67,13 +37,29 @@ const App = () => {
       }
     }
   };
+
+  const handleFooterColor = (path) => {
+    switch (path) {
+      case "/about-us":
+        return "white";
+      case "/faq":
+        return "white";
+      case "/":
+        return "green";
+      case "/sign-in":
+        return "none";
+      default:
+        return "yellow";
+    }
+  };
+
   return (
     <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated }}>
       <Site>
         <Wrapper>
-          {actualHeader}
+          {<Header isAuth={isAuthenticated} />}
           <Routes />
-          {actualFooter}
+          {<Footer bg={handleFooterColor(pathname)} />}
         </Wrapper>
       </Site>
     </AppContext.Provider>
