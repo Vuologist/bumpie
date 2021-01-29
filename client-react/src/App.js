@@ -20,7 +20,6 @@ const Wrapper = styled.div`
 const App = () => {
   const [isAuthenticated, userHasAuthenticated] = useState(false);
   const pathname = window.location.pathname;
-
   useEffect(() => {
     onLoad();
   }, []);
@@ -36,29 +35,14 @@ const App = () => {
     }
   };
 
-  const handleFooterColor = (path) => {
-    switch (path) {
-      case "/about-us":
-        return "white";
-      case "/faq":
-        return "white";
-      case "/":
-        return "green";
-      case "/sign-in":
-        return "none";
-      default:
-        return "yellow";
-    }
-  };
-
   return (
     <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated }}>
       <Site>
+        <Header isAuth={isAuthenticated} path={pathname} />
         <Wrapper>
-          {<Header isAuth={isAuthenticated} />}
           <Routes />
-          {<Footer bg={handleFooterColor(pathname)} />}
         </Wrapper>
+        <Footer path={pathname} />
       </Site>
     </AppContext.Provider>
   );

@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const handleBgColor = (color) => {
-  switch (color.bg) {
+  switch (color) {
     case "green":
       return "#46A3A5";
     case "yellow":
@@ -13,7 +13,7 @@ const handleBgColor = (color) => {
 };
 
 const handleColor = (color) => {
-  switch (color.bg) {
+  switch (color) {
     case "green":
       return "#8FE8DF";
     case "yellow":
@@ -23,14 +23,20 @@ const handleColor = (color) => {
   }
 };
 
-// const handleBorder = (color) => {
-//   switch (color.bg) {
-//     case "white":
-//       return "1px solid #C5C5C4";
-//     default:
-//       return "none";
-//   }
-// };
+const handleFooterColor = (path) => {
+  switch (path) {
+    case "/about-us":
+      return "white";
+    case "/faq":
+      return "white";
+    case "/":
+      return "green";
+    case "/sign-in":
+      return "none";
+    default:
+      return "yellow";
+  }
+};
 
 const Container = styled.footer`
   background-color: ${(props) => handleBgColor(props.bg)};
@@ -45,10 +51,11 @@ const Container = styled.footer`
   /* border-top: ; */
 `;
 
-const Footer = (bg, color) => {
-  console.log(color);
+const Footer = (path) => {
+  const [pathname, setPathname] = useState(path.path);
+  let color = handleFooterColor(pathname);
   return (
-    <Container bg={bg}>
+    <Container bg={color}>
       © {new Date().getFullYear()} BUMPIE. All Rights Reserved.
     </Container>
   );

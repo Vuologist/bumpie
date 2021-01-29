@@ -31,6 +31,9 @@ const StyledLink = styled(Link)`
   justify-self: flex-start;
   margin-left: 70px;
 
+  :nth-child(2) {
+    justify-self: center;
+  }
   @media ${device.mobileL} {
     display: none;
   }
