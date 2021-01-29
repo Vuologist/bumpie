@@ -5,7 +5,6 @@ import { AppContext } from "./libs/contextLib";
 import Routes from "./Routes";
 import Header from "./common/Header";
 import Footer from "./common/Footer";
-import Navbar from "./common/navbar";
 
 const Site = styled.div`
   flex: 1 0 auto;
@@ -17,21 +16,6 @@ const Site = styled.div`
 const Wrapper = styled.div`
   min-height: 80vh;
 `;
-
-const handleFooterColor = (path) => {
-  switch (path) {
-    case "/about-us":
-      return <Footer bg="white" />;
-    case "/faq":
-      return <Footer bg="white" />;
-    case "/":
-      return <Footer bg="green" />;
-    case "/sign-in":
-      return "";
-    default:
-      return <Footer bg="yellow" />;
-  }
-};
 
 const App = () => {
   const [isAuthenticated, userHasAuthenticated] = useState(false);
@@ -51,26 +35,14 @@ const App = () => {
     }
   };
 
-  const pathname = window.location.pathname;
-  let actualFooter = handleFooterColor(pathname);
-
-  let actualHeader;
-  if (pathname == "/sign-in") {
-    actualHeader = "";
-  } else if (isAuthenticated) {
-    actualHeader = <Header />;
-  } else if (!isAuthenticated) {
-    actualHeader = <Navbar />;
-  }
-
   return (
     <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated }}>
       <Site>
+        {isAuthenticated && <Header />}
         <Wrapper>
-          {actualHeader}
           <Routes />
-          {actualFooter}
         </Wrapper>
+        {isAuthenticated && <Footer />}
       </Site>
     </AppContext.Provider>
   );
