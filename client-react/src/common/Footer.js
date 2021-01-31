@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { Route, Switch } from "react-router-dom";
 
 const handleBgColor = (color) => {
   switch (color) {
@@ -23,21 +24,6 @@ const handleColor = (color) => {
   }
 };
 
-const handleFooterColor = (path) => {
-  switch (path) {
-    case "/about-us":
-      return "white";
-    case "/faq":
-      return "white";
-    case "/":
-      return "green";
-    case "/sign-in":
-      return "none";
-    default:
-      return "yellow";
-  }
-};
-
 const Container = styled.footer`
   background-color: ${(props) => handleBgColor(props.bg)};
   text-align: center;
@@ -51,13 +37,26 @@ const Container = styled.footer`
   /* border-top: ; */
 `;
 
-const Footer = (path) => {
-  const [pathname, setPathname] = useState(path.path);
-  let color = handleFooterColor(pathname);
+const Footer = () => {
   return (
-    <Container bg={color}>
-      © {new Date().getFullYear()} BUMPIE. All Rights Reserved.
-    </Container>
+    <Switch>
+      <Route exact path="/sign-in"></Route>
+      <Route exact path="/">
+        <Container bg="green">
+          © {new Date().getFullYear()} BUMPIE. All Rights Reserved.
+        </Container>
+      </Route>
+      <Route exact path={["/about-us", "/faq"]}>
+        <Container bg="white">
+          © {new Date().getFullYear()} BUMPIE. All Rights Reserved.
+        </Container>
+      </Route>
+      <Route>
+        <Container bg="yellow">
+          © {new Date().getFullYear()} BUMPIE. All Rights Reserved.
+        </Container>
+      </Route>
+    </Switch>
   );
 };
 

@@ -5,7 +5,7 @@ import logo from "../assets/logo.png";
 import UserLogo from "../common/UserLogo";
 import HeaderDropdown from "../common/HeaderDropdown";
 import { device } from "../common/MediaBreakpoints";
-import { Link } from "react-router-dom";
+import { Route, Switch, Link } from "react-router-dom";
 import Navbar from "./navbar";
 
 const rubberAnimation = keyframes`${rubberBand}`;
@@ -82,10 +82,9 @@ const StyledDropdown = styled(HeaderDropdown)`
   }
 `;
 
-const Header = (isAuth) => {
-  let HeaderReturn;
-  if (isAuth.isAuth) {
-    HeaderReturn = (
+function checkAuth(auth) {
+  if (auth) {
+    return (
       <Container>
         <StyledLink to="/dashboard">DASHBOARD</StyledLink>
         <StyledLink to="/">
@@ -98,9 +97,15 @@ const Header = (isAuth) => {
       </Container>
     );
   } else {
-    HeaderReturn = <Navbar />;
+    return <Navbar />;
   }
-  return HeaderReturn;
-};
+}
+
+const Header = (isAuth) => (
+  <Switch>
+    <Route path="/sign-in"></Route>
+    <Route>{checkAuth(isAuth.isAuth)}</Route>
+  </Switch>
+);
 
 export default Header;

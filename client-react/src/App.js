@@ -19,7 +19,6 @@ const Wrapper = styled.div`
 
 const App = () => {
   const [isAuthenticated, userHasAuthenticated] = useState(false);
-  const pathname = window.location.pathname;
   useEffect(() => {
     onLoad();
   }, []);
@@ -38,11 +37,11 @@ const App = () => {
   return (
     <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated }}>
       <Site>
-        <Header isAuth={isAuthenticated} path={pathname} />
+        <Header isAuth={isAuthenticated} />
         <Wrapper>
           <Routes />
         </Wrapper>
-        <Footer path={pathname} />
+        <Footer />
       </Site>
     </AppContext.Provider>
   );
