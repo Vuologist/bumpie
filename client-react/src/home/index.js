@@ -91,7 +91,6 @@ const StyledMain = styled.main`
 const Home = () => (
   <StyledMain style={{ backgroundColor: "#8fe8df", overflowX: "hidden" }}>
     <SwirlsDiv>
-      <Navbar />
       <ClipBoardSection>
         <TextDiv>
           <HomePageH1>
@@ -157,7 +156,6 @@ const Home = () => (
           />
         </div>
       </CoffeeSection>
-      <Footer green />
     </SwirlsDiv>
   </StyledMain>
 );
