@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Auth } from "aws-amplify";
 import { AppContext } from "./libs/contextLib";
 import Routes from "./Routes";
-import Header from "./common/Header";
+import Navbar from "./common/navbar";
 import Footer from "./common/Footer";
 
 const Site = styled.div`
@@ -37,7 +37,7 @@ const App = () => {
   return (
     <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated }}>
       <Site>
-        <Header isAuth={isAuthenticated} />
+        <Navbar isAuth={isAuthenticated} />
         <Wrapper>
           <Routes />
         </Wrapper>
