@@ -11,8 +11,8 @@ const rubberAnimation = keyframes`${rubberBand}`;
 
 const Nav = styled.nav`
   background-color: #8fe8df;
-  padding-left: 60px;
-  padding-right: 60px;
+  padding-left: 100px;
+  padding-right: 100px;
   padding-top: 20px;
   padding-bottom: 20px;
   display: flex;
