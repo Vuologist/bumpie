@@ -11,8 +11,10 @@ const rubberAnimation = keyframes`${rubberBand}`;
 
 const Nav = styled.nav`
   background-color: #8fe8df;
-  margin: 0 auto;
-  padding: 20px 40px;
+  padding-left: 60px;
+  padding-right: 60px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -31,6 +33,27 @@ const LinkBase = styled(Link)`
 `;
 const LinkRight = styled(LinkBase)`
   margin-right: 40px;
+  position: relative;
+  :hover {
+    color: #fff;
+    text-decoration: none;
+  }
+  ::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.3s ease-in-out 0s;
+  }
+  :hover::before {
+    visibility: visible;
+    transform: scaleX(1);
+  }
 `;
 const LinkPink = styled(LinkBase)`
   color: #ff4d4d;

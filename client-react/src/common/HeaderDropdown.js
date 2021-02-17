@@ -58,6 +58,9 @@ const ListItem = styled.li`
   padding-right: 20px;
   padding-top: 12px;
   padding-bottom: 12px;
+  &:hover {
+    background-color: #2ec4b6;
+  }
 `;
 
 const CustomLink = styled(Link)`
