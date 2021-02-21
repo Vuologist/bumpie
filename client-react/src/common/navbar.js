@@ -140,6 +140,7 @@ const Navbar = (isAuth) => {
   return (
     <Switch>
       <Route path="/sign-in"></Route>
+      <Route path="/password-reset"></Route>
       <Route>{checkAuth(isAuth.isAuth)}</Route>
     </Switch>
   );
