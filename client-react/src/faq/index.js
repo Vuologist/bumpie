@@ -12,7 +12,7 @@ const GridLayout = styled.div`
   font-family: "Quicksand", sans-serif;
   font-weight: bold;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
 `;
 
 const FContainerHeader = styled.div`
@@ -24,40 +24,69 @@ const FContainerHeader = styled.div`
 const FAQHeader = styled.p`
   font-family: "Quicksand", sans-serif;
   font-weight: bold;
-  font-size: 30px;
+  font-size: 55px;
   margin-bottom: 60px;
   float: left;
-`;
-
-const QADiv = styled.div`
-  font-family: "Quicksand", sans-serif;
-  font-weight: bold;
-  font-size: 20px;
-`;
-
-const Question = styled.p`
-  font-family: "Quicksand", sans-serif;
-  font-weight: bold;
-  font-size: 20px;
-  margin-left: 5px;
 `;
 
 const Answer = styled.p`
   font-family: "Roboto", sans-serif;
   font-weight: normal;
   margin-left: 5px;
-  font-size: 15px;
+  font-size: 19px;
+  padding-left: 15px;
+  color: #fff;
 `;
 
-const FAQWrapper = styled.div`
-  padding: 20px;
-  display: grid;
-  flex-direction: row;
-`;
-
-const FAQSubWrapper = styled.div`
-  display: flex;
+const StyledCollapse = styled(Collapse)`
   margin-bottom: 20px;
+  &.rc-collapse {
+    width: 100%;
+    border-radius: 0px;
+    border-color: transparent;
+    background-color: transparent;
+    > .rc-collapse-item-active .rc-collapse-header .arrow {
+      position: relative;
+      top: 2px;
+      border-left: 5px solid transparent !important;
+      border-right: 5px solid transparent !important;
+      border-top: 8px solid #fff !important;
+      margin-right: 6px;
+    }
+    > .rc-collapse-item {
+      border: 0px;
+      > .rc-collapse-content-active {
+        background-color: #c5c5c4 !important;
+      }
+      > .rc-collapse-header {
+        background-color: #c5c5c4 !important;
+        color: #fff !important;
+        font-family: "Quicksand";
+        font-size: 25px;
+        font-weight: normal;
+        padding: 25px;
+        > .arrow {
+          border-top: 5px solid transparent;
+          border-bottom: 5px solid transparent;
+          border-bottom: 5px solid transparent;
+          border-left: 8px solid #fff;
+        }
+      }
+    }
+    .rc-collapse-header:focus {
+      border: 0px;
+      outline: none;
+    }
+  }
+`;
+
+const CollapseWrapper = styled.div`
+  &:nth-child(even) {
+    margin-left: 35px;
+  }
+  &:nth-child(odd) {
+    margin-right: 35px;
+  }
 `;
 
 const data = [
@@ -96,16 +125,13 @@ const data = [
 ];
 
 const QABox = ({ question, answer }) => (
-  <FAQWrapper>
-    <FAQSubWrapper>
-      <QADiv>Q:</QADiv>
-      <Question>{question}</Question>
-    </FAQSubWrapper>
-    <FAQSubWrapper>
-      <QADiv>A:</QADiv>
-      <Answer>{answer}</Answer>
-    </FAQSubWrapper>
-  </FAQWrapper>
+  <CollapseWrapper>
+    <StyledCollapse>
+      <Panel header={question}>
+        <Answer>{answer}</Answer>
+      </Panel>
+    </StyledCollapse>
+  </CollapseWrapper>
 );
 
 const FAQ = () => (
