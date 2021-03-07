@@ -108,6 +108,7 @@ function checkAuth(auth) {
           </Link>
         </div>
         <LinkWrapper>
+          <LinkRight to="/">HOME</LinkRight>
           <LinkRight to="/about-us">ABOUT US</LinkRight>
           <LinkRight to="/FAQ">FAQ</LinkRight>
           <LinkRight to="/dashboard">DASHBOARD</LinkRight>
@@ -127,6 +128,7 @@ function checkAuth(auth) {
           </Link>
         </div>
         <div>
+          <LinkRight to="/">HOME</LinkRight>
           <LinkRight to="/about-us">ABOUT US</LinkRight>
           <LinkRight to="/FAQ">FAQ</LinkRight>
           <LinkPink to="/sign-in">SIGN IN</LinkPink>
