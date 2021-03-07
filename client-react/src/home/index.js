@@ -17,14 +17,14 @@ const HomePageH1 = styled.h1`
 
 const HomePageH2 = styled.h2`
   font-family: Quicksand;
-  font-size: 55px;
+  font-size: 36pt;
   font-weight: bold;
   color: ${(props) => (props.white ? "#fff" : "#000")};
 `;
 
 const HomePageHeroP = styled.p`
   font-family: Roboto;
-  font-size: 35px;
+  font-size: 20pt;
   padding: 50px 0px;
   color: ${(props) => (props.white ? "#fff" : "#000")};
 `;
@@ -115,7 +115,7 @@ const Home = () => (
             style={{
               position: "relative",
               left: 0,
-              width: 2800,
+              width: 2200,
             }}
           />
           <TextDiv>
@@ -142,15 +142,15 @@ const Home = () => (
         <div style={{ alignSelf: "flex-end" }}>
           <ScienceIllustration
             style={{
-              width: 980,
+              width: 780,
             }}
           />
           <CoffeeMidSmoke
             style={{
               position: "relative",
-              width: 195,
-              top: -1173,
-              left: 604,
+              width: 161,
+              top: -938,
+              left: 477,
             }}
           />
         </div>
