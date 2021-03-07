@@ -31,7 +31,7 @@ const Footer = () => {
     <Container bg="white">
       <span>© {new Date().getFullYear()} BUMPIE. All Rights Reserved.</span>
       <div>
-        <StyledLink to="/">Privacy Policy</StyledLink>
+        <StyledLink to="/privacy-policy">Privacy Policy</StyledLink>
         <StyledSpan>|</StyledSpan>
         <StyledLink to="/FAQ">FAQ</StyledLink>
       </div>

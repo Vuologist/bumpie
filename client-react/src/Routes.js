@@ -11,6 +11,7 @@ import UserSettingsHome from "./user-settings";
 import ChangeEmail from "./user-settings/ChangeEmail";
 import ChangePassword from "./user-settings/ChangePassword";
 import ChangeName from "./user-settings/ChangeName";
+import Privacy from "./privacy";
 
 export default function Routes() {
   return (
@@ -47,6 +48,9 @@ export default function Routes() {
       </Route>
       <Route exact path="/dashboard">
         <Dashboard />
+      </Route>
+      <Route exact path="/privacy-policy">
+        <Privacy />
       </Route>
     </Switch>
   );
