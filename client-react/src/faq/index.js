@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Collapse, { Panel } from "rc-collapse";
 
 const Wrapper = styled.div`
   margin-left: 100px;
