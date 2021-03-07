@@ -41,6 +41,7 @@ const Privacy = () => (
         <a
           href="https://www.privacypolicies.com/privacy-policy-generator/"
           target="_blank"
+          rel="noopener noreferrer"
         >
           Privacy Policy Generator
         </a>
@@ -127,7 +128,7 @@ const Privacy = () => (
         <li>
           <p>
             <strong>Website</strong> refers to Bumpie, accessible from{" "}
-            <a href="bumpie.me" target="_blank">
+            <a href="bumpie.me" target="_blank" rel="noopener noreferrer">
               bumpie.me
             </a>
           </p>
@@ -209,6 +210,7 @@ const Privacy = () => (
           <a
             href="https://helpx.adobe.com/flash-player/kb/disable-local-shared-objects-flash.html#main_Where_can_I_change_the_settings_for_disabling__or_deleting_local_shared_objects_"
             target="_blank"
+            rel="noopener noreferrer"
           >
             https://helpx.adobe.com/flash-player/kb/disable-local-shared-objects-flash.html#main_Where_can_I_change_the_settings_for_disabling__or_deleting_local_shared_objects_
           </a>
@@ -228,7 +230,11 @@ const Privacy = () => (
         Persistent Cookies remain on Your personal computer or mobile device
         when You go offline, while Session Cookies are deleted as soon as You
         close Your web browser. Learn more about cookies:{" "}
-        <a href="https://www.privacypolicies.com/blog/cookies/" target="_blank">
+        <a
+          href="https://www.privacypolicies.com/blog/cookies/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           What Are Cookies?
         </a>
         .
