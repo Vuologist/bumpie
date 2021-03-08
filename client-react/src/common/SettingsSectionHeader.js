@@ -2,7 +2,7 @@ import React from "react";
 
 const SettingsSectionHeader = ({ title }) => (
   <>
-    <h3>{title}</h3>
+    <h3 style={{ fontWeight: "normal", fontSize: "25px" }}>{title}</h3>
     <hr style={{ width: "100%" }} />
   </>
 );

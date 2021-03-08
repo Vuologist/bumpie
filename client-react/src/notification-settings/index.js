@@ -14,17 +14,23 @@ const StyledButton = styled(DynamicButton)`
 `;
 
 const PageTitle = styled.h2`
-  font-size: 35;
+  font-size: 35px;
+  font-weight: normal;
 
   @media ${device.mobileM} {
     display: none;
   }
 `;
 
+const Email = styled.span`
+  font-size: 25px;
+  color: #989293;
+`;
+
 const Wrapper = styled.div`
   margin-left: 100px;
   margin-right: 100px;
-  padding-top: 25px;
+  padding-top: 75px;
 `;
 
 const NotificationSettings = () => {
@@ -40,7 +46,7 @@ const NotificationSettings = () => {
       >
         <SettingsSectionHeader title="Notify me through..." />
         <label style={{ display: "flex", justifyContent: "space-between" }}>
-          <span>email@email.com</span>
+          <Email>email@email.com</Email>
           <ToggleButton
             onChange={() => setEmailToggle(!emailNotification)}
             checked={emailNotification}
@@ -48,7 +54,7 @@ const NotificationSettings = () => {
         </label>
         <div
           style={{
-            marginTop: 40,
+            marginTop: 70,
           }}
         >
           <SettingsSectionHeader title="Notify me..." />
