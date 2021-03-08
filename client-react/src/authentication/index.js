@@ -8,6 +8,7 @@ import TextInput from "../common/TextInput";
 import logo from "../assets/logo.png";
 import { ReactComponent as PaperAirPlaneAndFolderSVG } from "../assets/PaperAirPlaneAndFolder.svg";
 import { device } from "../common/MediaBreakpoints";
+import { Link } from "react-router-dom";
 
 const CenterContainer = styled.div`
   display: flex;
@@ -81,6 +82,7 @@ const Title = styled.h1`
   font-size: 40px;
   font-weight: bold;
   color: ${(props) => (props.light ? "#fff" : "#000")};
+  margin-bottom: 30px;
   @media (max-width: 800px) {
     font-size: 22px;
     margin-bottom: 10px;
@@ -107,10 +109,11 @@ const Text = styled.p`
   }
 `;
 
-const Link = styled.div`
+const StyledLink = styled.div`
   font-family: "Roboto";
   font-size: 15px;
   cursor: "pointer";
+  margin-top: 10px;
   margin-bottom: 30px;
   cursor: pointer;
   color: #005a52;
@@ -138,7 +141,7 @@ const ErrorMessage = styled.div`
   }
 `;
 
-const Branding = styled.img`
+const StyledBrandingLink = styled(Link)`
   position: absolute;
   height: 30px;
   align-self: start;
@@ -152,6 +155,10 @@ const Branding = styled.img`
     margin-left: 25px;
     justify-self: start;
   }
+`;
+
+const Branding = styled.img`
+  height: 30px;
 `;
 
 const Form = styled.form`
@@ -339,7 +346,9 @@ const Authentication = (props) => {
   const renderSignIn = () => (
     <ContentWrapper display={page[0]}>
       <LeftContainer light>
-        <Branding src={logo} top alt="logo" />
+        <StyledBrandingLink to="/">
+          <Branding src={logo} top alt="logo" />
+        </StyledBrandingLink>
         <Title>Sign In</Title>
         <Form onSubmit={handleOnSignIn}>
           <TextInput
@@ -357,7 +366,9 @@ const Authentication = (props) => {
           <div style={{ textAlign: "center" }}>
             {signInError && <ErrorMessage>{signInError}</ErrorMessage>}
           </div>
-          <Link onClick={() => changePage(2)}>I forgot my password</Link>
+          <StyledLink onClick={() => changePage(2)}>
+            I forgot my password
+          </StyledLink>
           <Button text="SIGN IN" type="submit" onClick={handleOnSignIn} />
         </Form>
       </LeftContainer>
@@ -374,7 +385,9 @@ const Authentication = (props) => {
   const renderSignUp = () => (
     <ContentWrapper display={page[1]}>
       <LeftContainer smol>
-        <Branding src={logo} alt="logo" />
+        <StyledBrandingLink to="/">
+          <Branding src={logo} top alt="logo" />
+        </StyledBrandingLink>
         <Title light top>
           Welcome!
         </Title>
@@ -453,7 +466,9 @@ const Authentication = (props) => {
   const renderForgotPassword = () => (
     <ContentWrapper display={page[2]}>
       <LeftContainer smol>
-        <Branding src={logo} alt="logo" />
+        <StyledBrandingLink to="/">
+          <Branding src={logo} top alt="logo" />
+        </StyledBrandingLink>
         <Title light top>
           Welcome!
         </Title>
@@ -490,7 +505,9 @@ const Authentication = (props) => {
   const renderSuccessForgotPassword = () => (
     <ContentWrapper display={page[3]}>
       <LeftContainer smol>
-        <Branding src={logo} alt="logo" />
+        <StyledBrandingLink to="/">
+          <Branding src={logo} top alt="logo" />
+        </StyledBrandingLink>
         <Title light top>
           Welcome!
         </Title>
