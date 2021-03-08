@@ -19,6 +19,10 @@ const Container = styled.footer`
 
 const StyledLink = styled(Link)`
   color: #c5c5c4;
+  &:hover {
+    color: #8fe8df;
+    text-decoration: none;
+  }
 `;
 
 const StyledSpan = styled.span`
