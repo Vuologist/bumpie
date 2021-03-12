@@ -59,6 +59,7 @@ const StyledCollapse = styled(Collapse)`
         background-color: #c5c5c4 !important;
       }
       > .rc-collapse-header {
+        height: 100px;
         background-color: #c5c5c4 !important;
         color: #fff !important;
         font-family: "Quicksand";
