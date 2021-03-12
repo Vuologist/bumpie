@@ -7,9 +7,8 @@ import DynamicButton from "../common/DynamicButton";
 const Wrapper = styled.div`
   padding: 50px 100px 50px 100px;
   display: flex;
-  flex-direction: column;
-  flex: 1;
-  justify-content: space-between;
+  height: 80vh;
+  justify-content: center;
 `;
 
 const Container = styled.div`
@@ -26,6 +25,7 @@ const PageTitle = styled.h2`
   font-size: 35;
   font-family: "Roboto";
   color: #54494b;
+  width: 13%;
 `;
 
 const CustomLink = styled(Link)`
