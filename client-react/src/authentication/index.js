@@ -128,7 +128,7 @@ const StyledLink = styled.div`
 const ErrorMessage = styled.div`
   font-family: "Roboto";
   font-size: 12px;
-  margin-top: -18px;
+  margin-top: -10px;
   margin-bottom: 10px;
   padding-left: 11px;
   padding-right: 11px;
