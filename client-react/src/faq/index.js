@@ -99,7 +99,7 @@ const data = [
   },
   {
     question:
-      "Another question goes here; this is just a spacefiller text to see how this would look if a Frequently Asked Question was this long!",
+      "Another question goes here; this is just a spacefiller text to see.",
     answer:
       "This is also some random text to see how this would look if the answer were two lines long.",
   },
@@ -114,7 +114,7 @@ const data = [
   },
   {
     question:
-      "What would this look like if the question was really long, and theanswer was also really long, and I'm purposely expanding this text just to see what it would look like if this question was really long sitting beside a question and an answer that is really short?",
+      "What would this look like if the question was really long, and theanswer was also really long,",
     answer:
       "It would actually look pretty weird in terms of spacing, and it would expand the spacing between the question and the answer of the short column next to it (refer to the column to the left of this one). So let's try ourbest to place questions with similar lengths side-by-side; that way, there would be less of an awkward looking gap!",
   },
