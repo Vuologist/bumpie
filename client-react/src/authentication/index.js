@@ -581,6 +581,30 @@ const Authentication = (props) => {
     </ContentWrapper>
   );
 
+  const renderSuccessEmailVerified = () => (
+    <ContentWrapper display={page[5]}>
+      <LeftContainer smol>
+        <StyledBrandingLink to="/">
+          <Branding src={logo} top alt="logo" />
+        </StyledBrandingLink>
+        <Title light top>
+          Welcome!
+        </Title>
+        <Text>
+          Already have an account? <br /> Sign in!
+        </Text>
+        <Button light text="SIGN IN" onClick={() => changePage(1)} />
+      </LeftContainer>
+      <RightContainer style={{ paddingBottom: 30 }} light large>
+        <Title>Email Verified</Title>
+        <div style={{ fontSize: 20, width: "50%", textAlign: "center" }}>
+          Congratulations, you have successfully verified your email!
+        </div>
+        <PaperAirPlaneAndFolderSVG style={{ width: "45%" }} />
+      </RightContainer>
+    </ContentWrapper>
+  );
+
   useEffect(() => {
     if (props.type === "PasswordReset") changePage(4);
     // eslint-disable-next-line
@@ -593,6 +617,7 @@ const Authentication = (props) => {
       {page[2] && renderForgotPassword()}
       {page[3] && renderSuccessForgotPassword()}
       {page[4] && renderNewPasswordReset()}
+      {page[5] && renderSuccessEmailVerified()}
     </CenterContainer>
   );
 };
