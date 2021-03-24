@@ -7,6 +7,7 @@ import DynamicButton from "../common/DynamicButton";
 import TextInput from "../common/TextInput";
 import logo from "../assets/logo.png";
 import { ReactComponent as PaperAirPlaneAndFolderSVG } from "../assets/PaperAirPlaneAndFolder.svg";
+import { ReactComponent as EmailSVG } from "../assets/Email_verified-01.svg";
 import { device } from "../common/MediaBreakpoints";
 import { Link } from "react-router-dom";
 
@@ -166,7 +167,7 @@ const Form = styled.form`
 `;
 
 const Authentication = (props) => {
-  const [page, setPage] = useState(["true", null, null, null, null]);
+  const [page, setPage] = useState(["true", null, null, null, null, null]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -475,7 +476,7 @@ const Authentication = (props) => {
         <Text>
           Already have an account? <br /> Sign in!
         </Text>
-        <Button light text="SIGN IN" onClick={() => changePage(1)} />
+        <Button light text="SIGN IN" onClick={() => changePage(0)} />
       </LeftContainer>
       <RightContainer light large>
         <div style={{ textAlign: "center" }}>
@@ -529,7 +530,9 @@ const Authentication = (props) => {
   const renderNewPasswordReset = () => (
     <ContentWrapper display={page[4]}>
       <LeftContainer smol>
-        <Branding src={logo} alt="logo" />
+        <StyledBrandingLink to="/">
+          <Branding src={logo} top alt="logo" />
+        </StyledBrandingLink>
         <Title light top>
           Welcome!
         </Title>
@@ -593,20 +596,21 @@ const Authentication = (props) => {
         <Text>
           Already have an account? <br /> Sign in!
         </Text>
-        <Button light text="SIGN IN" onClick={() => changePage(1)} />
+        <Button light text="SIGN IN" onClick={() => changePage(0)} />
       </LeftContainer>
       <RightContainer style={{ paddingBottom: 30 }} light large>
         <Title>Email Verified</Title>
         <div style={{ fontSize: 20, width: "50%", textAlign: "center" }}>
           Congratulations, you have successfully verified your email!
         </div>
-        <PaperAirPlaneAndFolderSVG style={{ width: "45%" }} />
+        <EmailSVG style={{ width: "45%" }} />
       </RightContainer>
     </ContentWrapper>
   );
 
   useEffect(() => {
     if (props.type === "PasswordReset") changePage(4);
+    if (props.type === "SuccessEmail") changePage(5);
     // eslint-disable-next-line
   }, []);
 

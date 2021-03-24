@@ -28,6 +28,9 @@ export default function Routes() {
       <Route path="/password-reset">
         <Authentication type="PasswordReset" />
       </Route>
+      <Route path="/email-verified">
+        <Authentication type="SuccessEmail" />
+      </Route>
       <Route exact path="/faq">
         <FAQ />
       </Route>

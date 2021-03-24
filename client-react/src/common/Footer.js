@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Route, Switch, Link } from "react-router-dom";
 
 const Container = styled.footer`
   background-color: #fff;
@@ -32,14 +32,21 @@ const StyledSpan = styled.span`
 
 const Footer = () => {
   return (
-    <Container bg="white">
-      <span>© {new Date().getFullYear()} BUMPIE. All Rights Reserved.</span>
-      <div>
-        <StyledLink to="/privacy-policy">Privacy Policy</StyledLink>
-        <StyledSpan>|</StyledSpan>
-        <StyledLink to="/FAQ">FAQ</StyledLink>
-      </div>
-    </Container>
+    <Switch>
+      <Route path="/sign-in"></Route>
+      <Route path="/email-verified"></Route>
+      <Route path="/password-reset"></Route>
+      <Route>
+        <Container bg="white">
+          <span>© {new Date().getFullYear()} BUMPIE. All Rights Reserved.</span>
+          <div>
+            <StyledLink to="/privacy-policy">Privacy Policy</StyledLink>
+            <StyledSpan>|</StyledSpan>
+            <StyledLink to="/FAQ">FAQ</StyledLink>
+          </div>
+        </Container>
+      </Route>
+    </Switch>
   );
 };
 
