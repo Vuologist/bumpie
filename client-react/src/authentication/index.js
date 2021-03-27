@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { Auth } from "aws-amplify";
 import { useHistory, useLocation } from "react-router-dom";
 import { useAppContext } from "../libs/contextLib";
@@ -9,6 +9,9 @@ import logo from "../assets/logo.png";
 import { ReactComponent as PaperAirPlaneAndFolderSVG } from "../assets/PaperAirPlaneAndFolder.svg";
 import { device } from "../common/MediaBreakpoints";
 import { Link } from "react-router-dom";
+import { rubberBand } from "react-animations";
+
+const rubberAnimation = keyframes`${rubberBand}`;
 
 const CenterContainer = styled.div`
   display: flex;
@@ -159,6 +162,9 @@ const StyledBrandingLink = styled(Link)`
 
 const Branding = styled.img`
   height: 30px;
+  &:hover {
+    animation: 2s ${rubberAnimation};
+  }
 `;
 
 const Form = styled.form`

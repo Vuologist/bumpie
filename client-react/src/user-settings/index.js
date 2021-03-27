@@ -26,11 +26,11 @@ const PageTitle = styled.h2`
   font-family: "Roboto";
   color: #54494b;
   width: 13%;
+  white-space: nowrap;
 `;
 
 const CustomLink = styled(Link)`
   color: #54494b;
-
   :hover {
     color: #54494b;
     text-decoration-color: #54494b;

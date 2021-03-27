@@ -35,10 +35,11 @@ const StartBtn = styled.button`
   fontweight: 400px;
   text-align: center;
   border: 1px solid transparent;
-  padding: 0.375rem 1rem;
+  padding: 0.5rem 2rem;
   border-radius: 39px;
   color: #fff;
-  font-size: 2rem;
+  font-size: 20pt;
+
   font-family: Roboto;
   cursor: pointer;
 `;

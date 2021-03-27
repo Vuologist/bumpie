@@ -53,6 +53,7 @@ const ListItem = styled.li`
   border-top-right-radius: 0.25rem;
   border-right: 0;
   border-left: 0;
+  text-decoration: none;
   border-radius: 0;
   padding-left: 20px;
   padding-right: 20px;
@@ -60,11 +61,15 @@ const ListItem = styled.li`
   padding-bottom: 12px;
   &:hover {
     background-color: #2ec4b6;
+    text-decoration: none;
   }
 `;
 
 const CustomLink = styled(Link)`
   color: black !important;
+  &:hover {
+    text-decoration: none;
+  }
 `;
 
 const HeaderDropdown = ({ className }) => {
@@ -80,14 +85,12 @@ const HeaderDropdown = ({ className }) => {
   return (
     <Card className={className}>
       <ListGroup>
-        <ListItem>
-          <CustomLink to="/notification-settings">
-            Notification Settings
-          </CustomLink>
-        </ListItem>
-        <ListItem>
-          <CustomLink to="/user-settings">User Settings</CustomLink>
-        </ListItem>
+        <CustomLink to="/notification-settings">
+          <ListItem>Notification Settings</ListItem>
+        </CustomLink>
+        <CustomLink to="/user-settings">
+          <ListItem>User Settings</ListItem>
+        </CustomLink>
         <ListItem>
           <DynamicButton text="Log Out" type="button" onClick={handleLogout} />
         </ListItem>

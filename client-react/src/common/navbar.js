@@ -27,7 +27,6 @@ const LinkBase = styled(Link)`
   font-size: 25px;
   font-weight: bold;
   color: #fff;
-  text-decoration: none;
   display: inline-block;
   vertical-align: middle;
 `;
@@ -57,6 +56,27 @@ const LinkRight = styled(LinkBase)`
 `;
 const LinkPink = styled(LinkBase)`
   color: #ff4d4d;
+  position: relative;
+  :hover {
+    color: #ff4d4d;
+    text-decoration: none;
+  }
+  ::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #ff4d4d;
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.3s ease-in-out 0s;
+  }
+  :hover::before {
+    visibility: visible;
+    transform: scaleX(1);
+  }
 `;
 
 const Img = styled.img`

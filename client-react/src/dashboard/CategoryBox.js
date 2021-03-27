@@ -37,6 +37,7 @@ const StyledCollapse = styled(Collapse)`
           border-bottom: 5px solid transparent;
           border-bottom: 5px solid transparent;
           border-left: 8px solid #666;
+          margin-right: 25px;
         }
       }
     }
