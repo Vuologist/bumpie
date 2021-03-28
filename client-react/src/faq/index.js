@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Collapse, { Panel } from "rc-collapse";
+import { device } from "../common/MediaBreakpoints";
 
 const Wrapper = styled.div`
   margin-left: 100px;
@@ -27,13 +28,19 @@ const FAQHeader = styled.p`
   font-size: 55px;
   margin-bottom: 60px;
   float: left;
+  @media ${device.laptopL} {
+    font-size: 45px;
+  }
+  @media ${device.laptop} {
+    font-size: 35px;
+  }
 `;
 
 const Answer = styled.p`
   font-family: "Roboto", sans-serif;
   font-weight: normal;
   margin-left: 5px;
-  font-size: 19px;
+  font-size: 15x;
   padding-left: 15px;
   color: #fff;
 `;
@@ -63,7 +70,7 @@ const StyledCollapse = styled(Collapse)`
         background-color: #c5c5c4 !important;
         color: #fff !important;
         font-family: "Quicksand";
-        font-size: 25px;
+        font-size: 20px;
         font-weight: normal;
         padding: 25px;
         > .arrow {
@@ -71,6 +78,7 @@ const StyledCollapse = styled(Collapse)`
           border-bottom: 5px solid transparent;
           border-bottom: 5px solid transparent;
           border-left: 8px solid #fff;
+          margin-right: 20px;
         }
       }
     }
