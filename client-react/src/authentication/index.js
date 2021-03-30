@@ -68,7 +68,6 @@ const Button = styled(DynamicButton)`
   border-radius: 37px;
   border: 1px solid transparent;
   cursor: pointer;
-  color: #fff;
   background-image: ${(props) =>
     props.light
       ? "-webkit-linear-gradient(90deg, #a5b8b5 50%, transparent 50%)"
