@@ -21,6 +21,7 @@ const CategoryWrapper = styled.div`
 `;
 
 const Dashboard = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
   // All categories data
   const [allData, setAllData] = useState([[], [], [], [], []]);
   const [radarData, setRadarData] = useState([
@@ -47,19 +48,59 @@ const Dashboard = () => {
     },
   ]);
 
+  const setCategoryName = (categoryNames) => {
+    let radarDataCopy = [...radarData];
+
+    radarDataCopy.forEach((element, index) => {
+      if (categoryNames[index] != null) {
+        element.category = categoryNames[index];
+      }
+    });
+    setRadarData(radarDataCopy);
+  };
+
   useEffect(() => {
-    async function onLoad() {
+    async function fetchData() {
       try {
         const userData = await API.get("data", "/data");
-        setAllData(userData.data);
+        setCategoryName(userData.categoryNames);
+        setAllData(userData.subCategoryFields);
+        radarDataCalc(userData.subCategoryFields);
+        setIsLoaded(true);
       } catch (e) {
         alert(e);
-        console.log("error", e.message);
+        console.log("First load error:", e.message);
       }
     }
-
-    onLoad();
+    fetchData();
+    // eslint-disable-next-line
   }, []);
+
+  useEffect(() => {
+    if (!isLoaded) return;
+
+    function getCategoryNames() {
+      return radarData.map((e) => {
+        return e.category;
+      });
+    }
+
+    async function updateData() {
+      try {
+        await API.put("data", "/data", {
+          body: {
+            categoryNames: getCategoryNames(),
+            subCategoryFields: allData,
+          },
+        });
+      } catch (e) {
+        alert(e);
+        console.log("Update error: ", e.message);
+      }
+    }
+    updateData();
+    // eslint-disable-next-line
+  }, [allData]);
 
   const onChange = (i, newData) => {
     // Create COPY and set new data
