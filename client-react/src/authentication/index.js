@@ -1,192 +1,15 @@
 import React, { useEffect, useState } from "react";
-import styled, { keyframes } from "styled-components";
 import { Auth } from "aws-amplify";
 import { useHistory, useLocation } from "react-router-dom";
 import { useAppContext } from "../libs/contextLib";
-import DynamicButton from "../common/DynamicButton";
-import TextInput from "../common/TextInput";
-import logo from "../assets/logo.png";
-import { ReactComponent as PaperAirPlaneAndFolderSVG } from "../assets/PaperAirPlaneAndFolder.svg";
-import { ReactComponent as EmailSVG } from "../assets/Email_verified-01.svg";
-import { device } from "../common/MediaBreakpoints";
-import { Link } from "react-router-dom";
-import { rubberBand } from "react-animations";
+import * as style from "./style";
 
-const rubberAnimation = keyframes`${rubberBand}`;
-
-const CenterContainer = styled.div`
-  display: flex;
-  padding: 30px;
-  height: 100vh;
-  background-color: #c5c5c4;
-  @media screen and (max-height: 464px) {
-    padding: 0;
-  }
-`;
-
-const ContentWrapper = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  max-width: 1150px;
-  display: ${(props) => (props.display ? "flex" : "none")};
-`;
-
-const LeftContainer = styled.div`
-  width: ${(props) => (props.smol ? "40%" : "60%")};
-  background-color: ${(props) => (props.light ? "#d0e6e3" : "#005a52")};
-  border-radius: 41px 0px 0px 41px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 100px;
-  padding-bottom: 90px;
-`;
-
-const RightContainer = styled.div`
-  width: 40%;
-  background-color: ${(props) => (props.light ? "#d0e6e3" : "#005a52")};
-  border-radius: 0px 41px 41px 0px;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 100px;
-  padding-bottom: 90px;
-`;
-
-const Button = styled(DynamicButton)`
-  background-color: ${(props) => (props.light ? "#d0e6e3" : "#146058")};
-  color: ${(props) => (props.light ? "#005A52" : "#fff")};
-  font-family: "Roboto";
-  font-size: 15px;
-  width: 300px;
-  height: 45px;
-  border-radius: 37px;
-  border: 1px solid transparent;
-  cursor: pointer;
-  background-image: ${(props) =>
-    props.light
-      ? "-webkit-linear-gradient(90deg, #a5b8b5 50%, transparent 50%)"
-      : "-webkit-linear-gradient(90deg, #0b332f 50%, transparent 50%)"};
-  background-image: ${(props) =>
-    props.light
-      ? "linear-gradient(90deg, #a5b8b5 50%, transparent 50%)"
-      : "linear-gradient(90deg, #0b332f 50%, transparent 50%)"};
-  background-position: 100%;
-  background-size: 400%;
-  -webkit-transition: background 300ms ease-in-out;
-  transition: background 300ms ease-in-out;
-
-  &:hover {
-    background-position: 0;
-  }
-  @media (max-width: 1050px) {
-    width: 150px;
-  }
-  @media (max-width: 500px) {
-    width: 100px;
-  }
-  @media (max-width: 375px) {
-    width: 80px;
-    font-size: 12px;
-  }
-`;
-
-const Title = styled.h1`
-  font-family: "Quicksand";
-  font-size: 40px;
-  font-weight: bold;
-  color: ${(props) => (props.light ? "#fff" : "#000")};
-  margin-bottom: 30px;
-  @media (max-width: 800px) {
-    font-size: 22px;
-    margin-bottom: 10px;
-  }
-  @media (max-width: 375px) {
-    margin-bottom: 5px;
-    font-size: 18px;
-  }
-`;
-
-const Text = styled.p`
-  color: #fff;
-  font-family: "Roboto";
-  font-size: 20px;
-  text-align: center;
-  margin: 40px 2px 70px 2px;
-  @media (max-width: 800px) {
-    font-size: 13px;
-    margin-bottom: 20px;
-  }
-  @media (max-width: 375px) {
-    font-size: 12px;
-    margin-bottom: 10px;
-  }
-`;
-
-const StyledLink = styled.div`
-  font-family: "Roboto";
-  font-size: 15px;
-  cursor: "pointer";
-  margin-top: 10px;
-  margin-bottom: 30px;
-  cursor: pointer;
-  color: #005a52;
-  font-weight: bold;
-
-  @media (max-width: 800px) {
-    margin-bottom: 15px;
-    font-size: 12px;
-  }
-`;
-
-const ErrorMessage = styled.div`
-  font-family: "Roboto";
-  font-size: 12px;
-  margin-top: -10px;
-  margin-bottom: 10px;
-  padding-left: 11px;
-  padding-right: 11px;
-  color: #ff4d4d;
-  width: 360px;
-
-  @media (max-width: 800px) {
-    margin-bottom: 15px;
-    font-size: 12px;
-  }
-`;
-
-const StyledBrandingLink = styled(Link)`
-  position: absolute;
-  height: 30px;
-  align-self: start;
-  margin-left: 40px;
-  margin-top: -60px;
-  @media ${device.mobileM} {
-    margin-left: 15px;
-    justify-self: start;
-  }
-  @media ${device.mobileL} {
-    margin-left: 25px;
-    justify-self: start;
-  }
-`;
-
-const Branding = styled.img`
-  height: 30px;
-  &:hover {
-    animation: 2s ${rubberAnimation};
-  }
-`;
-
-const Form = styled.form`
-  display: contents;
-`;
+import SignIn from "./SignIn";
+import SignUp from "./SignUp";
+import ForgotPassword from "./ForgotPassword";
+import SuccessForgotPassword from "./SuccessForgotPassword";
+import PasswordReset from "./PasswordReset";
+import SuccessEmailVerified from "./SuccessEmailVerified";
 
 const Authentication = (props) => {
   const [page, setPage] = useState(["true", null, null, null, null, null]);
@@ -366,270 +189,6 @@ const Authentication = (props) => {
     );
   };
 
-  const renderSignIn = () => (
-    <ContentWrapper display={page[0]}>
-      <LeftContainer light>
-        <StyledBrandingLink to="/">
-          <Branding src={logo} top alt="logo" />
-        </StyledBrandingLink>
-        <Title>Sign In</Title>
-        <Form onSubmit={handleOnSignIn}>
-          <TextInput
-            type="text"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <TextInput
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <div style={{ textAlign: "center" }}>
-            {signInError && <ErrorMessage>{signInError}</ErrorMessage>}
-          </div>
-          <StyledLink onClick={() => changePage(2)}>
-            I forgot my password
-          </StyledLink>
-          <Button text="SIGN IN" type="submit" onClick={handleOnSignIn} />
-        </Form>
-      </LeftContainer>
-      <RightContainer>
-        <Title light>Welcome!</Title>
-        <Text>
-          Don't have an account? <br /> Join today, it's free and easy!
-        </Text>
-        <Button light text="SIGN UP" onClick={() => changePage(1)} />
-      </RightContainer>
-    </ContentWrapper>
-  );
-
-  const renderSignUp = () => (
-    <ContentWrapper display={page[1]}>
-      <LeftContainer smol>
-        <StyledBrandingLink to="/">
-          <Branding src={logo} top alt="logo" />
-        </StyledBrandingLink>
-        <Title light top>
-          Welcome!
-        </Title>
-        <Text>
-          Already have an account? <br /> Sign in!
-        </Text>
-        <Button light text="SIGN IN" onClick={() => changePage(0)} />
-      </LeftContainer>
-      <RightContainer style={{ paddingTop: 50, paddingBottom: 50 }} light large>
-        <Title>Sign Up</Title>
-        <Form onSubmit={handleOnSignUp}>
-          <div>
-            <TextInput
-              type="text"
-              placeholder="Name"
-              value={name}
-              onChange={(e) => {
-                setNameInvalid(false);
-                setName(e.target.value);
-              }}
-              invalid={nameInvalid}
-            />
-            {nameError && <ErrorMessage>{nameError}</ErrorMessage>}
-          </div>
-          <div>
-            <TextInput
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => {
-                setEmailInvalid(false);
-                setEmail(e.target.value);
-              }}
-              invalid={emailInvalid}
-            />
-            {emailSignUpError && (
-              <ErrorMessage>{emailSignUpError}</ErrorMessage>
-            )}
-          </div>
-          <div>
-            <TextInput
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => {
-                setPasswordInvalid(false);
-                setPassword(e.target.value);
-              }}
-              invalid={passwordInvalid}
-            />
-            {passwordSignUpError && (
-              <ErrorMessage>{passwordSignUpError}</ErrorMessage>
-            )}
-          </div>
-          <div>
-            <TextInput
-              type="password"
-              placeholder="Confirm Password"
-              value={confirmPassword}
-              onChange={(e) => {
-                setConfirmPasswordInvalid(false);
-                setConfirmPassword(e.target.value);
-              }}
-              invalid={confirmPasswordInvalid}
-            />
-            {confirmPasswordSignUpError && (
-              <ErrorMessage>{confirmPasswordSignUpError}</ErrorMessage>
-            )}
-          </div>
-          <Button text="SIGN UP" type="submit" onClick={handleOnSignUp} />
-        </Form>
-      </RightContainer>
-    </ContentWrapper>
-  );
-
-  const renderForgotPassword = () => (
-    <ContentWrapper display={page[2]}>
-      <LeftContainer smol>
-        <StyledBrandingLink to="/">
-          <Branding src={logo} top alt="logo" />
-        </StyledBrandingLink>
-        <Title light top>
-          Welcome!
-        </Title>
-        <Text>
-          Already have an account? <br /> Sign in!
-        </Text>
-        <Button light text="SIGN IN" onClick={() => changePage(0)} />
-      </LeftContainer>
-      <RightContainer light large>
-        <div style={{ textAlign: "center" }}>
-          <Title>Forgot Password?</Title>
-          <div style={{ fontSize: 20 }}>Enter your email below!</div>
-        </div>
-        <Form onSubmit={handleForgotPassword}>
-          <div style={{ textAlign: "center" }}>
-            <TextInput
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => {
-                setEmailInvalid(false);
-                setEmail(e.target.value);
-              }}
-              invalid={emailInvalid}
-            />
-            {emailSignUpError && <ErrorMessage>Invalid Email</ErrorMessage>}
-          </div>
-          <Button text="RECOVER" type="submit" />
-        </Form>
-      </RightContainer>
-    </ContentWrapper>
-  );
-
-  const renderSuccessForgotPassword = () => (
-    <ContentWrapper display={page[3]}>
-      <LeftContainer smol>
-        <StyledBrandingLink to="/">
-          <Branding src={logo} top alt="logo" />
-        </StyledBrandingLink>
-        <Title light top>
-          Welcome!
-        </Title>
-        <Text>
-          Already have an account? <br /> Sign in!
-        </Text>
-        <Button light text="SIGN IN" onClick={() => changePage(1)} />
-      </LeftContainer>
-      <RightContainer style={{ paddingBottom: 30 }} light large>
-        <Title>Password Reset</Title>
-        <div style={{ fontSize: 20, width: "50%", textAlign: "center" }}>
-          A link has been sent to your email to recover your password.
-        </div>
-        <PaperAirPlaneAndFolderSVG style={{ width: "45%" }} />
-      </RightContainer>
-    </ContentWrapper>
-  );
-
-  const renderNewPasswordReset = () => (
-    <ContentWrapper display={page[4]}>
-      <LeftContainer smol>
-        <StyledBrandingLink to="/">
-          <Branding src={logo} top alt="logo" />
-        </StyledBrandingLink>
-        <Title light top>
-          Welcome!
-        </Title>
-        <Text>
-          Already have an account? <br /> Sign in!
-        </Text>
-        <Button light text="SIGN IN" onClick={() => changePage(1)} />
-      </LeftContainer>
-      <RightContainer light large>
-        <Title>Password Reset</Title>
-        <Form onSubmit={handleOnSignUp}>
-          <div>
-            <TextInput
-              type="password"
-              placeholder="New Password"
-              value={password}
-              onChange={(e) => {
-                setPasswordInvalid(false);
-                setPassword(e.target.value);
-              }}
-              invalid={passwordInvalid}
-            />
-            {passwordSignUpError && (
-              <ErrorMessage>{passwordSignUpError}</ErrorMessage>
-            )}
-          </div>
-          <div>
-            <TextInput
-              type="password"
-              placeholder="Confirm Password"
-              value={confirmPassword}
-              onChange={(e) => {
-                setConfirmPasswordInvalid(false);
-                setConfirmPassword(e.target.value);
-              }}
-              invalid={confirmPasswordInvalid}
-            />
-            {confirmPasswordSignUpError && (
-              <ErrorMessage>{confirmPasswordSignUpError}</ErrorMessage>
-            )}
-          </div>
-          <Button
-            text="RECOVER"
-            type="submit"
-            onClick={handleOnNewPasswordReset}
-          />
-        </Form>
-      </RightContainer>
-    </ContentWrapper>
-  );
-
-  const renderSuccessEmailVerified = () => (
-    <ContentWrapper display={page[5]}>
-      <LeftContainer smol>
-        <StyledBrandingLink to="/">
-          <Branding src={logo} top alt="logo" />
-        </StyledBrandingLink>
-        <Title light top>
-          Welcome!
-        </Title>
-        <Text>
-          Already have an account? <br /> Sign in!
-        </Text>
-        <Button light text="SIGN IN" onClick={() => changePage(0)} />
-      </LeftContainer>
-      <RightContainer style={{ paddingBottom: 30 }} light large>
-        <Title>Email Verified</Title>
-        <div style={{ fontSize: 20, width: "50%", textAlign: "center" }}>
-          Congratulations, you have successfully verified your email!
-        </div>
-        <EmailSVG style={{ width: "45%" }} />
-      </RightContainer>
-    </ContentWrapper>
-  );
-
   useEffect(() => {
     if (props.type === "PasswordReset") changePage(4);
     if (props.type === "SuccessEmail") changePage(5);
@@ -637,14 +196,78 @@ const Authentication = (props) => {
   }, []);
 
   return (
-    <CenterContainer>
-      {page[0] && renderSignIn()}
-      {page[1] && renderSignUp()}
-      {page[2] && renderForgotPassword()}
-      {page[3] && renderSuccessForgotPassword()}
-      {page[4] && renderNewPasswordReset()}
-      {page[5] && renderSuccessEmailVerified()}
-    </CenterContainer>
+    <style.CenterContainer>
+      {page[0] && (
+        <SignIn
+          page={page}
+          handleOnSignIn={handleOnSignIn}
+          email={email}
+          setEmail={setEmail}
+          password={password}
+          setPassword={setPassword}
+          signInError={signInError}
+          changePage={changePage}
+        />
+      )}
+      {page[1] && (
+        <SignUp
+          page={page}
+          changePage={changePage}
+          name={name}
+          setNameInvalid={setNameInvalid}
+          setName={setName}
+          nameError={nameError}
+          nameInvalid={nameInvalid}
+          email={email}
+          setEmailInvalid={setEmailInvalid}
+          setEmail={setEmail}
+          emailSignUpError={emailSignUpError}
+          emailInvalid={emailInvalid}
+          password={password}
+          passwordSignUpError={passwordSignUpError}
+          passwordInvalid={passwordInvalid}
+          setPasswordInvalid={setPasswordInvalid}
+          setPassword={setPassword}
+          confirmPassword={confirmPassword}
+          setConfirmPasswordInvalid={setConfirmPasswordInvalid}
+          setConfirmPassword={setConfirmPassword}
+          confirmPasswordSignUpError={confirmPasswordSignUpError}
+          confirmPasswordInvalid={confirmPasswordInvalid}
+          handleOnSignUp={handleOnSignUp}
+        />
+      )}
+      {page[2] && (
+        <ForgotPassword
+          page={page}
+          changePage={changePage}
+          handleForgotPassword={handleForgotPassword}
+          email={email}
+          setEmailInvalid={setEmailInvalid}
+          setEmail={setEmail}
+          emailInvalid={emailInvalid}
+          emailSignUpError={emailSignUpError}
+        />
+      )}
+      {page[3] && <SuccessForgotPassword page={page} changePage={changePage} />}
+      {page[4] && (
+        <PasswordReset
+          page={page}
+          changePage={changePage}
+          password={password}
+          setPasswordInvalid={setPasswordInvalid}
+          setPassword={setPassword}
+          passwordInvalid={passwordInvalid}
+          passwordSignUpError={passwordSignUpError}
+          confirmPassword={confirmPassword}
+          setConfirmPassword={setConfirmPassword}
+          setConfirmPasswordInvalid={setConfirmPasswordInvalid}
+          confirmPasswordSignUpError={confirmPasswordSignUpError}
+          handleOnNewPasswordReset={handleOnNewPasswordReset}
+          confirmPasswordInvalid={confirmPasswordInvalid}
+        />
+      )}
+      {page[5] && <SuccessEmailVerified page={page} changePage={changePage} />}
+    </style.CenterContainer>
   );
 };
 

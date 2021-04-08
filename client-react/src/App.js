@@ -21,6 +21,7 @@ const App = () => {
   const [isAuthenticated, userHasAuthenticated] = useState(false);
   useEffect(() => {
     onLoad();
+    // eslint-disable-next-line
   }, []);
 
   const onLoad = async () => {
@@ -28,7 +29,7 @@ const App = () => {
       await Auth.currentSession();
       userHasAuthenticated(true);
     } catch (e) {
-      if (e !== "No current user") {
+      if (e !== "No current user" && isAuthenticated) {
         alert(e);
       }
     }
