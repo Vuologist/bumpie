@@ -1,6 +1,5 @@
 import { CfnOutput } from "@aws-cdk/core";
 import * as cognito from "@aws-cdk/aws-cognito";
-import { VerificationEmailStyle } from "@aws-cdk/aws-cognito";
 import * as sst from "@serverless-stack/resources";
 import CognitoAuthRole from "./CognitoAuthRole";
 
@@ -24,12 +23,6 @@ export default class CognitoStack extends sst.Stack {
       selfSignUpEnabled: true, // Allow users to sign up
       autoVerify: { email: true }, // Verify email addresses by sending a verification code
       signInAliases: { email: true }, // Set email as an alias
-      userVerification: {
-        emailBody:
-          "Welcome to bumpieInfra!! Verify your account by clicking here -> {##Verify Email##}",
-        emailStyle: VerificationEmailStyle.LINK,
-        emailSubject: "Bumpie Email Verification",
-      },
       lambdaTriggers: {
         postConfirmation: createUser,
         customMessage: new sst.Function(this, "bumpieInfra-CustomMsg", {

@@ -189,9 +189,22 @@ const Authentication = (props) => {
     );
   };
 
+  const verifyEmail = async () => {
+    // This will fail if email has slashes in it.
+    const username = location.pathname.split("/")[2];
+    const code = location.pathname.split("/")[3];
+
+    try {
+      await Auth.confirmSignUp(username, code);
+      changePage(5);
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+
   useEffect(() => {
     if (props.type === "PasswordReset") changePage(4);
-    if (props.type === "SuccessEmail") changePage(5);
+    if (props.type === "SuccessEmail") verifyEmail();
     // eslint-disable-next-line
   }, []);
 
