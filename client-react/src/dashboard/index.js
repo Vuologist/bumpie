@@ -116,7 +116,9 @@ const Dashboard = () => {
 
   const onTitleChange = (title, i) => {
     const copyCatTitles = [...radarData];
-    copyCatTitles[i].category = title;
+    if (title !== "") {
+      copyCatTitles[i].category = title;
+    }
     setRadarData(copyCatTitles);
     const copyAllData = [...allData];
     if (copyAllData[i].length === 1) {
