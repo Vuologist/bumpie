@@ -52,7 +52,7 @@ export const RightContainer = styled.div`
 `;
 
 export const Button = styled(DynamicButton)`
-  background-color: ${(props) => (props.light ? "#d0e6e3" : "#146058")};
+  background-color: ${(props) => (props.light ? "#d0e6e3" : "#005A52")};
   color: ${(props) => (props.light ? "#005A52" : "#fff")};
   font-family: "Roboto";
   font-size: 15px;
@@ -61,14 +61,6 @@ export const Button = styled(DynamicButton)`
   border-radius: 37px;
   border: 1px solid transparent;
   cursor: pointer;
-  background-image: ${(props) =>
-    props.light
-      ? "-webkit-linear-gradient(90deg, #a5b8b5 50%, transparent 50%)"
-      : "-webkit-linear-gradient(90deg, #0b332f 50%, transparent 50%)"};
-  background-image: ${(props) =>
-    props.light
-      ? "linear-gradient(90deg, #a5b8b5 50%, transparent 50%)"
-      : "linear-gradient(90deg, #0b332f 50%, transparent 50%)"};
   background-position: 100%;
   background-size: 400%;
   -webkit-transition: background 300ms ease-in-out;
