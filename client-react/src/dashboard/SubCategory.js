@@ -77,7 +77,7 @@ const SubCategory = ({
             handleStyle={{
               height: 28,
               width: 28,
-              marginLeft: -14,
+              marginLeft: 0,
               marginTop: -14,
               backgroundColor: "white",
               boxShadow:
