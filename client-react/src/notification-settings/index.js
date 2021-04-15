@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { Auth } from "aws-amplify";
 
 import { device } from "../common/MediaBreakpoints";
 
@@ -34,7 +35,17 @@ const Wrapper = styled.div`
 `;
 
 const NotificationSettings = () => {
+  const [email, setEmail] = useState("");
   const [emailNotification, setEmailToggle] = useState(false);
+
+  useEffect(() => {
+    async function fetchEmail() {
+      const { attributes } = await Auth.currentAuthenticatedUser();
+      setEmail(attributes.email);
+    }
+    // eslint-disable-next-line
+    fetchEmail();
+  }, []);
 
   return (
     <Wrapper>
@@ -46,7 +57,7 @@ const NotificationSettings = () => {
       >
         <SettingsSectionHeader title="Notify me through..." />
         <label style={{ display: "flex", justifyContent: "space-between" }}>
-          <Email>email@email.com</Email>
+          <Email>{email}</Email>
           <ToggleButton
             onChange={() => setEmailToggle(!emailNotification)}
             checked={emailNotification}
