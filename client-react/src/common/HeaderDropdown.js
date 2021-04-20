@@ -62,9 +62,9 @@ const ListItem = styled.li`
   &:hover {
     background-color: #2ec4b6;
     text-decoration: none;
+    cursor: pointer;
   }
 `;
-
 const CustomLink = styled(Link)`
   color: black !important;
   &:hover {
@@ -91,8 +91,8 @@ const HeaderDropdown = ({ className }) => {
         <CustomLink to="/user-settings">
           <ListItem>User Settings</ListItem>
         </CustomLink>
-        <ListItem>
-          <DynamicButton text="Log Out" type="button" onClick={handleLogout} />
+        <ListItem onClick={handleLogout}>
+          <DynamicButton text="Log Out" type="button" />
         </ListItem>
       </ListGroup>
     </Card>
