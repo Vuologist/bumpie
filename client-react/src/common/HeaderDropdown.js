@@ -62,6 +62,7 @@ const ListItem = styled.li`
   &:hover {
     background-color: #2ec4b6;
     text-decoration: none;
+    cursor: pointer;
   }
 `;
 const CustomLink = styled(Link)`
