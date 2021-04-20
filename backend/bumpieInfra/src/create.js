@@ -7,8 +7,10 @@ export const handler = async (event, context, callback) => {
     console.log("event", event);
     console.log("context", context);
     console.log("env", process.env);
-    const params = {
-      TableName: process.env.tableName,
+
+    // write to data table
+    const dataParams = {
+      TableName: process.env.dataTableName,
       Item: {
         userId: event.userName,
         categoryNames: [
@@ -28,7 +30,17 @@ export const handler = async (event, context, callback) => {
       },
     };
 
-    await db.put(params).promise();
+    await db.put(dataParams).promise();
+
+    // write to notification table
+    const notificationParams = {
+      TableName: process.env.notificationTableName,
+      Item: {
+        userId: event.userName,
+        frequency: "yearly",
+      },
+    };
+    await db.put(notificationParams).promise();
   }
   callback(null, event);
 };

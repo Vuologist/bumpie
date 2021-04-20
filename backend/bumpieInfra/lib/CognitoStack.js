@@ -8,16 +8,18 @@ export default class CognitoStack extends sst.Stack {
     super(scope, id, props);
 
     const app = this.node.root;
-    const { table } = props;
+    const { dataTable, notificationTable } = props;
 
     // create new user in dynamodb
     const createUser = new sst.Function(this, "bumpieInfra-Create", {
       handler: "src/create.handler",
       environment: {
-        tableName: table.tableName,
+        dataTableName: dataTable.tableName,
+        notificationTableName: notificationTable.tableName,
       },
     });
-    table.grantWriteData(createUser);
+    dataTable.grantWriteData(createUser);
+    notificationTable.grantWriteData(createUser);
 
     const userPool = new cognito.UserPool(this, "bumpieInfra-UserPool", {
       selfSignUpEnabled: true, // Allow users to sign up

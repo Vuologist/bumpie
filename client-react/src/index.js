@@ -20,7 +20,7 @@ Amplify.configure({
     endpoints: [
       {
         name: "data",
-        endpoint: "https://bykvi1grwb.execute-api.us-east-1.amazonaws.com/dev",
+        endpoint: "https://zmwp680jad.execute-api.us-east-1.amazonaws.com/dev",
       },
     ],
   },

@@ -3,7 +3,7 @@ import AWS from "aws-sdk";
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
 export const main = async (event, context) => {
-  console.log("Table Name: ", process.env.tableName);
+  console.log("Table Name: ", process.env.notificationTableName);
   console.log("event: ", event);
   console.log("event body: ", event.body);
   console.log("context: ", context);
@@ -34,19 +34,16 @@ export const main = async (event, context) => {
   // };
 
   let bodyContent = JSON.parse(event.body);
-  console.log("subCategoryFields: ", bodyContent.subCategoryFields);
-  console.log("categoryNames", bodyContent.categoryNames);
+  console.log("active", bodyContent.active);
 
   const params = {
-    TableName: process.env.tableName,
+    TableName: process.env.notificationTableName,
     Key: {
       userId: username,
     },
-    UpdateExpression:
-      "SET subCategoryFields = :subCategoryFields, categoryNames = :categoryNames",
+    UpdateExpression: "SET active = :active",
     ExpressionAttributeValues: {
-      ":subCategoryFields": bodyContent.subCategoryFields,
-      ":categoryNames": bodyContent.categoryNames,
+      ":active": bodyContent.active,
     },
     ReturnValues: "ALL_NEW",
   };
