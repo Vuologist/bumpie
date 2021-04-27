@@ -16,8 +16,7 @@ const Main = styled.div`
 `;
 
 const RadButton = styled(DynamicButton)`
-  background-color: ${(props) =>
-    props.emailNotification ? "#2EC4B6" : "#C5C5C4"};
+  background-color: ${(props) => (props.bgColor ? "#2EC4B6" : "#90E8DF")};
   color: white;
   border-radius: 16px;
   padding: 6px 40px 6px 40px;
@@ -25,10 +24,12 @@ const RadButton = styled(DynamicButton)`
     margin: 5px;
     padding: 6px 5px 6px 5px;
   }
+  &:disabled {
+    background-color: #c5c5c4;
+  }
 `;
 
 const NotifyMeFrequencySection = ({ emailNotification }) => {
-  console.log(emailNotification);
   const [radioSet, setRadioSet] = useState([false, false, false, false]);
 
   const getFrequencyIndex = (freq) => {
@@ -113,24 +114,28 @@ const NotifyMeFrequencySection = ({ emailNotification }) => {
             onClick={() => radioClick(0)}
             bgColor={radioSet[0] ? true : false}
             emailNotification={emailNotification}
+            disabled={!emailNotification}
           />
           <RadButton
             text="monthly"
             onClick={() => radioClick(1)}
             bgColor={radioSet[1] ? true : false}
             emailNotification={emailNotification}
+            disabled={!emailNotification}
           />
           <RadButton
             text="quarterly"
             onClick={() => radioClick(2)}
             bgColor={radioSet[2] ? true : false}
             emailNotification={emailNotification}
+            disabled={!emailNotification}
           />
           <RadButton
             text="yearly"
             onClick={() => radioClick(3)}
             bgColor={radioSet[3] ? true : false}
             emailNotification={emailNotification}
+            disabled={!emailNotification}
           />
         </Main>
       </div>
