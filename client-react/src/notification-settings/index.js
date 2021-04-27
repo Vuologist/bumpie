@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { Auth } from "aws-amplify";
 
 import { device } from "../common/MediaBreakpoints";
-
-import ToggleButton from "../common/ToggleButton";
-import SettingsSectionHeader from "../common/SettingsSectionHeader";
-import RadioButton from "./RadioButton";
+import NotifyMeThroughSection from "./NotifyMeThroughSection";
+import NotifyMeFrequencySection from "./NotifyMeFrequencySection";
 
 const PageTitle = styled.h2`
   font-size: 35px;
@@ -17,11 +14,6 @@ const PageTitle = styled.h2`
   }
 `;
 
-const Email = styled.span`
-  font-size: 25px;
-  color: #989293;
-`;
-
 const Wrapper = styled.div`
   margin-left: 100px;
   margin-right: 100px;
@@ -29,43 +21,18 @@ const Wrapper = styled.div`
 `;
 
 const NotificationSettings = () => {
-  const [email, setEmail] = useState("");
   const [emailNotification, setEmailToggle] = useState(false);
-
-  useEffect(() => {
-    async function fetchEmail() {
-      const { attributes } = await Auth.currentAuthenticatedUser();
-      setEmail(attributes.email);
-    }
-    // eslint-disable-next-line
-    fetchEmail();
-  }, []);
 
   return (
     <Wrapper>
       <PageTitle>Notification Settings</PageTitle>
-      <div
-        style={{
-          margin: 80,
-        }}
-      >
-        <SettingsSectionHeader title="Notify me through..." />
-        <label style={{ display: "flex", justifyContent: "space-between" }}>
-          <Email>{email}</Email>
-          <ToggleButton
-            onChange={() => setEmailToggle(!emailNotification)}
-            checked={emailNotification}
-          />
-        </label>
-        <div
-          style={{
-            marginTop: 70,
-          }}
-        >
-          <SettingsSectionHeader title="Notify me..." />
-          <div style={{ marginTop: 30 }}>
-            <RadioButton />
-          </div>
+      <div style={{ margin: 80 }}>
+        <NotifyMeThroughSection
+          emailNotification={emailNotification}
+          setEmailToggle={setEmailToggle}
+        />
+        <div style={{ marginTop: 70 }}>
+          <NotifyMeFrequencySection />
         </div>
       </div>
     </Wrapper>

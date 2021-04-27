@@ -23,7 +23,8 @@ provider:
   stage: dev
   region: us-east-1
   environment:
-    tableName: !ImportValue "${self:custom.sstApp}-bumpieInfra-TableName"
+    dataTableName: !ImportValue "${self:custom.sstApp}-bumpieDataInfra-TableName"
+    notificationTableName: !ImportValue "${self:custom.sstApp}-bumpieNotificationInfra-TableName"
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -35,22 +36,47 @@ provider:
         - dynamodb:DeleteItem
         - dynamodb:DescribeTable
       Resource:
-        - !ImportValue "${self:custom.sstApp}-bumpieInfra-TableArn"
+        - !ImportValue "${self:custom.sstApp}-bumpieDataInfra-TableArn"
+        - !ImportValue "${self:custom.sstApp}-bumpieNotificationInfra-TableArn"
 
 functions:
-  get:
-    handler: get.main
+  getData:
+    handler: getData.main
     events:
       - http:
           path: data
           method: get
           cors: true
           authorizer: aws_iam
-  update:
-    handler: update.main
+  updateData:
+    handler: updateData.main
     events:
       - http:
           path: data
+          method: put
+          cors: true
+          authorizer: aws_iam
+  getNotification:
+    handler: getNotification.main
+    events:
+      - http:
+          path: notification
+          method: get
+          cors: true
+          authorizer: aws_iam
+  updateNotificationActive:
+    handler: updateNotificationActive.main
+    events:
+      - http:
+          path: notification/active
+          method: put
+          cors: true
+          authorizer: aws_iam
+  updateNotificationFrequency:
+    handler: updateNotificationFrequency.main
+    events:
+      - http:
+          path: notification/frequency
           method: put
           cors: true
           authorizer: aws_iam

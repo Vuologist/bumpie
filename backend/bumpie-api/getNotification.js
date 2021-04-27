@@ -3,7 +3,7 @@ import AWS from "aws-sdk";
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
 export const main = async (event, context) => {
-  console.log("Table Name: ", process.env.tableName);
+  console.log("Table Name: ", process.env.notificationTableName);
   console.log("event: ", event);
   console.log("context: ", context);
 
@@ -12,7 +12,7 @@ export const main = async (event, context) => {
   const username = cognitoAuthenticationProvider.split(":")[2];
 
   const params = {
-    TableName: process.env.tableName,
+    TableName: process.env.notificationTableName,
     Key: {
       userId: username,
     },
