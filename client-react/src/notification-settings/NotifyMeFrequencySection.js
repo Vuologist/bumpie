@@ -26,6 +26,7 @@ const RadButton = styled(DynamicButton)`
   }
   &:disabled {
     background-color: #c5c5c4;
+    cursor: not-allowed;
   }
 `;
 
