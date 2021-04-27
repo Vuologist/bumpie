@@ -32,7 +32,7 @@ const NotificationSettings = () => {
           setEmailToggle={setEmailToggle}
         />
         <div style={{ marginTop: 70 }}>
-          <NotifyMeFrequencySection />
+          <NotifyMeFrequencySection emailNotification={emailNotification} />
         </div>
       </div>
     </Wrapper>
