@@ -6,7 +6,7 @@ const ToggleButton = ({ onChange, checked }) => {
     <Switch
       onChange={onChange}
       checked={checked}
-      offColor="#8FE8DF"
+      offColor="#C5C5C4"
       onColor="#2EC4B6"
       uncheckedIcon={false}
       checkedIcon={false}
