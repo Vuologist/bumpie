@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
+import { Auth } from "aws-amplify";
 
 import TextInput from "../common/TextInput";
 import DynamicButton from "../common/DynamicButton";
@@ -101,7 +102,25 @@ const ChangePassword = () => {
 
     if (fail) return;
 
-    if (!isPasswordValid()) alert("submitting");
+    Auth.currentAuthenticatedUser()
+      .then((user) => {
+        return Auth.changePassword(user, currentPassword, newPassword);
+      })
+      .then((data) => {
+        if (data === "SUCCESS") {
+          setCurrentPassword("");
+          setNewPassword("");
+          setConfirmNewPassword("");
+        }
+      })
+      .catch((err) => {
+        if (err.message === "Incorrect username or password.") {
+          setIsCurrentPasswordError(currentPasswordError);
+        } else {
+          alert(err.message);
+          console.log(err);
+        }
+      });
   };
 
   const handleOnCancel = (event) => {
@@ -155,15 +174,15 @@ const ChangePassword = () => {
             {isConfirmNewPasswordError && (
               <ErrorMessage>{confirmNewPasswordError}</ErrorMessage>
             )}
+            <ButtonContainer>
+              <DynamicButton
+                text="CANCEL"
+                type="button"
+                onClick={handleOnCancel}
+              />
+              <DynamicButton text="SAVE" type="submit" onClick={handleOnSave} />
+            </ButtonContainer>
           </FormWrapper>
-          <ButtonContainer>
-            <DynamicButton
-              text="CANCEL"
-              type="button"
-              onClick={handleOnCancel}
-            />
-            <DynamicButton text="SAVE" type="submit" onClick={handleOnSave} />
-          </ButtonContainer>
         </FormContainer>
       </Container>
     </Wrapper>
