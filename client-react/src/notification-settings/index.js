@@ -32,6 +32,16 @@ const NotificationSettings = () => {
   } else {
     text = "Change save failed. Please try again later.";
   }
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setInit(false);
+    }, 3000);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [init]);
+
   return (
     <Wrapper>
       <PageTitle>Notification Settings</PageTitle>
