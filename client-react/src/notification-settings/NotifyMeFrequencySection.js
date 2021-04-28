@@ -61,9 +61,8 @@ const NotifyMeFrequencySection = ({ setSave, setInit, emailNotification }) => {
         return "yearly";
     }
   };
-
+  var newRadioSet = [...radioSet];
   useEffect(() => {
-    var newRadioSet = [...radioSet];
     async function fetchFrequency() {
       try {
         const response = await API.get("data", "/notification");
