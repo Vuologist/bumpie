@@ -68,7 +68,7 @@ const NotifyMeFrequencySection = ({ setSave, setInit, emailNotification }) => {
       try {
         const response = await API.get("data", "/notification");
         let index = getFrequencyIndex(response.frequency);
-        newRadioSet[index] = !radioSet[index];
+        newRadioSet[index] = !newRadioSet[index];
       } catch (e) {
         alert(e);
         console.log(e.message);
@@ -77,7 +77,7 @@ const NotifyMeFrequencySection = ({ setSave, setInit, emailNotification }) => {
     }
 
     fetchFrequency();
-  }, [radioSet]);
+  }, []);
 
   const updateNotificationTable = async (index) => {
     try {
