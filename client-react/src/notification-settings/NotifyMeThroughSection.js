@@ -14,7 +14,6 @@ const NotifyMeThroughSection = ({
   emailNotification,
   setEmailToggle,
   setSave,
-  init,
   setInit,
 }) => {
   const [email, setEmail] = useState("");

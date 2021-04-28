@@ -44,7 +44,11 @@ const NotificationSettings = () => {
           setInit={setInit}
         />
         <div style={{ marginTop: 70 }}>
-          <NotifyMeFrequencySection setSave={setSave} setInit={setInit} />
+          <NotifyMeFrequencySection
+            setSave={setSave}
+            setInit={setInit}
+            emailNotification={emailNotification}
+          />
         </div>
       </div>
     </Wrapper>

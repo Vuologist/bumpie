@@ -24,9 +24,14 @@ const Button = styled.button`
   }
 `;
 
-const DynamicButton = ({ text, type, onClick, className }) => {
+const DynamicButton = ({ text, type, onClick, className, disabled }) => {
   return (
-    <Button onClick={onClick} type={type} className={className}>
+    <Button
+      onClick={onClick}
+      type={type}
+      className={className}
+      disabled={disabled}
+    >
       {text}
     </Button>
   );
