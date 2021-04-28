@@ -31,6 +31,7 @@ const RadButton = styled(DynamicButton)`
 `;
 
 const NotifyMeFrequencySection = ({ setSave, setInit, emailNotification }) => {
+  const [radioSet, setRadioSet] = useState([false, false, false, false]);
   const getFrequencyIndex = (freq) => {
     switch (freq) {
       case "biweekly":
@@ -60,23 +61,26 @@ const NotifyMeFrequencySection = ({ setSave, setInit, emailNotification }) => {
         return "yearly";
     }
   };
-  useEffect(() => {
-    const [radioSet, setRadioSet] = useState([false, false, false, false]);
-    var newRadioSet = [...radioSet];
-    async function fetchFrequency() {
-      try {
-        const response = await API.get("data", "/notification");
-        let index = getFrequencyIndex(response.frequency);
-        newRadioSet[index] = !newRadioSet[index];
-      } catch (e) {
-        alert(e);
-        console.log(e.message);
+  var newRadioSet = [...radioSet];
+  useEffect(
+    () => {
+      async function fetchFrequency() {
+        try {
+          const response = await API.get("data", "/notification");
+          let index = getFrequencyIndex(response.frequency);
+          newRadioSet[index] = !newRadioSet[index];
+        } catch (e) {
+          alert(e);
+          console.log(e.message);
+        }
+        setRadioSet(newRadioSet);
       }
-      setRadioSet(newRadioSet);
-    }
 
-    fetchFrequency();
-  }, []);
+      fetchFrequency();
+    },
+    [],
+    radioSet
+  );
 
   const updateNotificationTable = async (index) => {
     try {
