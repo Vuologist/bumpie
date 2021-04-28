@@ -77,7 +77,7 @@ const NotifyMeFrequencySection = ({ setSave, setInit, emailNotification }) => {
     }
 
     fetchFrequency();
-  }, []);
+  }, [radioSet]);
 
   const updateNotificationTable = async (index) => {
     try {
