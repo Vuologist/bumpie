@@ -76,6 +76,7 @@ const NotifyMeFrequencySection = ({ setSave, setInit, emailNotification }) => {
     }
 
     fetchFrequency();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const updateNotificationTable = async (index) => {
