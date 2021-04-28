@@ -10,7 +10,12 @@ const Email = styled.span`
   color: #989293;
 `;
 
-const NotifyMeThroughSection = ({ emailNotification, setEmailToggle }) => {
+const NotifyMeThroughSection = ({
+  emailNotification,
+  setEmailToggle,
+  setSave,
+  setInit,
+}) => {
   const [email, setEmail] = useState("");
 
   useEffect(() => {
@@ -37,9 +42,12 @@ const NotifyMeThroughSection = ({ emailNotification, setEmailToggle }) => {
           active: newState,
         },
       });
+      setSave(true);
+      setInit(true);
     } catch (e) {
       alert(e);
       console.log(e);
+      setSave(false);
     }
   };
 

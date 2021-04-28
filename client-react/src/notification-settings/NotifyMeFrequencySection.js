@@ -30,9 +30,8 @@ const RadButton = styled(DynamicButton)`
   }
 `;
 
-const NotifyMeFrequencySection = ({ emailNotification }) => {
+const NotifyMeFrequencySection = ({ setSave, setInit, emailNotification }) => {
   const [radioSet, setRadioSet] = useState([false, false, false, false]);
-
   const getFrequencyIndex = (freq) => {
     switch (freq) {
       case "biweekly":
@@ -62,20 +61,22 @@ const NotifyMeFrequencySection = ({ emailNotification }) => {
         return "yearly";
     }
   };
-
   useEffect(() => {
     async function fetchFrequency() {
       try {
         const response = await API.get("data", "/notification");
         let index = getFrequencyIndex(response.frequency);
-        radioClick(index);
+        var newRadioSet = [...radioSet];
+        newRadioSet[index] = !newRadioSet[index];
       } catch (e) {
         alert(e);
         console.log(e.message);
       }
+      setRadioSet(newRadioSet);
     }
+
     fetchFrequency();
-    // eslint-disable-next-line
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const updateNotificationTable = async (index) => {
@@ -85,9 +86,11 @@ const NotifyMeFrequencySection = ({ emailNotification }) => {
           frequency: getFrequencyText(index),
         },
       });
+      setSave(true);
+      setInit(true);
     } catch (e) {
       alert(e);
-      console.log(e);
+      setSave(false);
     }
   };
 
