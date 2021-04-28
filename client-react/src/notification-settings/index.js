@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 import { device } from "../common/MediaBreakpoints";
 import NotifyMeThroughSection from "./NotifyMeThroughSection";
 import NotifyMeFrequencySection from "./NotifyMeFrequencySection";
+import Alert from "../common/Alert";
 
 const PageTitle = styled.h2`
   font-size: 35px;
@@ -22,17 +23,28 @@ const Wrapper = styled.div`
 
 const NotificationSettings = () => {
   const [emailNotification, setEmailToggle] = useState(false);
+  const [save, setSave] = useState(false);
+  const [init, setInit] = useState(false);
 
+  var text = "";
+  if (save) {
+    text = "Changes Saved!";
+  } else {
+    text = "Change save failed. Please try again later.";
+  }
   return (
     <Wrapper>
       <PageTitle>Notification Settings</PageTitle>
+      {init && <Alert text={text} bg={save} />}
       <div style={{ margin: 80 }}>
         <NotifyMeThroughSection
           emailNotification={emailNotification}
           setEmailToggle={setEmailToggle}
+          setSave={setSave}
+          setInit={setInit}
         />
         <div style={{ marginTop: 70 }}>
-          <NotifyMeFrequencySection />
+          <NotifyMeFrequencySection setSave={setSave} setInit={setInit} />
         </div>
       </div>
     </Wrapper>
