@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
+import { Auth } from "aws-amplify";
 
 import TextInput from "../common/TextInput";
 import DynamicButton from "../common/DynamicButton";
@@ -24,11 +25,16 @@ const Container = styled.div`
   flex-grow: 1;
 `;
 
-const FormWrapper = styled.div`
+const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   flex-grow: 1;
+`;
+
+const FormWrapper = styled.form`
+  display: flex;
+  flex-direction: column;
 `;
 
 const ButtonContainer = styled.div`
@@ -48,10 +54,14 @@ const ChangeName = () => {
   const [name, setName] = useState("");
   const history = useHistory();
 
-  const handleOnSave = (event) => {
+  const handleOnSave = async (event) => {
     event.preventDefault();
 
-    alert("submitting");
+    let user = await Auth.currentAuthenticatedUser();
+    let result = await Auth.updateUserAttributes(user, {
+      given: "me@anotherdomain.com",
+    });
+    console.log(result); // SUCCESS
   };
 
   const handleOnCancel = (event) => {
@@ -64,24 +74,24 @@ const ChangeName = () => {
       <PageTitle>User Settings</PageTitle>
       <Container>
         <SettingsSectionHeader title="Change Name" />
-        <FormWrapper>
-          <form onSubmit={handleOnSave}>
+        <FormContainer>
+          <FormWrapper onSubmit={handleOnSave}>
             <TextInput
               type="text"
               placeholder="Enter New Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
-          </form>
-          <ButtonContainer>
-            <DynamicButton
-              text="CANCEL"
-              type="button"
-              onClick={handleOnCancel}
-            />
-            <DynamicButton text="SAVE" type="submit" onClick={handleOnSave} />
-          </ButtonContainer>
-        </FormWrapper>
+            <ButtonContainer>
+              <DynamicButton
+                text="CANCEL"
+                type="button"
+                onClick={handleOnCancel}
+              />
+              <DynamicButton text="SAVE" type="submit" onClick={handleOnSave} />
+            </ButtonContainer>
+          </FormWrapper>
+        </FormContainer>
       </Container>
     </Wrapper>
   );
