@@ -61,26 +61,22 @@ const NotifyMeFrequencySection = ({ setSave, setInit, emailNotification }) => {
         return "yearly";
     }
   };
-  useEffect(
-    () => {
-      var newRadioSet = [...radioSet];
-      async function fetchFrequency() {
-        try {
-          const response = await API.get("data", "/notification");
-          let index = getFrequencyIndex(response.frequency);
-          newRadioSet[index] = !newRadioSet[index];
-        } catch (e) {
-          alert(e);
-          console.log(e.message);
-        }
-        setRadioSet(newRadioSet);
+  useEffect(() => {
+    async function fetchFrequency() {
+      try {
+        const response = await API.get("data", "/notification");
+        let index = getFrequencyIndex(response.frequency);
+        var newRadioSet = [...radioSet];
+        newRadioSet[index] = !newRadioSet[index];
+      } catch (e) {
+        alert(e);
+        console.log(e.message);
       }
+      setRadioSet(newRadioSet);
+    }
 
-      fetchFrequency();
-    },
-    [],
-    radioSet
-  );
+    fetchFrequency();
+  }, []);
 
   const updateNotificationTable = async (index) => {
     try {
