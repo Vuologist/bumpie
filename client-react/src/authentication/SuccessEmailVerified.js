@@ -2,7 +2,7 @@ import React from "react";
 import * as style from "./style";
 import logo from "../assets/logo.png";
 import { ReactComponent as EmailSVG } from "../assets/Email_verified-01.svg";
-
+import { Link } from "react-router-dom";
 const SuccessEmailVerified = ({ page, changePage }) => (
   <style.ContentWrapper display={page[5]}>
     <style.LeftContainer smol>
@@ -15,7 +15,7 @@ const SuccessEmailVerified = ({ page, changePage }) => (
       <style.Text>
         Already have an account? <br /> Sign in!
       </style.Text>
-      <style.Button light text="SIGN IN" onClick={() => changePage(0)} />
+      <Link to="sign-in"><style.Button light text="SIGN IN" onClick={() => changePage(0)} /></Link>
     </style.LeftContainer>
     <style.RightContainer style={{ paddingBottom: 30 }} light large>
       <style.Title>Email Verified</style.Title>

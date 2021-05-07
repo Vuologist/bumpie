@@ -23,10 +23,19 @@ export default function Routes() {
         <NotificationSettings />
       </Route>
       <Route exact path="/sign-in">
-        <Authentication />
+        <Authentication type="SignIn"/>
       </Route>
       <Route path="/password-reset">
         <Authentication type="PasswordReset" />
+      </Route>
+      <Route path="/sign-up">
+        <Authentication type="SignUp" />
+      </Route>
+      <Route path="/forgot-password">
+        <Authentication type="ForgotPassword" />
+      </Route>
+      <Route path="/sucess-forgot-password">
+        <Authentication type="SuccessForgotPassword" />
       </Route>
       <Route path="/email-verified">
         <Authentication type="SuccessEmail" />

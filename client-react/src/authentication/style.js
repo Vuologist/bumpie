@@ -113,7 +113,7 @@ export const Text = styled.p`
   }
 `;
 
-export const StyledLink = styled.div`
+export const StyledLink = styled(Link)`
   font-family: "Roboto";
   font-size: 15px;
   cursor: "pointer";

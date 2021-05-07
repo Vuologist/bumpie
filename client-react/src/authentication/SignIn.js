@@ -1,6 +1,7 @@
 import React from "react";
 import * as style from "./style";
 import TextInput from "../common/TextInput";
+import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 
 const SignIn = ({
@@ -37,7 +38,7 @@ const SignIn = ({
             <style.ErrorMessage>{signInError}</style.ErrorMessage>
           )}
         </div>
-        <style.StyledLink onClick={() => changePage(2)}>
+        <style.StyledLink onClick={() => changePage(2)} to="forgot-password">
           I forgot my password
         </style.StyledLink>
         <style.Button text="SIGN IN" type="submit" onClick={handleOnSignIn} />
@@ -48,7 +49,7 @@ const SignIn = ({
       <style.Text>
         Don't have an account? <br /> Join today, it's free and easy!
       </style.Text>
-      <style.Button light text="SIGN UP" onClick={() => changePage(1)} />
+      <Link to="sign-up"><style.Button light text="SIGN UP" onClick={() => changePage(1)}/></Link>
     </style.RightContainer>
   </style.ContentWrapper>
 );

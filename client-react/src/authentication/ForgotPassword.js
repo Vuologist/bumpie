@@ -2,7 +2,7 @@ import React from "react";
 import * as style from "./style";
 import TextInput from "../common/TextInput";
 import logo from "../assets/logo.png";
-
+import { Link } from "react-router-dom";
 const ForgotPassword = ({
   page,
   changePage,
@@ -24,7 +24,7 @@ const ForgotPassword = ({
       <style.Text>
         Already have an account? <br /> Sign in!
       </style.Text>
-      <style.Button light text="SIGN IN" onClick={() => changePage(0)} />
+      <Link to="sign-in"><style.Button light text="SIGN IN" onClick={() => changePage(0)} /></Link>
     </style.LeftContainer>
     <style.RightContainer light large>
       <div style={{ textAlign: "center" }}>

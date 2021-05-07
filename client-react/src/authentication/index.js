@@ -204,6 +204,10 @@ const Authentication = (props) => {
 
   useEffect(() => {
     if (props.type === "PasswordReset") changePage(4);
+    else if (props.type === "SignIn") changePage(0);
+    else if (props.type === "SignUp") changePage(1);
+    else if (props.type === "ForgotPassword") changePage(2);
+    else if (props.type === "SuccessForgotPassword") changePage(3);
     if (props.type === "SuccessEmail") verifyEmail();
     // eslint-disable-next-line
   }, []);
@@ -283,5 +287,6 @@ const Authentication = (props) => {
     </style.CenterContainer>
   );
 };
+
 
 export default Authentication;
