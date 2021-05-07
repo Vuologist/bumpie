@@ -164,6 +164,9 @@ const Navbar = (isAuth) => {
       <Route path="/sign-in"></Route>
       <Route path="/email-verified"></Route>
       <Route path="/password-reset"></Route>
+      <Route path="/forgot-password"></Route>
+      <Route path="/sign-up"></Route>
+      <Route path="/success-forgot-password"></Route>
       <Route>{checkAuth(isAuth.isAuth)}</Route>
     </Switch>
   );

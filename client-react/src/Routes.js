@@ -34,7 +34,7 @@ export default function Routes() {
       <Route path="/forgot-password">
         <Authentication type="ForgotPassword" />
       </Route>
-      <Route path="/sucess-forgot-password">
+      <Route path="/success-forgot-password">
         <Authentication type="SuccessForgotPassword" />
       </Route>
       <Route path="/email-verified">
