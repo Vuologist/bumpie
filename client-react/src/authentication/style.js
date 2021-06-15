@@ -121,8 +121,12 @@ export const StyledLink = styled(Link)`
   margin-bottom: 30px;
   cursor: pointer;
   color: #005a52;
-  font-weight: bold;
 
+  font-weight: bold;
+  &:hover {
+    text-decoration: none;
+    color: #005a52;
+  }
   @media (max-width: 800px) {
     margin-bottom: 15px;
     font-size: 12px;
