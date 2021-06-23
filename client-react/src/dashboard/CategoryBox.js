@@ -114,12 +114,12 @@ const StyledInput = styled.input`
   background-image: none;
   border: 1px solid #ccc;
   border-radius: 7px;
-  z-index: 200;
+  z-index: 5;
 `;
 
 const StyledDropdown = styled(Dropdown)`
   display: flex;
-  z-index: 1000;
+  z-index: 10;
   justify-content: space-between;
   @media ${device.mobileL} {
     margin-right: 70px;
