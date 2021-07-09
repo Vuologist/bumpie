@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
+import { Auth } from "aws-amplify";
 
 import TextInput from "../common/TextInput";
 import DynamicButton from "../common/DynamicButton";
@@ -70,6 +71,11 @@ const ChangeEmail = () => {
       return;
     }
     alert("submitting");
+    let user = await Auth.currentAuthenticatedUser();
+    let result = await Auth.updateUserAttributes(user, {
+      email,
+    });
+    console.log(result);
   };
 
   const handleOnCancel = (event) => {
