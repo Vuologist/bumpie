@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { Auth } from "aws-amplify";
@@ -6,6 +6,7 @@ import { Auth } from "aws-amplify";
 import TextInput from "../common/TextInput";
 import DynamicButton from "../common/DynamicButton";
 import SettingsSectionHeader from "../common/SettingsSectionHeader";
+import Alert from "../common/Alert";
 
 import { isEmailValid } from "../libs/validator";
 
@@ -61,21 +62,47 @@ const ChangeEmail = () => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [isError, setIsError] = useState(false);
+  const [alert, setAlert] = useState(false);
+  const [alertBg, setAlertBg] = useState(false);
+  const [alertTxt, setAlertTxt] = useState("");
   const history = useHistory();
 
-  const handleOnSave = (event) => {
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setAlert(false);
+    }, 3000);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [alert]);
+
+  const handleOnSave = async (event) => {
     event.preventDefault();
     if (!isEmailValid(email)) {
       setError("Please enter a valid email address.");
       setIsError(true);
       return;
     }
-    alert("submitting");
-    let user = await Auth.currentAuthenticatedUser();
-    let result = await Auth.updateUserAttributes(user, {
-      email,
-    });
-    console.log(result);
+
+    try {
+      let user = await Auth.currentAuthenticatedUser();
+      let result = await Auth.updateUserAttributes(user, {
+        email,
+      });
+
+      console.log(result);
+      if (result === "SUCCESS") {
+        console.log("success");
+        setAlert(true);
+        setAlertBg("success");
+        setAlertTxt("Changes Saved!");
+      }
+    } catch (e) {
+      console.log("fail");
+      setAlert(true);
+      setAlertBg("");
+      setAlertTxt("Change save failed. Please try again later.");
+    }
   };
 
   const handleOnCancel = (event) => {
@@ -83,9 +110,13 @@ const ChangeEmail = () => {
     history.push("/user-settings");
   };
 
+  // TODO: create the success banner
+  // TODO: create the fail banner if no connection
+
   return (
     <Wrapper>
       <PageTitle>User Settings</PageTitle>
+      {alert && <Alert text={alertTxt} bg={alertBg} />}
       <Container>
         <SettingsSectionHeader title="Change E-mail" />
         <FormWrapper>

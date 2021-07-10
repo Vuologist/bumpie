@@ -16,6 +16,10 @@ export const handler = (event, context, callback) => {
     console.log("CustomMessage_SignUp");
     event.response.emailSubject = "Bumpie Email Verification";
     event.response.emailMessage = newSignUp(event, username);
+  } else if (event.triggerSource === "CustomMessage_UpdateUserAttribute") {
+    console.log("CustomMessage_UpdateUserAttribute");
+    event.response.emailSubject = "Bumpie Update Email Verification";
+    event.response.emailMessage = newSignUp(event, username);
   }
 
   callback(null, event);

@@ -287,7 +287,7 @@ const CategoryBox = ({ title, onChange, data, one, onTitleChange, key }) => {
             {data.map((subcat, i) => {
               return (
                 <SubCategory
-                  key={subcat.key}
+                  key={"sub" + subcat.key}
                   title={subcat.title}
                   onDelete={() => onDelete(i)}
                   value={subcat.value}
