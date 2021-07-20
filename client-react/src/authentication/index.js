@@ -27,6 +27,7 @@ const Authentication = (props) => {
   const [confirmPasswordSignUpError, setConfirmPasswordSignUpError] = useState(
     ""
   );
+  const [isError, setIsError] = useState(false);
   const [confirmPasswordInvalid, setConfirmPasswordInvalid] = useState(false);
   const { userHasAuthenticated } = useAppContext();
   const history = useHistory();
@@ -49,6 +50,7 @@ const Authentication = (props) => {
     setPasswordInvalid(false);
     setConfirmPasswordSignUpError("");
     setConfirmPasswordInvalid(false);
+    setIsError(false);
   };
 
   const handleOnSignUp = async (event) => {
@@ -59,6 +61,7 @@ const Authentication = (props) => {
     if (name.length === 0) {
       setNameError("Please fill in your name.");
       setNameInvalid(true);
+      setIsError(true);
       fail = true;
     }
 
@@ -66,6 +69,7 @@ const Authentication = (props) => {
     if (!emailValidation.test(email)) {
       setEmailSignUpError("Please enter a valid email address.");
       setEmailInvalid(true);
+      setIsError(true);
       fail = true;
     }
 
@@ -75,12 +79,14 @@ const Authentication = (props) => {
         "Password must be at least 8 characters and include a lowercase, uppercase, special symbol, and number."
       );
       setPasswordInvalid(true);
+      setIsError(true);
       fail = true;
     }
 
     if (confirmPassword.length === 0 || password !== confirmPassword) {
       setConfirmPasswordSignUpError("Your passwords do not match.");
       setConfirmPasswordInvalid(true);
+      setIsError(true);
       fail = true;
     }
 
@@ -96,13 +102,14 @@ const Authentication = (props) => {
       console.log(e.message);
       if (e.message === "An account with the given email already exists.") {
         setEmailSignUpError("Email already exists.");
+        setIsError(true);
       }
     }
   };
 
   const handleOnSignIn = async (event) => {
     event.preventDefault();
-
+    resetErrorState();
     try {
       await Auth.signIn(email, password);
       userHasAuthenticated(true);
@@ -111,8 +118,10 @@ const Authentication = (props) => {
     } catch (e) {
       if (e.message === "User is not confirmed.") {
         setSignInError("Email has not been confirmed. Email resent.");
+        setIsError(true);
         Auth.resendSignUp(email);
       } else {
+        setIsError(true);
         setSignInError("Email/password is incorrect");
       }
     }
@@ -223,6 +232,7 @@ const Authentication = (props) => {
           password={password}
           setPassword={setPassword}
           signInError={signInError}
+          isError={isError}
           changePage={changePage}
         />
       )}
