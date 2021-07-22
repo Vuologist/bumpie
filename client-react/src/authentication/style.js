@@ -133,6 +133,21 @@ export const StyledLink = styled(Link)`
   }
 `;
 
+const fadeInOut = keyframes`
+    0% {
+        opacity: 0;
+    }
+    16% {
+       opacity: 1;
+    }
+    84% {
+       opacity: 1;
+    }
+    100% {
+       opacity: 0;
+    }
+`;
+
 export const ErrorMessage = styled.div`
   font-family: "Roboto";
   font-size: 12px;
@@ -142,7 +157,8 @@ export const ErrorMessage = styled.div`
   padding-right: 11px;
   color: #ff4d4d;
   width: 360px;
-
+  animation: ${fadeInOut} 5s;
+  opacity: 0;
   @media (max-width: 800px) {
     margin-bottom: 15px;
     font-size: 12px;

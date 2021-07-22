@@ -4,6 +4,7 @@ import TextInput from "../common/TextInput";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 
+
 const SignIn = ({
   page,
   handleOnSignIn,
@@ -12,6 +13,7 @@ const SignIn = ({
   password,
   setPassword,
   signInError,
+  isError,
   changePage,
 }) => (
   <style.ContentWrapper display={page[0]}>
@@ -34,7 +36,7 @@ const SignIn = ({
           onChange={(e) => setPassword(e.target.value)}
         />
         <div style={{ textAlign: "center" }}>
-          {signInError && (
+          {isError && (
             <style.ErrorMessage>{signInError}</style.ErrorMessage>
           )}
         </div>
